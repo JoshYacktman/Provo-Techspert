@@ -5,10 +5,6 @@
     display: flex;
 }
 
-.picture_left {}
-
-.picture_right {}
-
 .side_by_side.left {
     justify-content: center;
 }
@@ -43,6 +39,17 @@
         padding: 1em;
         margin-right: 1em;
     }
+}
+
+
+/* Paragraph List */
+/* TODO justify items fully to the left (resize and check that they always stay to the left) */
+.paragraph_list {
+    width: 70%;
+}
+
+.paragraph_list p {
+    color: red;
 }
 
 

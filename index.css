@@ -3,10 +3,7 @@
     display: flex;
 }
 
-.side_by_side.left {
-    justify-content: center;
-}
-
+.side_by_side.left,
 .side_by_side.right {
     justify-content: center;
 }

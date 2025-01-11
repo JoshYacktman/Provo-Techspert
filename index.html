@@ -19,8 +19,20 @@
             <div class="dropdown">
                 <button class="main_text normal">Join/Sign In</button>
                 <div class="dropdown-content">
-                    <a href="join/">Sign In</a>
-                    <a href="signup/">Sign Up</a>
+                    <form>
+                        <div style="padding: 0.25em; display: flex; flex-direction: column;">
+                            <label class="message_font normal">Username</label>
+                            <input class="formal_font normal"/>
+                            <label class="message_font normal">Password</label>
+                            <input class="formal_font normal"/>
+                            <label class="message_font normal">Email (Join Only)</label>
+                            <input class="formal_font normal"/>
+                        </div>
+                        <div>
+                            <button type="button" onclick="window.location.href='chat/';">Join</button>
+                            <button type="button" onclick="window.location.href='chat/';">Sign Up</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- TODO: Change this from redirecting to chat to instead have a sign in/sign up dropdown on hover -->

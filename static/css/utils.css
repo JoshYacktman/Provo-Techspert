@@ -76,26 +76,6 @@
 
 
 /* Dropdown Menus */
-/* .dropdown_outer {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown_content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 5em;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: .5rem;
-}
-
-.dropdown_outer:hover .dropdown_content {
-    display: block;
-    opacity: 1;
-} */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -109,10 +89,26 @@
     min-width: 5em;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    border-radius: .5rem;
+    border-radius: .25rem;
+    overflow: hidden;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: grid;
     opacity: 1;
+}
+
+.dropdown-content button {
+    background-color: #f9f9f9;
+    box-shadow: none;
+    height: min-content;
+}
+
+.dropdown-content div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-content div button {
+    flex: 1;
 }

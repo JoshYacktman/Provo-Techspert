@@ -37,7 +37,7 @@ Have you ever had a broken game console, controller, or laptop? Have you ever wo
  - MongoDB (For simplified database handling. There are two databases: One for chat logs and one for user information)
  - AWS (Website and backend hosting)
  - Environment Variables (For safely storing the username and password for the email system)
- - Google fonts (Planning on using "Bangers" (main text) and "Abril Fatface" (chat messages and main page about me))
+ - Google fonts (Planning on using "Bangers" (main text) and "Montserrat" (chat messages and main page about me))
  - WebSocket (used for chat)
 
 ## The Process

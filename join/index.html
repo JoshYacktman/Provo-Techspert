@@ -16,38 +16,35 @@
             <div class="header left">
                 <h1 class="main_text medium">Provo Techspert</h1>
             </div>
-            <div class="header right">
-                <button class="main_text normal" onclick="window.location.href='../';">Username</button>
-                <!-- TODO: Change this from redirecting to the home page to instead have a return to chat/sign out dropdown on hover -->
-            </div>
         </div>
 
 
         <div class="work_area">
-            <h1>Account Settings</h1>
-            <p>Proper settings component</p>
+            <h1>Join / Sign In</h1>
+            <p>Proper form component</p>
             <p>Database inference</p>
-            <forM>
+            <form action="#" method="POST">
                 <div>
-                    <label for="new-email">New Email:</label>
-                    <input type="email" name="new-email" placeholder="Enter new email">
-                    <button>Change Email</button>
-                </div>
-
-                <div id="change-password">
-                    <label for="new-password">New Password:</label>
-                    <input type="password" name="new-password" placeholder="Enter new password">
-                    <button>Change Password</button>
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" placeholder="Enter your username" required>
                 </div>
 
                 <div>
-                    <label>Delete Account?</label>
-                    <button>Delete Account</button>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" placeholder="Enter your password" required>
                 </div>
-            </forM>
-            <!-- Email -->
-            <!-- Password -->
-            <!-- Delete account -->
+
+                <div>
+                    <label for="email">Email (optional):</label>
+                    <input type="email" name="email" placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <button type="submit" name="action" value="signup">Sign Up</button>
+                    <button type="submit" name="action" value="signin">Sign In</button>
+                </div>
+            </form>
+            <a href="../chat/">Continue (placeholder)</a>
         </div>
 
         <!-- Footer -->

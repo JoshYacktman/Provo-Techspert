@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&family=Newsreader&family=Rubik+Vinyl&display=swap"&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Kanit&family=Montserrat:wght@600&family=Newsreader:opsz,wght@6..72,600&family=Rubik+Vinyl&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&family=Newsreader&family=Rubik+Vinyl&display=swap"&display=swap'); */
 
 * {
     /* Set up the document properly */
@@ -50,7 +50,6 @@ a {
 
 .main_text {
     font-family: "Bangers";
-    font-style: normal;
     padding: .5em;
 }
 

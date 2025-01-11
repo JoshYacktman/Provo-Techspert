@@ -13,8 +13,8 @@
 
 
 .side_by_side.right {
-    margin: .25em;
-    padding: .25em;
+    padding: .5em;
+    padding-right: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +22,7 @@
 }
 
 /* Media query for narrower screens */
-@media (max-width: 40 em) {
+@media (max-width: 40em) {
     .side_by_side {
         flex-direction: column;
     }
@@ -42,14 +42,4 @@
     width: 80%;
     padding: 1em;
     object-fit: cover;
-}
-
-/* Banner Photo */
-
-.banner_text {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
 }

@@ -6,6 +6,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* display: flex;
+    flex-direction: column; */
 
     /* Variables */
     --header_footer_color: #ababab;
@@ -17,7 +19,12 @@
 
 /* Premade "widgets */
 body {
-    background-color: var(--header_footer_color);
+    /* background-color: var(--header_footer_color); */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
 }
 
 a {

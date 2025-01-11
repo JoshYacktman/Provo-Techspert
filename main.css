@@ -8,16 +8,20 @@
     box-sizing: border-box;
 
     /* Variables */
-    --header_footer_color: #ababab;
-    /* Light Gray */
     --contrast_color_1: #dbcbdb;
     /* Light Purple */
     --contrast_color_2: #bccbbc;
     /* Light Green */
     --contrast_color_3: #dbcbbc;
     /* Light Orange */
+    --header_footer_color: #ababab;
+    /* Light Gray */
+    --header_footer_text_color: #4268e4;
+    /* Dark Blue */
     --header_footer_color_hover: #898989;
+    /* Darker Gray */
     --header_footer_color_active: #676767;
+    /* Darkest Gray */
 }
 
 

@@ -35,6 +35,7 @@
     height: 100%;
     padding: 1em;
     box-sizing: border-box;
+    color: var(--header_footer_text_color);
 }
 
 
@@ -56,4 +57,5 @@
     height: 100%;
     padding: .75em;
     box-sizing: border-box;
+    color: var(--header_footer_text_color);
 }

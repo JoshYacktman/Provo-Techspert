@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&family=Newsreader&family=Rubik+Vinyl&display=swap"&display=swap');
 
-/* Make sure that the html fills the whole page */
+
 * {
+    /* Set up the document properly */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    /* Variables */
     --header_footer_color: #ababab;
     --contrast_color: #bccbbc;
     --header_footer_color_hover: #898989;
     --header_footer_color_active: #676767;
 }
 
+
+/* Premade "widgets */
 body {
     background-color: var(--header_footer_color);
 }
@@ -32,6 +37,7 @@ button:hover {
 button:active {
     background-color: var(--header_footer_color_active);
 }
+
 
 /* Font stuff */
 .main_text {
@@ -61,6 +67,7 @@ button:active {
     font-weight: 600;
 }
 
+/* Font sizes */
 .large {
     font-size: 42pt;
 }
@@ -74,6 +81,7 @@ button:active {
     font-size: 14pt;
 }
 
+/* Update the font sizes if the page is too small */
 @media (max-width: 40em) {
     .large {
         font-size: 30pt;

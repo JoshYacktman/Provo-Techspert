@@ -22,7 +22,7 @@
 }
 
 /* Media query for narrower screens */
-@media (max-width: 768px) {
+@media (max-width: 40 em) {
     .side_by_side {
         flex-direction: column;
     }

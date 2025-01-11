@@ -1,0 +1,13 @@
+/* Get the page to take the whole... page */
+html,
+body,
+main {
+    height: 100%;
+}
+
+
+.work_area {
+    background-color: green;
+    flex-grow: 1;
+    display: flex;
+}

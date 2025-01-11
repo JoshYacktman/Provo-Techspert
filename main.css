@@ -6,12 +6,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* display: flex;
-    flex-direction: column; */
 
     /* Variables */
     --header_footer_color: #ababab;
-    --contrast_color: #bccbbc;
+    /* Light Gray */
+    --contrast_color_1: #dbcbdb;
+    /* Light Purple */
+    --contrast_color_2: #bccbbc;
+    /* Light Green */
+    --contrast_color_3: #dbcbbc;
+    /* Light Orange */
     --header_footer_color_hover: #898989;
     --header_footer_color_active: #676767;
 }
@@ -19,7 +23,7 @@
 
 /* Premade "widgets */
 body {
-    /* background-color: var(--header_footer_color); */
+    background-color: var(--header_footer_color);
 }
 
 main {
@@ -65,10 +69,12 @@ button:active {
 
 .message_font {
     font-family: "Montserrat";
+    line-height: 1.2;
 }
 
 .formal_font {
     font-family: "Newsreader";
+    line-height: 1.2;
 }
 
 

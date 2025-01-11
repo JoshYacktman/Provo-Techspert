@@ -42,7 +42,7 @@
 .footer {
     background-color: var(--header_footer_color);
     width: 100%;
-    display: flex;
+    margin-top: auto;
 }
 
 .footer .left {

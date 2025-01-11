@@ -1,20 +1,20 @@
 @import "utils.css";
 
 .side_by_side {
-    background-color: var(--contrast_color);
     width: 100%;
     display: flex;
 }
-
 
 .side_by_side.left {
     justify-content: center;
 }
 
-
 .side_by_side.right {
-    padding: .5em;
-    padding-right: 2em;
+    justify-content: center;
+}
+
+.text {
+    padding: 2.5em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,8 +37,8 @@
     }
 }
 
-/* Profile Photo */
-.profile_photo {
+/* Promo Photos */
+.promo_photo {
     width: 80%;
     padding: 1em;
     object-fit: cover;

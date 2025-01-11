@@ -1,4 +1,4 @@
-<h1 align="center">Provo Techsperts</h1>
+<h1 align="center">Provo Techspert</h1>
 
 
 A website for my tech repair "business" at BYU.
@@ -9,12 +9,36 @@ A website for my tech repair "business" at BYU.
 
 Have you ever had a broken game console, controller, or laptop? Have you ever worried that if you bring this to a technician they will upcharge the service significantly, be dishonest, and/or hold on to your device for a significant period of time? Provo Techsperts is the solution for you! With a completely transparent process that involves the customer every step of the way they can be sure they're getting the best price and the best timeframe!
 
-# Design
+## Design
 
 <img src="/images/Provo Techspert.jpg" alt="Design Image">
 
-<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVLvuB0Jc=/?moveToViewport=-1495,-1853,5147,2466&embedId=775898609993" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+## Key Features:
+ - Minimal design aesthetic
+ - Minimal user info (only stores username, password hash, email, and chat logs (this account can also be deleted))
+ - Secure login over HTTPS
+ - Multiple chat tabs and ability to send messages in chat
+ - Emails notifying users when new message appears
+ - Environment variables for safely storing email system username and password on the server
+ - Chat renaming on both ends
+ - Multiple chats can be swapped between or opened
+ - Status bar ("Not Completed", "Parts Ordered", "In Progress", "Completed", "Item Returned")
+ - Can delete account
+ - Chat names are limited to 20 characters and chat messages are limited to 500 characters
+ - Usernames are limited to 12 characters
 
+## Techonologies:
+
+ - HTML (application structure Three pages: One for the home page, one for the chat boards, and one for account settings (allows for account deletion))
+ - CSS (Styling of application that styles nicely for different device sized)
+ - React (Provides useful widgets and helps simplify the process)
+ - JS (For the backend and frontend. Backend uses Nodemailer for emails and MongoDB for the database. Backend has endpoints for login, account creation, chats list retrieval, chat log retrieval,
+ - Nodemailer (For simplified email handling)
+ - MongoDB (For simplified database handling. There are two databases: One for chat logs and one for user information)
+ - AWS (Website and backend hosting)
+ - Environment Variables (For safely storing the username and password for the email system)
+ - Google fonts (Planning on using "Bangers" (main text) and "Abril Fatface" (chat messages and main page about me))
+ - WebSocket (used for chat)
 
 ## The Process
 

@@ -81,8 +81,9 @@
     display: inline-block;
 }
 
-.dropdown-content {
+.dropdown_content {
     display: none;
+    margin: .2em;
     position: absolute;
     right: 0;
     background-color: #f9f9f9;
@@ -93,22 +94,22 @@
     overflow: hidden;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown_content {
     display: grid;
     opacity: 1;
 }
 
-.dropdown-content button {
+.dropdown_content button {
     background-color: #f9f9f9;
     box-shadow: none;
     height: min-content;
 }
 
-.dropdown-content div {
+.dropdown_content div {
     display: flex;
     justify-content: space-between;
 }
 
-.dropdown-content div button {
+.dropdown_content div button {
     flex: 1;
 }

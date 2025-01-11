@@ -5,6 +5,10 @@
     display: flex;
 }
 
+.picture_left {}
+
+.picture_right {}
+
 .side_by_side.left {
     justify-content: center;
 }
@@ -23,8 +27,12 @@
 
 /* Media query for narrower screens */
 @media (max-width: 40em) {
-    .side_by_side {
+    .picture_left {
         flex-direction: column;
+    }
+
+    .picture_right {
+        flex-direction: column-reverse;
     }
 
     .side_by_side.left,

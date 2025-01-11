@@ -10,6 +10,9 @@
     /* Stick to the top */
     position: sticky;
     top: 0;
+
+    /* Ensure it always stays at the top */
+    z-index: 10;
 }
 
 .header .left,

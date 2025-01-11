@@ -43,3 +43,12 @@
     padding: 1em;
     object-fit: cover;
 }
+
+/* Banner Photo */
+
+.banner_text {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

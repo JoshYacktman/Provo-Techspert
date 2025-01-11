@@ -13,6 +13,9 @@ Have you ever had a broken game console, controller, or laptop? Have you ever wo
 
 <img src="/images/Provo Techspert.jpg" alt="Design Image">
 
+<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVLvuB0Jc=/?moveToViewport=-1495,-1853,5147,2466&embedId=775898609993" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
+
 ## The Process
 
 The process looks like this:

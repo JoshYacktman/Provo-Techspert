@@ -43,3 +43,32 @@
     padding: 1em;
     object-fit: cover;
 }
+
+/* Banner Photo */
+.banner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner img {
+    width: 100%;
+}
+
+.banner .text_overlay {
+    position: absolute;
+    top: 5%;
+    text-align: center;
+    text-shadow:
+        .01em .01em 0 white,
+        -.01em .01em 0 white,
+        .01em -.01em 0 white,
+        -.01em -.01em 0 white;
+}
+
+@media (max-width: 40em) {
+    .banner .text_overlay {
+        font-size: 20pt;
+    }
+}

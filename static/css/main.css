@@ -119,7 +119,7 @@ a {
 
 
 /* Update the font sizes if the page is too small */
-@media (max-width: 40em) {
+@media (max-width: 60em) {
     .large {
         font-size: 30pt;
     }

@@ -1,0 +1,45 @@
+@import "utils.css";
+
+.side_by_side {
+    background-color: var(--contrast_color);
+    width: 100%;
+    display: flex;
+}
+
+
+.side_by_side.left {
+    justify-content: center;
+}
+
+
+.side_by_side.right {
+    margin: .25em;
+    padding: .25em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Media query for narrower screens */
+@media (max-width: 768px) {
+    .side_by_side {
+        flex-direction: column;
+    }
+
+    .side_by_side.left,
+    .side_by_side.right {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 1em;
+        margin-right: 1em;
+    }
+}
+
+/* Profile Photo */
+.profile_photo {
+    width: 80%;
+    padding: 1em;
+    object-fit: cover;
+}

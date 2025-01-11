@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&family=Newsreader&family=Rubik+Vinyl&display=swap"&display=swap');
+
+/* Make sure that the html fills the whole page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --header_footer_color: #ababab;
+    --contrast_color: #bccbbc;
+    --header_footer_color_hover: #898989;
+    --header_footer_color_active: #676767;
+}
+
+body {
+    background-color: var(--header_footer_color);
+}
+
+a {
+    color: black;
+}
+
+
+button {
+    background-color: var(--header_footer_color);
+    border: none;
+}
+
+button:hover {
+    background-color: var(--header_footer_color_hover);
+}
+
+button:active {
+    background-color: var(--header_footer_color_active);
+}
+
+/* Font stuff */
+.main_text {
+    font-family: "Bangers";
+    font-weight: 400;
+    font-style: normal;
+    padding: .5em;
+}
+
+
+.complementary_font {
+    font-family: "Rubik Vinyl";
+    font-weight: 600;
+    text-shadow: 1px 1px;
+}
+
+
+.message_font {
+    font-family: "Montserrat";
+    font-weight: 600;
+    text-shadow: 1px 1px;
+}
+
+
+.formal_font {
+    font-family: "Newsreader";
+    font-weight: 600;
+}
+
+.large {
+    font-size: 42pt;
+}
+
+
+.medium {
+    font-size: 30pt;
+}
+
+.normal {
+    font-size: 14pt;
+}
+
+@media (max-width: 40em) {
+    .large {
+        font-size: 30pt;
+    }
+
+    .medium {
+        font-size: 20pt;
+    }
+
+    .normal {
+        font-size: 10pt;
+    }
+
+}

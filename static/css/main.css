@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Kanit&family=Montserrat:wght@600&family=Newsreader:opsz,wght@6..72,600&family=Rubik+Vinyl&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&family=Newsreader&family=Rubik+Vinyl&display=swap"&display=swap'); */
-
 * {
     /* Set up the document properly */
     margin: 0;
@@ -41,6 +38,34 @@ a {
 
 
 /* Font stuff */
+@font-face {
+    font-family: "Bangers";
+    src: url("../fonts/Bangers.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../fonts/Montserrat.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Newsreader";
+    src: url("../fonts/Newsreader.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Rubik Vinyl";
+    src: url("../fonts/Rubik Vinyl.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
 .complementary_font,
 .message_font,
 .formal_font,

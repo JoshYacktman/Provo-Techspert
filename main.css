@@ -39,19 +39,6 @@ a {
     color: black;
 }
 
-button {
-    background-color: var(--header_footer_color);
-    border: none;
-}
-
-button:hover {
-    background-color: var(--header_footer_color_hover);
-}
-
-button:active {
-    background-color: var(--header_footer_color_active);
-}
-
 
 /* Font stuff */
 .complementary_font,

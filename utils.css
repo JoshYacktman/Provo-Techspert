@@ -36,6 +36,12 @@
     padding: 1em;
     box-sizing: border-box;
     color: var(--header_footer_text_color);
+    background-color: var(--header_footer_color);
+    border: none;
+}
+
+.header button:hover {
+    background-color: var(--header_footer_color_hover);
 }
 
 
@@ -58,4 +64,14 @@
     padding: .75em;
     box-sizing: border-box;
     color: var(--header_footer_text_color);
+    background-color: var(--header_footer_color);
+    border: none;
+}
+
+.footer button:hover {
+    background-color: var(--header_footer_color_hover);
+}
+
+.footer button:active {
+    background-color: var(--header_footer_color_active);
 }

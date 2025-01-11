@@ -11,7 +11,7 @@ Have you ever had a broken game console, controller, or laptop? Have you ever wo
 
 ## Design
 
-<img src="/images/Provo Techspert.jpg" alt="Design Image">
+<img src="static/images/Provo Techspert.jpg" alt="Design Image">
 
 ## Key Features:
  - Minimal design aesthetic

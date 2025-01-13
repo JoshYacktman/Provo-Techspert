@@ -28,7 +28,6 @@ body {
 }
 
 main {
-    display: flex;
     flex-direction: column;
 }
 
@@ -132,4 +131,13 @@ a {
         font-size: 10pt;
     }
 
+}
+
+/* Shadows */
+.shadow_down {
+    box-shadow: 0px .5em 1em 0px rgba(0, 0, 0, 0.7);
+}
+
+.shadow_up {
+    box-shadow: 0px -.5em 1em 0px rgba(0, 0, 0, 0.7);
 }

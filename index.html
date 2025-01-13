@@ -17,18 +17,18 @@
 </head>
 <body>
     <!-- Header -->
-    <div class="header-container">
-        <div class="header">
-            <div class="header left">
+    <div class="header shadow_down">
+        <div class="header_splitter">
+            <div class="header_splitter left">
                 <h1 class="main_text medium">Provo Techspert</h1>
             </div>
 
-            <div class="header right">
+            <div class="header_splitter right">
                 <div class="dropdown">
-                    <button class="main_text normal">Join/Sign In</button>
+                    <button class="main_text normal shadow_down">Join/Sign In</button>
                     <div class="dropdown_content">
                         <form>
-                            <div style="padding: 0.25em; display: flex; flex-direction: column;">
+                            <div class="form_format">
                                 <label class="message_font normal">Username</label>
                                 <input class="formal_font normal"/>
                                 <label class="message_font normal">Password</label>
@@ -43,7 +43,6 @@
                         </form>
                     </div>
                 </div>
-                <!-- TODO: Change this from redirecting to chat to instead have a sign in/sign up dropdown on hover -->
             </div>
         </div>
     </div>
@@ -60,7 +59,7 @@
         <!-- Why Me? -->
         <div class="side_by_side picture_left" style="background-color: var(--contrast_color_1);">
             <div class="side_by_side left">
-                <img src="static/images/promo_1.jpg" class="promo_photo">
+                <img src="static/images/promo_1.jpg" class="promo_photo shadow_down">
             </div>
             <div class="side_by_side right text">
                 <h1 class="complementary_font large">Why Me?</h1>
@@ -94,7 +93,7 @@
                 </div>
             </div>
             <div class="side_by_side right">
-                <img src="static/images/promo_2.jpg" class="promo_photo">
+                <img src="static/images/promo_2.jpg" class="promo_photo shadow_down">
                 <!-- TODO: Make this a picture of the chat screen with a user account -->
             </div>
         </div>
@@ -103,7 +102,7 @@
         <!-- About me -->
         <div class="side_by_side picture_left" style="background-color: var(--contrast_color_3);">
             <div class="side_by_side left">
-                <img src="static/images/profile.jpg" class="promo_photo">
+                <img src="static/images/profile.jpg" class="promo_photo shadow_down">
             </div>
             <div class="side_by_side right text">
                 <h1 class="complementary_font large">Meet the Technician</h1>
@@ -115,9 +114,9 @@
 
 
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer shadow_up">
         <div class="footer left">
-            <button class="complementary_font normal" onclick="window.open('https://github.com/JoshYacktman/Provo-Techspert')">GitHub</button>
+            <button class="complementary_font normal shadow_up" onclick="window.open('https://github.com/JoshYacktman/Provo-Techspert')">GitHub</button>
         </div>
     </div>
 </body>

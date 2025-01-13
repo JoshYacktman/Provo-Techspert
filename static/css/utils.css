@@ -1,47 +1,45 @@
 /* Header */
-.header-container {
+.header {
     z-index: 10;
     position: sticky;
     top: 0;
 
     /* Took inspiration and help from: https://ibelick.com/blog/creating-metallic-effect-with-css */
     /* Modified values a bit */
-    box-shadow: 0px .5em 1em 0px rgba(0, 0, 0, 0.7);
     background: linear-gradient(45deg, #999 4%, #eee 10%, #bbb 30%, #ddd 40%, #eee 65%, #fff 75%, #888 95%);
 }
 
-.header {
+.header_splitter {
     width: 100%;
     display: flex;
 }
 
-.header .left,
-.header .right {
+.header_splitter .left,
+.header_splitter .right {
     flex: 1;
     display: flex;
     background: none;
 }
 
-.header .left {
+.header_splitter .left {
     justify-content: flex-start;
     padding-left: 0.5em;
 }
 
-.header .right {
+.header_splitter .right {
     justify-content: flex-end;
 }
 
-.header button {
+.header_splitter button {
     height: 100%;
     padding: 1em;
     box-sizing: border-box;
     color: var(--header_footer_text_color);
     background-color: var(--header_footer_color);
     border: none;
-    box-shadow: 0px .5em 1em 0px rgba(0, 0, 0, 0.7);
 }
 
-.header button:hover {
+.header_splitter button:hover {
     background-color: var(--header_footer_color_hover);
 }
 
@@ -51,6 +49,7 @@
     background-color: var(--header_footer_color);
     width: 100%;
     margin-top: auto;
+    background: linear-gradient(45deg, #999 4%, #eee 10%, #bbb 30%, #ddd 40%, #eee 65%, #fff 75%, #888 95%);
 }
 
 .footer .left {
@@ -67,7 +66,6 @@
     color: var(--header_footer_text_color);
     background-color: var(--header_footer_color);
     border: none;
-    box-shadow: 0px 0px 1em 0px rgba(0, 0, 0, 0.7);
 }
 
 .footer button:hover {
@@ -92,7 +90,7 @@
     right: 0;
     background-color: #f9f9f9;
     min-width: 5em;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px .5em 1em 0px rgba(0, 0, 0, 0.7);
     z-index: 1;
     border-radius: .25rem;
     overflow: hidden;
@@ -116,4 +114,10 @@
 
 .dropdown_content div button {
     flex: 1;
+}
+
+.dropdown_content .form_format {
+    padding: 0.25em;
+    display: flex;
+    flex-direction: column;
 }

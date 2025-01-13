@@ -1,21 +1,25 @@
 /* Header */
-.header {
-    background-color: var(--header_footer_color);
-    width: 100%;
-    display: flex;
-
-    /* Stick to the top */
+.header-container {
+    z-index: 10;
     position: sticky;
     top: 0;
 
-    /* Ensure it always stays at the top */
-    z-index: 10;
+    /* Took inspiration and help from: https://ibelick.com/blog/creating-metallic-effect-with-css */
+    /* Modified values a bit */
+    box-shadow: 0px .5em 1em 0px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(45deg, #999 4%, #eee 10%, #bbb 30%, #ddd 40%, #eee 65%, #fff 75%, #888 95%);
+}
+
+.header {
+    width: 100%;
+    display: flex;
 }
 
 .header .left,
 .header .right {
     flex: 1;
     display: flex;
+    background: none;
 }
 
 .header .left {

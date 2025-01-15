@@ -1,14 +1,16 @@
-/* Get the page to take the whole... page */
+/* Get the page to take the whole height of the page */
 html,
 body,
 main {
     height: 100%;
-}
-
-
-.work_area {
-    background-color: green;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
+}
+
+/* Take up all available space after header and footer are inserted */
+.work_area {
+    flex-direction: column;
+    background-color: green;
+    flex-grow: 1;
+    height: 100%;
 }

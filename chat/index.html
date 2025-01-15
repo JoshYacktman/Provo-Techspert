@@ -11,41 +11,44 @@
 </head>
 <body>
     <!-- Header -->
-    <div class="header shadow_down">
-        <div class="header_splitter">
-            <div class="header_splitter left">
-                <h1 class="main_text medium">Provo Techspert</h1>
-            </div>
+    <header>
+        <div class="header shadow_down">
+            <div class="header_splitter">
+                <div class="header_splitter left">
+                    <h1 class="main_text medium">Provo Techspert</h1>
+                </div>
 
-            <div class="header_splitter right">
-                <div class="dropdown">
-                    <button class="main_text normal shadow_down">Username</button>
-                    <div class="dropdown_content">
-                        <button onclick="window.location.href='../settings/';">Settings</button>
-                        <button onclick="window.location.href='../';">Sign Out</button>
+                <div class="header_splitter right">
+                    <div class="dropdown">
+                        <button class="main_text normal shadow_down">Username</button>
+                        <div class="dropdown_content">
+                            <button onclick="window.location.href='../settings/';">Settings</button>
+                            <button onclick="window.location.href='../';">Sign Out</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
 
 
     <main>
         <!-- Actual content -->
-        <!-- The header and footer needed to be in main to get it to all scale and fill properly hence this div -->
         <div class="work_area">
             <h1>Chat</h1>
             <p>app components</p>
             <p>websocket chat component</p>
-            <p>Database inference</p>
+            <p style="padding-bottom: .5em;">Database inference</p>
         </div>
+    </main>
 
 
-        <!-- Footer -->
+    <!-- Footer -->
+    <footer>
         <div class="footer shadow_up">
             <div class="footer left">
                 <button class="complementary_font normal shadow_up" onclick="window.open('https://github.com/JoshYacktman/Provo-Techspert')">GitHub</button>
             </div>
         </div>
-    </main>
+    </footer>
 </body>

@@ -62,28 +62,28 @@ button:active {
 /* Font stuff */
 @font-face {
     font-family: "Bangers";
-    src: url("../fonts/Bangers.woff2") format("woff2");
+    src: url("/fonts/Bangers.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Montserrat";
-    src: url("../fonts/Montserrat.woff2") format("woff2");
+    src: url("/fonts/Montserrat.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Newsreader";
-    src: url("../fonts/Newsreader.woff2") format("woff2");
+    src: url("/fonts/Newsreader.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Rubik Vinyl";
-    src: url("../fonts/Rubik Vinyl.woff2") format("woff2");
+    src: url("/fonts/Rubik Vinyl.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
 }

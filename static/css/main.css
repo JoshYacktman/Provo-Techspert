@@ -22,7 +22,7 @@
 }
 
 
-/* Premade "widgets */
+/* Generic components */
 body {
     background-color: var(--header_footer_color);
 }
@@ -31,8 +31,31 @@ main {
     flex-direction: column;
 }
 
-a {
-    color: black;
+header {
+    z-index: 10;
+    position: sticky;
+    top: 0;
+}
+
+footer {
+    z-index: 9;
+}
+
+button {
+    height: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+    color: var(--header_footer_text_color);
+    background-color: var(--header_footer_color);
+    border: none;
+}
+
+button:hover {
+    background-color: var(--header_footer_color_hover);
+}
+
+button:active {
+    background-color: var(--header_footer_color_active);
 }
 
 
@@ -128,10 +151,11 @@ a {
     }
 
     .normal {
-        font-size: 10pt;
+        font-size: 12.5pt;
     }
 
 }
+
 
 /* Shadows */
 .shadow_down {
@@ -146,4 +170,33 @@ a {
 .rounded {
     border-radius: 15%;
     overflow: hidden;
+}
+
+.full_rounded {
+    border-radius: 15%;
+    overflow: hidden;
+}
+
+
+/* Mettalic */
+.metallic {
+    /* Took inspiration and help from: https://ibelick.com/blog/creating-metallic-effect-with-css */
+    /* Modified values a bit */
+    background: linear-gradient(45deg, #999 4%, #eee 10%, #bbb 30%, #ddd 40%, #eee 65%, #fff 75%, #888 95%);
+}
+
+
+/* Push sides */
+.push_left {
+    justify-content: flex-start;
+}
+
+.push_right {
+    justify-content: flex-end;
+}
+
+
+/* Center */
+.center {
+    justify-content: center;
 }

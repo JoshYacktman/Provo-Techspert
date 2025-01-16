@@ -1,15 +1,7 @@
-.side_by_side {
-    width: 100%;
-    display: flex;
-}
-
-.side_by_side.left,
-.side_by_side.right {
-    justify-content: center;
-}
-
-.text {
-    padding: 2.5em;
+/* Index page specific text settings */
+.index_text {
+    padding: 1em;
+    margin: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,20 +18,18 @@
         flex-direction: column-reverse;
     }
 
-    .side_by_side.left,
-    .side_by_side.right {
+    .splitter .left .index,
+    .splitter .right .index{
         justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 1em;
-        margin-right: 1em;
     }
 }
 
 
 /* Paragraph List */
 .paragraph_list {
-    width: 70%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

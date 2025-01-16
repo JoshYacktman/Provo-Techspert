@@ -55,3 +55,6 @@ The process looks like this:
  - At the coordinated date and time they give me the device and I start recording my repair work with them having the option to be present for the entirety of it. At this point the waiver MUST be signed or no work will happen.
  - I complete my work. The device is tested and hopefully the issue is fixed. At this point my services have not been paid for. Here they choose how much to pay me for my work. If I damage the device further they have no obligation to pay me but also cannot suee me thanks to the waiver. If they are unsatisfied with my work but it works they can take the device and leave without any further payment. If they are pleased with my work they can choose to pay me an amount they deem reasonable.
  - I upload the video of my repair work to the chat via an unlisted YouTube video and mark the status as device returned (meaning fully complete)
+
+
+# HTML Deliverable 🚀

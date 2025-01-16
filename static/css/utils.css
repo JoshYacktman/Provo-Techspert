@@ -1,81 +1,14 @@
-/* Header */
-.header {
-    z-index: 10;
-    position: sticky;
-    top: 0;
-
-    /* Took inspiration and help from: https://ibelick.com/blog/creating-metallic-effect-with-css */
-    /* Modified values a bit */
-    background: linear-gradient(45deg, #999 4%, #eee 10%, #bbb 30%, #ddd 40%, #eee 65%, #fff 75%, #888 95%);
-}
-
-.header_splitter {
+/* Splitter */
+.splitter {
     width: 100%;
     display: flex;
 }
 
-.header_splitter .left,
-.header_splitter .right {
+.splitter .left,
+.splitter .right {
     flex: 1;
     display: flex;
-    background: none;
 }
-
-.header_splitter .left {
-    justify-content: flex-start;
-    padding-left: 0.5em;
-}
-
-.header_splitter .right {
-    justify-content: flex-end;
-}
-
-.header_splitter button {
-    height: 100%;
-    padding: 1em;
-    box-sizing: border-box;
-    color: var(--header_footer_text_color);
-    background-color: var(--header_footer_color);
-    border: none;
-}
-
-.header_splitter button:hover {
-    background-color: var(--header_footer_color_hover);
-}
-
-
-/* Footer */
-.footer {
-    background-color: var(--header_footer_color);
-    width: 100%;
-    margin-top: auto;
-    background: linear-gradient(45deg, #999 4%, #eee 10%, #bbb 30%, #ddd 40%, #eee 65%, #fff 75%, #888 95%);
-}
-
-.footer .left {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.footer button {
-    height: 100%;
-    padding: .75em;
-    box-sizing: border-box;
-    color: var(--header_footer_text_color);
-    background-color: var(--header_footer_color);
-    border: none;
-}
-
-.footer button:hover {
-    background-color: var(--header_footer_color_hover);
-}
-
-.footer button:active {
-    background-color: var(--header_footer_color_active);
-}
-
 
 /* Dropdown Menus */
 .dropdown {
@@ -86,6 +19,7 @@
 .dropdown_content {
     display: none;
     margin: .2em;
+    /* TODO make a background none div that fakes the margin so mouse dragging doesn't close this */
     position: absolute;
     right: 0;
     background-color: #f9f9f9;
@@ -103,6 +37,16 @@
 
 .dropdown_content button {
     background-color: #f9f9f9;
+    box-shadow: none;
+    height: min-content;
+}
+.dropdown_content button:hover {
+    background-color: #c7c7c7;
+    box-shadow: none;
+    height: min-content;
+}
+.dropdown_content button:active {
+    background-color: #a7a7a7;
     box-shadow: none;
     height: min-content;
 }

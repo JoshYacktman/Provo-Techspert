@@ -18,8 +18,6 @@
 
 .dropdown_content {
     display: none;
-    margin: .2em;
-    /* TODO make a background none div that fakes the margin so mouse dragging doesn't close this */
     position: absolute;
     right: 0;
     background-color: #f9f9f9;
@@ -64,4 +62,8 @@
     padding: 0.25em;
     display: flex;
     flex-direction: column;
+}
+
+.hidden_div {
+    padding: .2em;
 }

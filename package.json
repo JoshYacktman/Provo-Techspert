@@ -1,0 +1,28 @@
+{
+  "name": "provo-techspert",
+  "version": "1.0.0",
+  "description": "Website for my business",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshYacktman/Provo-Techspert.git"
+  },
+  "author": "Joshua Yacktman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JoshYacktman/Provo-Techspert/issues"
+  },
+  "homepage": "https://github.com/JoshYacktman/Provo-Techspert#readme",
+  "keywords": [],
+  "devDependencies": {
+    "vite": "^6.0.7"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.2"
+  }
+}

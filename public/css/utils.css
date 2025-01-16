@@ -51,17 +51,12 @@
 
 .dropdown_content div {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
 .dropdown_content div button {
     flex: 1;
-}
-
-.dropdown_content .form_format {
-    padding: 0.25em;
-    display: flex;
-    flex-direction: column;
 }
 
 .hidden_div {

@@ -3,7 +3,7 @@
 
 A website for my tech repair "business" at BYU. https://startup.provotechspert.click
 
-# Specification Deliverable
+# Specification Deliverable 🚀
 
 ## Elevator Pitch
 
@@ -57,4 +57,14 @@ The process looks like this:
  - I upload the video of my repair work to the chat via an unlisted YouTube video and mark the status as device returned (meaning fully complete)
 
 
+# AWS Deliverable 🚀
+
+ - Server is deployed with my custom domain [here](https://startup.provotechspert.click)
+
 # HTML Deliverable 🚀
+
+ - Three pages: `about`, `chat`, & `settings`
+ - Proper html elements (such as `<header>`, `<footer>`, `<main>`, etc)
+ - Navigation links (the button in the top right shows a dropdown. Click the links and look around)
+ - Placeholder text for uncompleted areas
+ - Images

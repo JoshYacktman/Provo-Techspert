@@ -98,6 +98,12 @@ export function Footer() {
         window.open("https://github.com/JoshYacktman/Provo-Techspert");
     }
 
+    var location = useLocation().pathname;
+    
+    if (location !== "/") {
+        return <></>
+    }
+
     return (
     <footer className="metallic shadow_up">
         <div className="push_left">

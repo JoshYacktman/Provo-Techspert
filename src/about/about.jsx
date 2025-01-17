@@ -24,7 +24,7 @@ function About() {
                 <div className="right index_text center">
                     <h1 className="complementary_font large">Why Me?</h1>
                     <div className="paragraph_list">
-                        <p className="formal_font normal" style={{paddingTop: 1.5 + "em"}}>1. I don"t keep your device while replacement parts are being delivered</p>
+                        <p className="formal_font normal" style={{paddingTop: 1.5 + "em"}}>1. I don't keep your device while replacement parts are being delivered</p>
                         <p className="formal_font normal">2. You choose my commision based on my performance and only have to pay for replacement parts</p>
                         <p className="formal_font normal">3. You can choose to cancel the repair process at any point</p>
                         <p className="formal_font normal">4. You can watch and be a part of every step</p>
@@ -34,7 +34,7 @@ function About() {
                     <div className="paragraph_list">
                         <p className="formal_font normal">1. You have to sign a release of liability waiver before repairs can begin</p>
                         <p className="formal_font normal">2. If you choose to purchase the parts and not go through with the repair there are no refunds</p>
-                        <p className="formal_font normal">3. Use your real email, the chat service sends email notifications after messages and doesn"t sell any data</p>
+                        <p className="formal_font normal">3. Use your real email, the chat service sends email notifications after messages and doesn't sell any data</p>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@ function About() {
                 <div className="right index_text center">
                     <h1 className="complementary_font large">Meet the Technician</h1>
                     <p className="formal_font medium" style={{paddingTop: 0.5 + "em"}}>Joshua Yacktman</p>
-                    <p className="formal_font normal" style={{paddingTop: 2 + "em"}}>I am a Freshman at BYU studying Computer Science with a passion for both hardware and software alike. Starting at a young age I found great enjoyment in solving puzzles and taking things apart. This has led to passions such as competetive Rubik"s Cube solving, programming, and (as you"re likely here for) tech repair!</p>
+                    <p className="formal_font normal" style={{paddingTop: 2 + "em"}}>I am a Freshman at BYU studying Computer Science with a passion for both hardware and software alike. Starting at a young age I found great enjoyment in solving puzzles and taking things apart. This has led to passions such as competetive Rubik's Cube solving, programming, and (as you're likely here for) tech repair!</p>
                 </div>
             </div>
         </div>

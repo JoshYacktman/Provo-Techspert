@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import About from "./about/about"
 import Chat from "./chat/chat"
 import Settings from "./settings/settings"
@@ -9,7 +9,6 @@ import "../public/css/main.css";
 import "../public/css/utils.css";
 import "../public/css/page_fills.css";
 import "../index.css";
-
 
 function App() {
     return (

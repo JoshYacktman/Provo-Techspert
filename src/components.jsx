@@ -1,6 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
+
+// TODO: Make these three functional
 function JoinButtonClicked () {
     window.location.href = "/chat/";
 }
@@ -13,6 +15,8 @@ function SignOutButtonClicked () {
     window.location.href = "/";
 }
 
+
+// Naviagtion
 function ChatButtonClicked () {
     window.location.href = "/chat/";
 }

@@ -64,13 +64,15 @@ function SettingsDropdownOptions () {
 }
 
 function Dropdown () {
+    // TODO: Make it so hovering opens the dropdown, clicking button toggles state
     var location = useLocation().pathname;
+
     return (
         <div className="dropdown">
-            <button className="main_text normal shadow_down">Join/Sign In</button>
+            <button className="main_text normal shadow_down">{location === "/" ? "Join/Sign In" : "Username"}</button>
             <div className="hidden_div">
                 <div className="dropdown_content">
-                    { location === "/" ? <AboutDropdownOptions /> : location === "/chat/" ? <ChatDropdownOptions /> : <SettingsDropdownOptions />}
+                    {location === "/" ? <AboutDropdownOptions /> : location === "/chat/" ? <ChatDropdownOptions /> : <SettingsDropdownOptions />}
                 </div>
             </div>
         </div>

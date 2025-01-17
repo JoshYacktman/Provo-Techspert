@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./about/about"
 import Chat from "./chat/chat"
 import Settings from "./settings/settings"
@@ -28,3 +28,4 @@ function App() {
 }
   
 export default App;
+// TODO: Make Tauri Mobile and Desktop bundles

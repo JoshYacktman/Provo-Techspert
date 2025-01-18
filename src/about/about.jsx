@@ -4,6 +4,7 @@ import bannerImg from "/images/banner.jpg";
 import promo1Img from "/images/promo_1.jpg";
 import promo2Img from "/images/promo_2.jpg";
 import profileImg from "/images/profile.jpg";
+import "./about.css";
 
 function About() {
   return (

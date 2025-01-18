@@ -8,7 +8,6 @@ import { Header, Footer, NotFound } from "./components";
 import "../public/css/main.css";
 import "../public/css/utils.css";
 import "../public/css/page_fills.css";
-import "../index.css";
 
 function App() {
   return (

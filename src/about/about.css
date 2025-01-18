@@ -19,7 +19,7 @@
     }
 
     .splitter .left .index,
-    .splitter .right .index{
+    .splitter .right .index {
         justify-content: center;
         align-items: center;
         width: 100%;
@@ -58,12 +58,12 @@
 }
 
 .banner img {
-    width: 100%;
+    width: 100vw;
 }
 
 .banner .text_overlay {
     position: absolute;
-    top: 5%;
+    top: .5em;
     text-align: center;
     text-shadow:
         .01em .01em 0 white,

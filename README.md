@@ -39,6 +39,7 @@ Have you ever had a broken game console, controller, or laptop? Have you ever wo
  - Environment Variables (For safely storing the username and password for the email system)
  - Google fonts (Planning on using "Bangers" (main text) and "Montserrat" (chat messages and main page about me))
  - WebSocket (used for chat)
+ - API: https://www.freepublicapis.com/image-url-upload
 
 ## The Process
 
@@ -68,3 +69,10 @@ The process looks like this:
  - Navigation links (the button in the top right shows a dropdown. Click the links and look around)
  - Placeholder text for uncompleted areas
  - Images
+
+# CSS Deliverable 🚀
+ - Header, Footer, and main are styled
+ - No nav elements are used so they weren't styled. I use buttons with dropdowns to navigate.
+ - Responsive to resizing
+ - Application text is styled
+ - Styled images

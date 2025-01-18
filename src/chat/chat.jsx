@@ -6,6 +6,7 @@ function Chat() {
       <h1>Chat</h1>
       <p>app components</p>
       <p>websocket chat component</p>
+      <p>API component (image to link api)</p>
       <p style={{ paddingBottom: 0.5 + "em" }}>Database inference</p>
     </div>
   );

@@ -1,0 +1,16 @@
+{
+  "COMMENT": "Limit names to 15 characters",
+  "Provo Techspert": {
+    "COMMENT": "Password hashes should use bycrptjs, https://blog.logrocket.com/password-hashing-node-js-bcrypt/",
+    "password": "1b21hb2hb1u2gu3g2fxy1v2ux1v2y3vu12g4u3ggvgu43598sa89da98sd79adshuavusdva9sdguasd",
+    "email": "joshyacktman@gmail.com"
+  },
+  "John Doe": {
+    "password": "1b21hb2hb1u2gu3g2fxy1v2ux1v2y3vu12g4u3ggvgu43598sa89da98sd79adshuavusdva9sdguasd",
+    "email": "example@gmail.com"
+  },
+  "Jane Doe": {
+    "password": "1b21hb2hb1u2gu3g2fxy1v2ux1v2y3vu12g4u3ggvgu43598sa89da98sd79adshuavusdva9sdguasd",
+    "email": "example@gmail.com"
+  }
+}

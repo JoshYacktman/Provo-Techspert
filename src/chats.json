@@ -1,0 +1,41 @@
+{
+  "John Doe": [
+    [
+      "2026-03-18T07:07:01.492Z",
+      "First",
+      1,
+      [
+        true,
+        "true is Provo techspert, false is user. The first element of each chat is the last update time Date().toJSon(). Second is the chat name. Third is a number indicating an enum of progress."
+      ],
+      [
+        false,
+        "Which would make this a user response"
+      ],
+      [
+        false,
+        "And this as well"
+      ]
+    ],
+    [
+      "2026-02-18T07:07:01.492Z",
+      "Second",
+      1,
+      [
+        true,
+        "A second chat"
+      ]
+    ]
+  ],
+  "Jane Doe": [
+    [
+      "2026-02-18T07:07:01.492Z",
+      "First",
+      1,
+      [
+        true,
+        "A simple chat"
+      ]
+    ]
+  ]
+}

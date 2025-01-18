@@ -129,6 +129,8 @@ export function Header() {
       <div className="splitter">
         <div className="left push_left" style={{ paddingLeft: "0.5em" }}>
           <h1 className="main_text medium">Provo Techspert</h1>
+          {/* TODO: In the future when the chat starts to be filled out this we be dependent on if it is the chat page and, if it is,
+          whether or not it is a small screen (60 em) */}
         </div>
         <div className="right push_right">
           <Dropdown />

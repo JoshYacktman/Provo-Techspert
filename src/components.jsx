@@ -69,25 +69,26 @@ function Dropdown() {
   const [openStatus, setOpenStatus] = useState(false);
 
   // If we click the button, it changes the state. If it is open, we want to close the dropdown, if it is closed we want it open
-  function toggleStatus() {
+  const toggleStatus = () => {
     setOpenStatus(!openStatus);
   }
 
   // If we hover over the button and it isn't open and we want it open, we want it open.
   // If it is already open, keep it open.
-  function hoverEnterStatus() {
+  const hoverEnterStatus = () => {
     if (!openStatus) {
       setOpenStatus(true);
     }
   }
 
-  function hoverExitStatus(event) {
+  const hoverExitStatus = (event) => {
     const relatedTarget = event.relatedTarget;
 
     // If (theres no new element hovered) or ((the new element is not related to the current element)
     // and (there is no other ancestor in dropdown)) then we close the dropdown
     if (
       !relatedTarget ||
+      (!(relatedTarget instanceof Node)) ||
       (!event.currentTarget.contains(relatedTarget) &&
         relatedTarget.closest(".dropdown") === null)
     ) {

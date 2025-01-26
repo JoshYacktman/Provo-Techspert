@@ -6,7 +6,7 @@ import promo2Img from "/images/promo_2.jpg";
 import profileImg from "/images/profile.jpg";
 import "./about.css";
 
-function About({ deviceLoad }) {
+function About() {
   const GitHubButtonClicked = () => {
     window.open("https://github.com/JoshYacktman/Provo-Techspert");
   }

@@ -75,13 +75,6 @@ button:active {
 }
 
 @font-face {
-    font-family: "Newsreader";
-    src: url("/fonts/Newsreader.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
     font-family: "Rubik Vinyl";
     src: url("/fonts/Rubik Vinyl.woff2") format("woff2");
     font-weight: 600;
@@ -90,7 +83,6 @@ button:active {
 
 .complementary_font,
 .message_font,
-.formal_font,
 .main_text {
     font-weight: 600;
 }
@@ -109,16 +101,10 @@ button:active {
     line-height: 1.2;
 }
 
-.formal_font {
-    font-family: "Newsreader";
-    line-height: 1.2;
-}
-
 
 /* Font sizes */
 .complementary_font,
-.message_font,
-.formal_font {
+.message_font {
     /* Faux bolding that works at low resolutions and high resolutions */
     text-shadow:
         .01em .01em 0 black,

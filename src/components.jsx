@@ -27,18 +27,18 @@ function AboutDropdownOptions() {
   return (
     <form>
       <div className="form_format">
-        <label className="message_font normal">Username</label>
-        <input className="formal_font normal" />
-        <label className="message_font normal">Password</label>
-        <input className="formal_font normal" />
-        <label className="message_font normal">Email (Join Only)</label>
-        <input className="formal_font normal" />
+        <label className="main_text normal">Username</label>
+        <input className="message_font normal" />
+        <label className="main_text normal">Password</label>
+        <input className="message_font normal" />
+        <label className="main_text normal">Email (Join Only)</label>
+        <input className="message_font normal" />
       </div>
       <div style={{ flexDirection: "row" }}>
-        <button type="button" onClick={JoinButtonClicked}>
+        <button type="button" className="main_text" onClick={JoinButtonClicked}>
           Join
         </button>
-        <button type="button" onClick={SignInButtonClicked}>
+        <button type="button" className="main_text" onClick={SignInButtonClicked}>
           Sign In
         </button>
       </div>
@@ -130,7 +130,7 @@ export function Header() {
       <div className="splitter">
         <div className="left push_left" style={{ paddingLeft: "0.5em" }}>
           <h1 className="main_text medium">Provo Techspert</h1>
-          {/* TODO: In the future when the chat starts to be filled out this we be dependent on if it is the chat page and, if it is,
+          {/* TODO: In the future when the chat starts to be filled out this will be dependent on if it is the chat page and, if it is,
           whether or not it is a small screen (60 em) */}
         </div>
         <div className="right push_right">
@@ -138,31 +138,6 @@ export function Header() {
         </div>
       </div>
     </header>
-  );
-}
-
-export function Footer() {
-  function GitHubButtonClicked() {
-    window.open("https://github.com/JoshYacktman/Provo-Techspert");
-  }
-
-  var location = useLocation().pathname;
-
-  if (location !== "/") {
-    return <></>;
-  }
-
-  return (
-    <footer className="metallic shadow_up">
-      <div className="push_left">
-        <button
-          className="complementary_font normal shadow_up"
-          onClick={GitHubButtonClicked}
-        >
-          GitHub
-        </button>
-      </div>
-    </footer>
   );
 }
 

@@ -6,7 +6,11 @@ import promo2Img from "/images/promo_2.jpg";
 import profileImg from "/images/profile.jpg";
 import "./about.css";
 
-function About() {
+function About({ deviceLoad }) {
+  const GitHubButtonClicked = () => {
+    window.open("https://github.com/JoshYacktman/Provo-Techspert");
+  }
+
   return (
     <div>
       {/* Banner */}
@@ -29,23 +33,23 @@ function About() {
           <h1 className="complementary_font large">Why Me?</h1>
           <div className="paragraph_list">
             <p
-              className="formal_font normal"
+              className="message_font normal"
               style={{ paddingTop: 1.5 + "em" }}
             >
               1. I don't keep your device while replacement parts are being
               delivered
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               2. You choose my commision based on my performance and only have
               to pay for replacement parts
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               3. You can choose to cancel the repair process at any point
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               4. You can watch and be a part of every step
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               5. I record my work and give you the recording
             </p>
           </div>
@@ -56,15 +60,15 @@ function About() {
             Anything You Should Know?
           </h1>
           <div className="paragraph_list">
-            <p className="formal_font normal">
+            <p className="message_font normal">
               1. You have to sign a release of liability waiver before repairs
               can begin
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               2. If you choose to purchase the parts and not go through with the
               repair there are no refunds
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               3. Use your real email, the chat service sends email notifications
               after messages and doesn't sell any data
             </p>
@@ -81,28 +85,28 @@ function About() {
           <h1 className="complementary_font large">My Process</h1>
           <div className="paragraph_list">
             <p
-              className="formal_font normal"
+              className="message_font normal"
               style={{ paddingTop: 1.5 + "em" }}
             >
               1. I determine the issue with you in person and purchase any
               needed parts upfront
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               2. You are messaged in the chat service (alerts you by email) when
               the parts arrive and you bring in the device
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               3. You sign a release of liability waiver allowing me to begin
               repairs which you can watch in person
             </p>
-            <p className="formal_font normal">
+            <p className="message_font normal">
               4. I return the device to you, upload the video of my work, and
               let you choose my commision with no obligation for any pay
             </p>
           </div>
         </div>
         <div className="right center">
-          <img src={promo2Img} className="promo_photo rounded shadow_down" />
+          <img src={promo2Img} className="promo_photo rounded shadow_down" loading="lazy" decoding="async" />
           {/* TODO: Make this a picture of the chat screen with a user account */}
         </div>
       </div>
@@ -113,14 +117,14 @@ function About() {
         style={{ backgroundColor: "var(--contrast_color_3)" }}
       >
         <div className="left center">
-          <img src={profileImg} className="promo_photo rounded shadow_down" />
+          <img src={profileImg} className="promo_photo rounded shadow_down" loading="lazy" decoding="async" />
         </div>
         <div className="right index_text center">
           <h1 className="complementary_font large">Meet the Technician</h1>
-          <p className="formal_font medium" style={{ paddingTop: 0.5 + "em" }}>
+          <p className="main_text medium" style={{ paddingTop: 0.5 + "em" }}>
             Joshua Yacktman
           </p>
-          <p className="formal_font normal" style={{ paddingTop: 2 + "em" }}>
+          <p className="message_font normal">
             I am a Freshman at BYU studying Computer Science with a passion for
             both hardware and software alike. Starting at a young age I found
             great enjoyment in solving puzzles and taking things apart. This has
@@ -129,6 +133,18 @@ function About() {
           </p>
         </div>
       </div>
+
+
+      <footer className="metallic shadow_up">
+        <div className="push_left">
+          <button
+            className="complementary_font normal shadow_up"
+            onClick={GitHubButtonClicked}
+          >
+            GitHub
+          </button>
+        </div>
+      </footer>
     </div>
   );
 }

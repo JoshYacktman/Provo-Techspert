@@ -2,7 +2,7 @@
   "name": "provo-techspert",
   "version": "1.0.0",
   "description": "Website for my business",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

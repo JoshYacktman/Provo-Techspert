@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./about/about";
 import Chat from "./chat/chat";
 import Settings from "./settings/settings";
-import { Header, NotFound } from "./components";
+import { NotFound } from "./components";
 
 import "../public/css/main.css";
 import "../public/css/utils.css";
@@ -12,8 +12,6 @@ import "../public/css/page_fills.css";
 function App() {
   return (
     <BrowserRouter style={{ height: 100 + "%" }}>
-      <Header />
-
       <Routes style={{ height: 100 + "%" }}>
         <Route path="/" element={<About />} />
         <Route path="/chat" element={<Chat />} />

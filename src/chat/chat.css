@@ -1,1 +1,14 @@
+.sidebar {
+    width: 0;
+    height: 100%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: #313131;
+    overflow-x: hidden;
+}
 
+.bordered {
+    /* border: solid 0.1em blanchedalmond; */
+}

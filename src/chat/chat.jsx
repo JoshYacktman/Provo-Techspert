@@ -1,5 +1,5 @@
 import React from "react";
-import { Dropdown, Header } from "../components";
+import { Dropup } from "../components";
 import "./chat.css";
 
 function SignOutButtonClicked() {
@@ -34,12 +34,18 @@ function Chat() {
                     <button className="small bordered" onClick={closeSidebar}>&larr;</button>
                 </div>
                 <div>
-                    <Dropdown OptionsMenu={ChatDropdownOptions} Bottom={true} />
+                    <Dropup OptionsMenu={ChatDropdownOptions}/>
                 </div>
             </div>
-            <div style={{height: "100%"}}>
-                <button className="small shadow_down" onClick={(event) => openSidebar(event)}>&equiv;</button>
+            <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                    <button className="small shadow_down" onClick={(event) => openSidebar(event)}>&equiv;</button>
+                    <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+                        <h1>Name</h1>
+                    </div>
+                </div>
             </div>
+
         </div>
     );
 }

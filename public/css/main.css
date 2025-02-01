@@ -76,8 +76,8 @@ button:active {
 }
 
 @font-face {
-    font-family: "Rubik Vinyl";
-    src: url("/fonts/Rubik Vinyl.woff2") format("woff2");
+    font-family: "Fascinate Inline";
+    src: url("/fonts/FascinateInline.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
 }
@@ -94,7 +94,7 @@ button:active {
 }
 
 .complementary_font {
-    font-family: "Rubik Vinyl";
+    font-family: "Fascinate Inline";
 }
 
 .message_font {
@@ -108,10 +108,10 @@ button:active {
 .message_font {
     /* Faux bolding that works at low resolutions and high resolutions */
     text-shadow:
-        .01em .01em 0 black,
-        -.01em .01em 0 black,
-        .01em -.01em 0 black,
-        -.01em -.01em 0 black;
+        .01em .01em 0 white,
+        -.01em .01em 0 white,
+        .01em -.01em 0 white,
+        -.01em -.01em 0 white;
 }
 
 .large {

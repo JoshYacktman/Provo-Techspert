@@ -74,6 +74,68 @@
 .hidden_div {
     padding: .2em;
 }
+.dropup {
+    position: relative;
+    display: inline-block;
+}
+
+.dropup_content {
+    position: absolute;
+    right: 0;
+    bottom: 100%; /* Positions it above the button */
+    background-color: white;
+    min-width: 5em;
+    box-shadow: 0px -0.5em 1em 0px rgba(0, 0, 0, 0.7);
+    z-index: 4;
+    border-radius: 0.25rem;
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(-0.5em);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none; /* Ensure it's hidden when not visible */
+}
+
+.dropup_content.visible {
+    opacity: 1;
+    transform: translateY(0);
+    display: block; /* Make sure it's visible */
+}
+
+.dropup_content.hidden {
+    opacity: 0;
+    transform: translateY(-0.5em);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+    display: none;
+}
+
+.dropup_content button {
+    background-color: white;
+    box-shadow: none;
+    height: min-content;
+}
+
+.dropup_content button:hover {
+    background-color: lightgray;
+    box-shadow: none;
+    height: min-content;
+}
+
+.dropup_content button:active {
+    background-color: gray;
+    box-shadow: none;
+    height: min-content;
+}
+
+.dropup_content div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dropup_content div button {
+    flex: 1;
+}
 
 /* Images */
 .logo_img {

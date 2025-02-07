@@ -126,7 +126,7 @@ function Chat() {
                     <p className="normal message_font" style={{paddingTop: "0.2em", borderBottom: ".1em solid black"}}>Customer: Chat Message twenty</p>
                     <div ref={messagesEndRef}></div>
                 </div>
-                <div style={{width: "100%", display: "flex", flexDirection: "row"}}>
+                <div  className="shadow_up" style={{width: "100%", display: "flex", flexDirection: "row", zIndex: "1"}}>
                     <input className="small message_font" style={{ width: "100%" }}></input>
                     <button>&rarr;</button>
                 </div>

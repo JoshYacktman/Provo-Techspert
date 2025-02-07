@@ -104,26 +104,26 @@ function Chat() {
                     </div>
                 </div>
                 <div style={{ height: "100%", overflowX: "hidden", overflowY: "auto", backgroundColor: "yellowgreen"}}>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message one</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message two</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message three</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message four</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message five</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message six</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message seven</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message eight</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message nine</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message ten</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message eleven</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message twelve</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message thirteen</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message fourteen</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message fifteen</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message sixteen</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message seventeen</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message eighteen</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", color: "purple"}}>Provo Techspert: Chat Message nineteen</p>
-                    <p className="normal message_font" style={{padding: "0.5em", borderBottom: ".1em solid black", textAlign: "right", color: "darkblue"}}>Customer: Chat Message twenty</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message one</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message two</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message three</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message four</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message five</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message six</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message seven</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message eight</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message nine</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message ten</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message eleven</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message twelve</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message thirteen</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message fourteen</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message fifteen</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message sixteen</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message seventeen</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message eighteen</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", color: "purple"}}>Provo Techspert: Chat Message nineteen</p>
+                    <p className="normal message_font" style={{paddingLeft: "0.5em", paddingRight: "0.5em", paddingBottom: "0.3em", paddingTop: "0.3em", textAlign: "right", color: "darkblue"}}>Customer: Chat Message twenty</p>
                     <div ref={messagesEndRef}></div>
                 </div>
                 <div  className="shadow_up" style={{width: "100%", display: "flex", flexDirection: "row", zIndex: "1"}}>

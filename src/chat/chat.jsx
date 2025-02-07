@@ -21,11 +21,16 @@ function ChatDropdownOptions() {
 function Chat() {
     const [openStatus, setOpenStatus] = useState(false);
 
-    const toggleStatus = () => {
-        setOpenStatus(!openStatus);
+    const toggleStatus = (isMainPage = false) => {
+        if (!isMainPage) {
+            setOpenStatus(!openStatus);
+        } else {
+            setOpenStatus(false);
+        }
     };
 
-    const hoverEnterStatus = () => {
+    const hoverEnterStatus = (event) => {
+        event.stopPropagation();
         setOpenStatus(true);
     };
 
@@ -58,7 +63,7 @@ function Chat() {
 
     return (
         <div className="work_area">
-            <div className="sidebar shadow_down" id="sidebar" style={{ height: "100%", display: "flex", flexDirection: "column", width: (openStatus ? "auto" : "0")}} onMouseLeave={hoverExitStatus}>
+            <div className="sidebar shadow_down" id="sidebar" style={{ height: "100%", display: "flex", flexDirection: "column", width: (openStatus ? "auto" : "0")}} onMouseLeave={() => hoverExitStatus(true)}>
                 <div style={{width: "100%", display: "flex", flexDirection: "row", zIndex: "1"}} className="shadow_down">
                     <button style={{ width: "100%"}} className="normal bordered">Create Chat</button>
                     <button className="normal bordered" onClick={toggleStatus}>&larr;</button>
@@ -111,9 +116,9 @@ function Chat() {
                 </div>
                 <Dropup OptionsMenu={ChatDropdownOptions}/>
             </div>
-            <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+            <div style={{ height: "100%", display: "flex", flexDirection: "column" }} onClick={toggleStatus}>
                 <div className="shadow_down" style={{ display: "flex", flexDirection: "row", alignItems: "center", zIndex: "1"}}>
-                    <button className="small shadow_down" onMouseEnter={hoverEnterStatus}>&equiv;</button>
+                    <button className="small shadow_down" onMouseEnter={hoverEnterStatus} onClick={hoverEnterStatus}>&equiv;</button>
                     <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
                         <h1 className="meduim main_text">Chat One</h1>
                     </div>

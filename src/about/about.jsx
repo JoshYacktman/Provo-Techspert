@@ -1,10 +1,5 @@
 import React, { lazy } from "react";
 import { Header } from "../components";
-
-import bannerImg from "/images/banner.jpg";
-import promo1Img from "/images/promo_1.jpg";
-import promo2Img from "/images/promo_2.jpg";
-import profileImg from "/images/profile.jpg";
 import "./about.css";
 
 function JoinButtonClicked() {
@@ -57,7 +52,7 @@ function About() {
             <div>
                 {/* Banner */}
                 <div className="banner">
-                    <img src={bannerImg} />
+                    <img src="/images/banner.jpg" />
                     <h1 className="text_overlay complementary_font large">
                         Repair should be honest.
                     </h1>
@@ -70,7 +65,7 @@ function About() {
                 >
                     <div className="left center">
                         <img
-                            src={promo1Img}
+                            src="/images/promo_1.jpg"
                             className="promo_photo rounded shadow_down"
                         />
                     </div>
@@ -158,7 +153,7 @@ function About() {
                     </div>
                     <div className="right center">
                         <img
-                            src={promo2Img}
+                            src="/images/promo_2.jpg"
                             className="promo_photo rounded shadow_down"
                             loading="lazy"
                             decoding="async"
@@ -174,7 +169,7 @@ function About() {
                 >
                     <div className="left center">
                         <img
-                            src={profileImg}
+                            src="/images/profile.jpg"
                             className="promo_photo rounded shadow_down"
                             loading="lazy"
                             decoding="async"
@@ -205,7 +200,7 @@ function About() {
                 <footer className="metallic shadow_up">
                     <div className="push_left">
                         <button
-                            className="complementary_font small shadow_up"
+                            className="main_text small shadow_up"
                             onClick={GitHubButtonClicked}
                         >
                             GitHub

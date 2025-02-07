@@ -117,101 +117,101 @@ function Chat() {
                 <Dropup OptionsMenu={ChatDropdownOptions}/>
             </div>
             <div style={{ height: "100%", display: "flex", flexDirection: "column" }} onClick={toggleStatus}>
-                <div className="shadow_down" style={{ display: "flex", flexDirection: "row", alignItems: "center", zIndex: "1"}}>
+                <div className="metallic shadow_down" style={{ display: "flex", flexDirection: "row", alignItems: "center", zIndex: "1"}}>
                     <button className="small shadow_down" onMouseEnter={hoverEnterStatus} onClick={hoverEnterStatus}>&equiv;</button>
                     <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
-                        <h1 className="meduim main_text">Chat One</h1>
+                        <h1 className="meduim main_text" style={{color: "darkgoldenrod"}}>Chat One</h1>
                     </div>
                 </div>
-                <div style={{ height: "100%", overflowX: "hidden", overflowY: "auto", backgroundColor: "yellowgreen"}}>
-                    <div style={{ padding: "0.5em", color: "purple" }}>
-                        <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message one</p>
+                <div style={{ height: "100%", overflowX: "hidden", overflowY: "auto", backgroundColor: "blanchedalmond"}}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                        <h5 className="normal message_font" style={{filter: "brightness(75%)"}}>Provo Techspert</h5>
+                        <p className="small message_font" style={{ paddingTop: "0.1em"}}>Chat Message one</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message two</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "purple" }}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message three</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message four</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "purple" }}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message five</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message six</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "purple" }}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message seven</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message eight</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "purple" }}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message nine</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message ten</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "purple" }}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message eleven</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message twelve</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "purple" }}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message thirteen</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message fourteen</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "purple" }}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message fifteen</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message sixteen</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "purple" }}>
+                    <div style={{ padding: "0.5em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message seventeen</p>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message eighteen</p>
                     </div>
 
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "darkblue"}}>
+                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message nineteen</p>
                         <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message twenty</p>
@@ -219,9 +219,9 @@ function Chat() {
 
                     <div ref={messagesEndRef}></div>
                 </div>
-                <div  className="shadow_up" style={{width: "100%", display: "flex", flexDirection: "row", zIndex: "1"}}>
-                    <input className="small message_font" style={{ width: "100%" }}></input>
-                    <button onClick={scrollToBottomSmooth}>&rarr;</button>
+                <div className="shadow_up" style={{ width: "100%", display: "flex", flexDirection: "row", zIndex: "1", backgroundColor: "blanchedalmond", padding: ".5em"}}>
+                    <input className="small message_font" style={{ width: "100%", backgroundColor: "linen", marginRight: "0.3em", border: ".1em double", padding: ".3em"}}></input>
+                    <button onClick={scrollToBottomSmooth} className="rounded">&rarr;</button>
                 </div>
             </div>
         </div>

@@ -4,6 +4,9 @@
     padding: 0;
     box-sizing: border-box;
 
+    /* Set page behaviors */
+    overscroll-behavior: contain;
+
     /* Variables */
     --contrast_color_1: #dbcbdb;
     /* Light Purple */

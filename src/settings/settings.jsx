@@ -3,54 +3,109 @@ import "./settings.css";
 import { Header } from "../components";
 
 function SignOutButtonClicked() {
-  window.location.href = "/";
+    window.location.href = "/";
 }
 function ChatButtonClicked() {
-  window.location.href = "/chat/";
+    window.location.href = "/chat/";
 }
 
 function SettingsDropdownOptions() {
-  return (
-    <div>
-      <button onClick={ChatButtonClicked}>Chat</button>
-      <button onClick={SignOutButtonClicked}>Sign Out</button>
-    </div>
-  );
+    return (
+        <div>
+            <button onClick={ChatButtonClicked}>Chat</button>
+            <button onClick={SignOutButtonClicked}>Sign Out</button>
+        </div>
+    );
 }
 
 function Settings() {
-  return (
-    <div className="work_area">
-      <Header OptionsMenu={ SettingsDropdownOptions } />
-      <h1>Account Settings</h1>
-      <p>Proper settings component</p>
-      <p>Database inference</p>
-      <form>
-        <div>
-          <label for="new-email">New Email:</label>
-          <input type="email" name="new-email" placeholder="Enter new email" />
-          <button type="button">
-            Change Email
-          </button>
+    return (
+        <div className="work_area" style={{overflowY: "auto"}}>
+            <Header OptionsMenu={SettingsDropdownOptions} />
+            <div style={{ display: "flex", flexDirection: "column", padding: "1em",}}>
+                <form>
+                    <div
+                        style={{
+                            height: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                            textAlign: "center",
+                            padding: ".6em",
+                            margin: ".5em"
+                        }}
+                        className="shadow_down corner_rounding"
+                    >
+                        <label style={{ margin: ".3em" }} className="medium complementary_font">
+                            New Password:
+                        </label>
+                        <input
+                            type="password"
+                            placeholder="Enter new password"
+                            className="small corner_rounding bordered_montserrat"
+                            style={{
+                                border: "none",
+                                padding: "0.2em",
+                                margin: ".3em",
+                            }}
+                        />
+                        <button
+                            type="button"
+                            className="small corner_rounding main_text"
+                            style={{ margin: ".3em" }}
+                        >
+                            Change Password
+                        </button>
+                    </div>
+                </form>
+                <form>
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textAlign: "center",
+                            padding: ".6em",
+                            margin: ".5em"
+                        }}
+                        className="shadow_down corner_rounding"
+                    >
+                        <label style={{ margin: ".3em" }} className="medium complementary_font">
+                            New Email:
+                        </label>
+                        <input
+                            type="email"
+                            placeholder="Enter new email"
+                            className="small corner_rounding bordered_montserrat"
+                            style={{
+                                border: "none",
+                                padding: "0.2em",
+                                margin: ".3em",
+                            }}
+                        />
+                        <button type="button" className="small corner_rounding main_text" style={{ margin: ".3em" }}>
+                            Change Email
+                        </button>
+                    </div>
+                </form>
+                <form>
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textAlign: "center",
+                            padding: ".6em",
+                            margin: ".5em"
+                        }}
+                        className="shadow_down corner_rounding"
+                    >
+                        <label style={{ margin: ".3em" }} className="medium complementary_font">Delete Account?</label>
+                        <button type="button" className="small corner_rounding main_text" style={{ margin: ".3em" }}>
+                            Delete Account
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div id="change-password">
-          <label for="new-password">New Password:</label>
-          <input
-            type="password"
-            name="new-password"
-            placeholder="Enter new password"
-          />
-          <button type="button">Change Password</button>
-        </div>
-
-        <div>
-          <label>Delete Account?</label>
-          <button type="button">Delete Account</button>
-        </div>
-      </form>
-    </div>
-  );
+    );
 }
 
 export default Settings;

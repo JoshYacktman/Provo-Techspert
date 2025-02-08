@@ -175,8 +175,8 @@ button:active {
     overflow: hidden;
 }
 
-.full_rounded {
-    border-radius: 15%;
+.corner_rounding {
+    border-radius: 3em;
     overflow: hidden;
 }
 

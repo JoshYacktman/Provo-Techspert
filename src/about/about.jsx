@@ -48,7 +48,7 @@ function About() {
 
     return (
         <div>
-            <Header OptionsMenu={ AboutDropdownOptions } />
+            <Header OptionsMenu={AboutDropdownOptions} />
             <div>
                 {/* Banner */}
                 <div className="banner">

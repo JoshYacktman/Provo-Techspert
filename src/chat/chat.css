@@ -27,3 +27,13 @@ input:focus {
     padding: 0.5em;
     background-color: green;
 }
+
+.left_rounded {
+    border-radius: 3em 0 0 3em;
+    overflow: hidden;
+}
+
+.right_rounded {
+    border-radius: 0 3em 3em 0;
+    overflow: hidden;
+}

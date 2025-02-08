@@ -73,7 +73,10 @@ function Chat() {
                 }}
                 onMouseLeave={() => hoverExitStatus(true)}
             >
-                <div className="shadow_down bottom_rounded" style={{paddingBottom: ".7em", zIndex: "1"}}>
+                <div
+                    className="shadow_down bottom_rounded"
+                    style={{ paddingBottom: ".7em", zIndex: "1" }}
+                >
                     <div
                         style={{
                             width: "100%",
@@ -327,6 +330,7 @@ function Chat() {
                         overflowX: "hidden",
                         overflowY: "auto",
                         backgroundColor: "blanchedalmond",
+                        paddingBottom: ".3em",
                     }}
                 >
                     <div style={{ padding: "1em", color: "seagreen" }}>
@@ -691,28 +695,43 @@ function Chat() {
                         >
                             Username
                         </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                        <div
+                            className=" blue_bubble"
+                            style={{ textAlign: "left" }}
                         >
-                            Chat Message nineteen
-                        </p>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            <p
+                                className="small message_font"
+                                style={{ color: "lavender" }}
+                            >
+                                Chat Message nineteen
+                            </p>
+                        </div>
+                        <div
+                            className=" blue_bubble"
+                            style={{ textAlign: "left" }}
                         >
-                            Chat Message twenty
-                        </p>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            <p
+                                className="small message_font"
+                                style={{ color: "lavender" }}
+                            >
+                                Chat Message twenty
+                            </p>
+                        </div>
+                        <div
+                            className=" blue_bubble"
+                            style={{ textAlign: "left" }}
                         >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Pellentesque luctus tellus id nisl fringilla
-                            venenatis. Phasellus quam lacus, fermentum nec
-                            tortor ut, tristique semper magna. Morbi faucibus
-                            fringilla ligula. Sed.
-                        </p>
+                            <p
+                                className="small message_font"
+                                style={{ color: "lavender" }}
+                            >
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Pellentesque luctus tellus id
+                                nisl fringilla venenatis. Phasellus quam lacus,
+                                fermentum nec tortor ut, tristique semper magna.
+                                Morbi faucibus fringilla ligula. Sed.
+                            </p>
+                        </div>
                     </div>
 
                     <div ref={messagesEndRef}></div>

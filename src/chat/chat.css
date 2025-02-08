@@ -37,3 +37,13 @@ input:focus {
     border-radius: 0 3em 3em 0;
     overflow: hidden;
 }
+
+.top_rounded {
+    border-radius: .5em .5em 0 0;
+    overflow: hidden;
+}
+
+.bottom_rounded {
+    border-radius: 0 0 .5em .5em;
+    overflow: hidden;
+}

@@ -84,7 +84,7 @@ export function Dropup({ OptionsMenu }) {
         <div
             className="dropup"
             onMouseLeave={hoverExitStatus}
-            style={{ width: "100%", padding: ".2em" }}
+            style={{ width: "100%", padding: ".2em", marginBottom: ".4em" }}
         >
             <button
                 className="main_text small corner_rounding"

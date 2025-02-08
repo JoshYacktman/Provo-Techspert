@@ -73,13 +73,12 @@ function Chat() {
                 }}
                 onMouseLeave={() => hoverExitStatus(true)}
             >
-                <div className="shadow_down bottom_rounded" style={{paddingBottom: ".7em"}}>
+                <div className="shadow_down bottom_rounded" style={{paddingBottom: ".7em", zIndex: "1"}}>
                     <div
                         style={{
                             width: "100%",
                             display: "flex",
                             flexDirection: "row",
-                            zIndex: "1",
                             padding: ".2em",
                         }}
                     >

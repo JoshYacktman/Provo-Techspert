@@ -280,9 +280,7 @@ function Chat() {
                         <button className="small right_rounded">&times;</button>
                     </div>
                 </div>
-                <div className="shadow_up top_rounded">
-                    <Dropup OptionsMenu={ChatDropdownOptions} />
-                </div>
+                <Dropup OptionsMenu={ChatDropdownOptions} />
             </div>
             <div
                 style={{

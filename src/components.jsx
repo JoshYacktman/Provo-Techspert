@@ -82,18 +82,20 @@ export function Dropup({ OptionsMenu }) {
 
     return (
         <div
-            className="dropup"
+            className="dropup "
             onMouseLeave={hoverExitStatus}
-            style={{ width: "100%", padding: ".2em", marginBottom: ".4em" }}
+            style={{ width: "100%" }}
         >
-            <button
-                className="main_text small corner_rounding"
-                onClick={toggleStatus}
-                onMouseEnter={hoverEnterStatus}
-                style={{ width: "100%" }}
-            >
-                {location === "/" ? "Join/Sign In" : "Username"}
-            </button>
+            <div className="top_rounded shadow_up" style={{alignSelf: "center", padding: "0.2em"}}>
+                <button
+                    className="main_text small corner_rounding"
+                    onClick={toggleStatus}
+                    onMouseEnter={hoverEnterStatus}
+                    style={{ width: "100%", padding: ".4em"}}
+                >
+                    {location === "/" ? "Join/Sign In" : "Username"}
+                </button>
+            </div>
             <div>
                 <div
                     className={`dropup_content ${openStatus ? "visible" : "hidden"}`}

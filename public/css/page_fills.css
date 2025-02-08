@@ -11,7 +11,7 @@ main,
 /* Take up all available space after header and footer are inserted */
 .work_area {
     flex-direction: column;
-    background-color: green;
+    background-color: orangered;
     flex-grow: 1;
     max-height: 100%;
 }

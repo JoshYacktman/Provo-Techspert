@@ -31,7 +31,8 @@ function Settings() {
                             flexDirection: "column",
                             textAlign: "center",
                             padding: ".6em",
-                            margin: ".5em"
+                            margin: ".5em",
+                            backgroundColor: "darksalmon"
                         }}
                         className="shadow_down corner_rounding"
                     >
@@ -44,7 +45,7 @@ function Settings() {
                             className="small corner_rounding bordered_montserrat"
                             style={{
                                 border: "none",
-                                padding: "0.2em",
+                                padding: "0.3em",
                                 margin: ".3em",
                             }}
                         />
@@ -64,7 +65,8 @@ function Settings() {
                             flexDirection: "column",
                             textAlign: "center",
                             padding: ".6em",
-                            margin: ".5em"
+                            margin: ".5em",
+                            backgroundColor: "darksalmon"
                         }}
                         className="shadow_down corner_rounding"
                     >
@@ -77,7 +79,7 @@ function Settings() {
                             className="small corner_rounding bordered_montserrat"
                             style={{
                                 border: "none",
-                                padding: "0.2em",
+                                padding: "0.3em",
                                 margin: ".3em",
                             }}
                         />
@@ -93,7 +95,8 @@ function Settings() {
                             flexDirection: "column",
                             textAlign: "center",
                             padding: ".6em",
-                            margin: ".5em"
+                            margin: ".5em",
+                            backgroundColor: "darksalmon"
                         }}
                         className="shadow_down corner_rounding"
                     >

@@ -695,7 +695,7 @@ function Chat() {
                             backgroundColor: "linen",
                             marginRight: "0.3em",
                             border: ".1em double",
-                            padding: ".3em",
+                            padding: ".5em",
                         }}
                     ></input>
                     <button

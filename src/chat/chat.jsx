@@ -124,104 +124,106 @@ function Chat() {
                     </div>
                 </div>
                 <div style={{ height: "100%", overflowX: "hidden", overflowY: "auto", backgroundColor: "blanchedalmond"}}>
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                    <div style={{ padding: "1em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(75%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em"}}>Chat Message one</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message one</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "45%", marginLeft: "auto" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message two</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message two</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                    <div style={{ padding: "1em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message three</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message three</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "45%", marginLeft: "auto" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message four</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message four</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                    <div style={{ padding: "1em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message five</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message five</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "45%", marginLeft: "auto" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message six</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message six</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                    <div style={{ padding: "1em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message seven</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message seven</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "45%", marginLeft: "auto" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message eight</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message eight</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                    <div style={{ padding: "1em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message nine</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message nine</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "45%", marginLeft: "auto" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message ten</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message ten</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                    <div style={{ padding: "1em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message eleven</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message eleven</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "45%", marginLeft: "auto" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message twelve</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message twelve</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                    <div style={{ padding: "1em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message thirteen</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message thirteen</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "45%", marginLeft: "auto" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message fourteen</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message fourteen</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
+                    <div style={{ padding: "1em", color: "seagreen" }}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message fifteen</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message fifteen</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "55%", marginLeft: "auto"}}>
                         <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message sixteen</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message sixteen</p>
                     </div>
 
-                    <div style={{ padding: "0.5em", color: "seagreen" }}>
-                        <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Provo Techspert</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message seventeen</p>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message eighteen</p>
+                    <div style={{ padding: "1em", color: "seagreen", maxWidth: "55%" }}>
+                        <h5 className="normal message_font" style={{filter: "brightness(85%)",  paddingLeft: "0.3em"}}>Provo Techspert</h5>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message seventeen</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>Chat Message eighteen</p>
+                        <p className="small message_font green_bubble" style={{ color: "lavender" }}>This is a fairly long message all things considered that I wrote to test this thing but it should have a problem and yeah idk. This is a fairly long message all things considered that I wrote to test this thing but it should have a problem and yeah idk</p>
                     </div>
 
 
-                    <div style={{ padding: "0.5em", textAlign: "right", color: "cornflowerblue"}}>
-                        <h5 className="normal message_font" style={{filter: "brightness(85%)"}}>Username</h5>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message nineteen</p>
-                        <p className="small message_font" style={{ paddingTop: "0.1em" }}>Chat Message twenty</p>
+                    <div style={{ padding: "1em", textAlign: "right", color: "cornflowerblue", maxWidth: "55%", marginLeft: "auto"}}>
+                        <h5 className="normal message_font" style={{filter: "brightness(85%)", paddingRight: "0.3em"}}>Username</h5>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender" }}>Chat Message nineteen</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>Chat Message twenty</p>
+                        <p className="small message_font blue_bubble" style={{ color: "lavender"}}>This is a fairly long message all things considered that I wrote to test this thing but it should have a problem and yeah idk. This is a fairly long message all things considered that I wrote to test this thing but it should have a problem and yeah idk</p>
                     </div>
 
                     <div ref={messagesEndRef}></div>
                 </div>
                 <div className="shadow_up" style={{ width: "100%", display: "flex", flexDirection: "row", zIndex: "1", backgroundColor: "blanchedalmond", padding: ".5em"}}>
-                    <input className="small message_font" style={{ width: "100%", backgroundColor: "linen", marginRight: "0.3em", border: ".1em double", padding: ".3em"}}></input>
-                    <button onClick={scrollToBottomSmooth} className="rounded">&rarr;</button>
+                    <input className="small message_font shadow_down" style={{ width: "100%", backgroundColor: "linen", marginRight: "0.3em", border: ".1em double", padding: ".3em"}}></input>
+                    <button onClick={scrollToBottomSmooth} className="rounded shadow_down">&rarr;</button>
                 </div>
             </div>
         </div>

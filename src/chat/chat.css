@@ -10,3 +10,20 @@
 input:focus {
     outline: none;
 }
+
+.blue_bubble {
+    display: table;
+    margin-top: 0.2em;
+    margin-left: auto;
+    border-radius: 0.5em 0.5em 0.1em 0.5em;
+    padding: 0.5em;
+    background-color: dodgerblue;
+}
+
+.green_bubble {
+    display: table;
+    margin-top: 0.2em;
+    border-radius: 0.5em 0.5em 0.5em 0.1em;
+    padding: 0.5em;
+    background-color: green;
+}

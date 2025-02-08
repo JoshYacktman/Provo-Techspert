@@ -87,6 +87,7 @@ button:active {
 
 .complementary_font,
 .message_font,
+.bordered_montserrat,
 .main_text {
     font-weight: 600;
 }
@@ -105,10 +106,14 @@ button:active {
     line-height: 1.2;
 }
 
+.bordered_montserrat {
+    font-family: "Montserrat";
+    line-height: 1.2;
+}
 
 /* Font sizes */
 .complementary_font,
-.message_font {
+.bordered_montserrat {
     /* Faux bolding that works at low resolutions and high resolutions */
     text-shadow:
         .01em .01em 0 white,

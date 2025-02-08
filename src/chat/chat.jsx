@@ -689,7 +689,7 @@ function Chat() {
                     }}
                 >
                     <input
-                        className="small message_font shadow_down"
+                        className="small message_font shadow_down corner_rounding"
                         style={{
                             width: "100%",
                             backgroundColor: "linen",

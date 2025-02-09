@@ -309,21 +309,19 @@ function Chat() {
                     >
                         &equiv;
                     </button>
-                    <div
+                    <h1
+                        className="medium main_text"
                         style={{
-                            flex: 1,
-                            display: "flex",
-                            justifyContent: "center",
+                            color: "darkgoldenrod",
+                            position: "absolute",
+                            left: "50%",
+                            transform: "translateX(-50%)",
                         }}
                     >
-                        <h1
-                            className="meduim main_text"
-                            style={{ color: "darkgoldenrod" }}
-                        >
-                            Chat One
-                        </h1>
-                    </div>
+                        Chat One
+                    </h1>
                 </div>
+
                 <div
                     style={{
                         height: "100%",
@@ -365,7 +363,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
                             Chat Message two
                         </p>
@@ -403,7 +401,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
                             Chat Message four
                         </p>
@@ -441,7 +439,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
                             Chat Message six
                         </p>
@@ -479,7 +477,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
                             Chat Message eight
                         </p>
@@ -517,7 +515,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
                             Chat Message ten
                         </p>
@@ -555,7 +553,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
                             Chat Message twelve
                         </p>
@@ -593,7 +591,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
                             Chat Message fourteen
                         </p>
@@ -631,7 +629,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
                             Chat Message sixteen
                         </p>
@@ -705,17 +703,17 @@ function Chat() {
                             className="small message_font blue_bubble"
                             style={{ color: "lavender", textAlign: "left" }}
                         >
-                                Chat Message twenty
+                            Chat Message twenty
                         </p>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left"}}
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Pellentesque luctus tellus id
-                                nisl fringilla venenatis. Phasellus quam lacus,
-                                fermentum nec tortor ut, tristique semper magna.
-                                Morbi faucibus fringilla ligula. Sed.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Pellentesque luctus tellus id nisl fringilla
+                            venenatis. Phasellus quam lacus, fermentum nec
+                            tortor ut, tristique semper magna. Morbi faucibus
+                            fringilla ligula. Sed.
                         </p>
                     </div>
 

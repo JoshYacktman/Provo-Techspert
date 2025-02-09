@@ -331,13 +331,33 @@ function Chat() {
                         paddingBottom: ".3em",
                     }}
                 >
-                    <div style={{ padding: "1em", color: "seagreen" }}>
+                    <div
+                        style={{
+                            padding: "1em",
+                            color: "seagreen",
+                            maxWidth: "55%",
+                        }}
+                    >
                         <h5
                             className="normal message_font"
                             style={{ filter: "brightness(75%)" }}
                         >
                             Provo Techspert
                         </h5>
+                        <p
+                            className="small message_font green_bubble"
+                            style={{ color: "lavender" }}
+                        >
+                            Hello &#123;Username&#125;, my name is Joshua
+                            Yacktman or, as my website calls me, the Provo
+                            Techspert. To help you repair your device, I would
+                            appreciate a message from you explaining the issue,
+                            if you can reproduce the issue consistently, and, if
+                            possible, links to pictures and/or videos (I
+                            personally use{" "}
+                            <a href="https://imgbb.com/">imgbb</a> and{" "}
+                            <a href="https://vimeo.com/">Vimeo</a>).
+                        </p>
                         <p
                             className="small message_font green_bubble"
                             style={{ color: "lavender" }}
@@ -369,7 +389,13 @@ function Chat() {
                         </p>
                     </div>
 
-                    <div style={{ padding: "1em", color: "seagreen" }}>
+                    <div
+                        style={{
+                            padding: "1em",
+                            color: "seagreen",
+                            maxWidth: "55%",
+                        }}
+                    >
                         <h5
                             className="normal message_font"
                             style={{ filter: "brightness(85%)" }}
@@ -407,7 +433,13 @@ function Chat() {
                         </p>
                     </div>
 
-                    <div style={{ padding: "1em", color: "seagreen" }}>
+                    <div
+                        style={{
+                            padding: "1em",
+                            color: "seagreen",
+                            maxWidth: "55%",
+                        }}
+                    >
                         <h5
                             className="normal message_font"
                             style={{ filter: "brightness(85%)" }}
@@ -445,7 +477,13 @@ function Chat() {
                         </p>
                     </div>
 
-                    <div style={{ padding: "1em", color: "seagreen" }}>
+                    <div
+                        style={{
+                            padding: "1em",
+                            color: "seagreen",
+                            maxWidth: "55%",
+                        }}
+                    >
                         <h5
                             className="normal message_font"
                             style={{ filter: "brightness(85%)" }}
@@ -483,7 +521,13 @@ function Chat() {
                         </p>
                     </div>
 
-                    <div style={{ padding: "1em", color: "seagreen" }}>
+                    <div
+                        style={{
+                            padding: "1em",
+                            color: "seagreen",
+                            maxWidth: "55%",
+                        }}
+                    >
                         <h5
                             className="normal message_font"
                             style={{ filter: "brightness(85%)" }}
@@ -521,7 +565,13 @@ function Chat() {
                         </p>
                     </div>
 
-                    <div style={{ padding: "1em", color: "seagreen" }}>
+                    <div
+                        style={{
+                            padding: "1em",
+                            color: "seagreen",
+                            maxWidth: "55%",
+                        }}
+                    >
                         <h5
                             className="normal message_font"
                             style={{ filter: "brightness(85%)" }}
@@ -559,7 +609,13 @@ function Chat() {
                         </p>
                     </div>
 
-                    <div style={{ padding: "1em", color: "seagreen" }}>
+                    <div
+                        style={{
+                            padding: "1em",
+                            color: "seagreen",
+                            maxWidth: "55%",
+                        }}
+                    >
                         <h5
                             className="normal message_font"
                             style={{ filter: "brightness(85%)" }}
@@ -597,7 +653,13 @@ function Chat() {
                         </p>
                     </div>
 
-                    <div style={{ padding: "1em", color: "seagreen" }}>
+                    <div
+                        style={{
+                            padding: "1em",
+                            color: "seagreen",
+                            maxWidth: "55%",
+                        }}
+                    >
                         <h5
                             className="normal message_font"
                             style={{ filter: "brightness(85%)" }}

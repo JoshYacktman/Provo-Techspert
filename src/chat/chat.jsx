@@ -695,43 +695,28 @@ function Chat() {
                         >
                             Username
                         </h5>
-                        <div
-                            className=" blue_bubble"
-                            style={{ textAlign: "left" }}
+                        <p
+                            className="small message_font blue_bubble"
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
-                            <p
-                                className="small message_font"
-                                style={{ color: "lavender" }}
-                            >
-                                Chat Message nineteen
-                            </p>
-                        </div>
-                        <div
-                            className=" blue_bubble"
-                            style={{ textAlign: "left" }}
+                            Chat Message nineteen
+                        </p>
+                        <p
+                            className="small message_font blue_bubble"
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
-                            <p
-                                className="small message_font"
-                                style={{ color: "lavender" }}
-                            >
                                 Chat Message twenty
-                            </p>
-                        </div>
-                        <div
-                            className=" blue_bubble"
-                            style={{ textAlign: "left" }}
+                        </p>
+                        <p
+                            className="small message_font blue_bubble"
+                            style={{ color: "lavender", textAlign: "left" }}
                         >
-                            <p
-                                className="small message_font"
-                                style={{ color: "lavender" }}
-                            >
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit. Pellentesque luctus tellus id
                                 nisl fringilla venenatis. Phasellus quam lacus,
                                 fermentum nec tortor ut, tristique semper magna.
                                 Morbi faucibus fringilla ligula. Sed.
-                            </p>
-                        </div>
+                        </p>
                     </div>
 
                     <div ref={messagesEndRef}></div>

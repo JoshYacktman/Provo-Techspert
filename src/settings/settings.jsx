@@ -22,7 +22,9 @@ function Settings() {
     return (
         <div className="work_area" style={{overflowY: "auto"}}>
             <Header OptionsMenu={SettingsDropdownOptions} />
-            <div style={{ display: "flex", flexDirection: "column", padding: "1em",}}>
+            <div style={{ display: "flex", flexDirection: "column", padding: "1em", flexGrow: "1"}}>
+                {/* TODO: If height is less than 60em make it row */}
+                {/* TODO: Make the divs grow to size */}
                 <form>
                     <div
                         style={{
@@ -32,7 +34,6 @@ function Settings() {
                             textAlign: "center",
                             padding: ".6em",
                             margin: ".5em",
-                            backgroundColor: "darksalmon"
                         }}
                         className="shadow_down corner_rounding"
                     >

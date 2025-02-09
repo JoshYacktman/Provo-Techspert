@@ -365,7 +365,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                             Chat Message two
                         </p>
@@ -403,7 +403,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                             Chat Message four
                         </p>
@@ -441,7 +441,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                             Chat Message six
                         </p>
@@ -479,7 +479,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                             Chat Message eight
                         </p>
@@ -517,7 +517,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                             Chat Message ten
                         </p>
@@ -555,7 +555,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                             Chat Message twelve
                         </p>
@@ -593,7 +593,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                             Chat Message fourteen
                         </p>
@@ -631,7 +631,7 @@ function Chat() {
                         </h5>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                             Chat Message sixteen
                         </p>
@@ -709,7 +709,7 @@ function Chat() {
                         </p>
                         <p
                             className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
+                            style={{ color: "lavender", textAlign: "left"}}
                         >
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit. Pellentesque luctus tellus id
@@ -738,7 +738,7 @@ function Chat() {
                             width: "100%",
                             backgroundColor: "linen",
                             marginRight: "0.3em",
-                            border: ".1em double",
+                            border: ".2em double",
                             padding: ".5em",
                         }}
                     ></input>

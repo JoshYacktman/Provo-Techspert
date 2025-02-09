@@ -59,9 +59,14 @@ function Chat() {
     };
 
     const scrollToBottomSmooth = () => {
-        playNotifySound();
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
+
+    const addMessage = () => {
+        playNotifySound();
+
+        scrollToBottomSmooth;
+    }
 
     useEffect(() => {
         scrollToBottomInstant();
@@ -325,7 +330,7 @@ function Chat() {
                         }}
                     ></input>
                     <button
-                        onClick={scrollToBottomSmooth}
+                        onClick={addMessage}
                         className="small main_text small_corner_rounding shadow_down"
                     >
                         &rarr;

@@ -34,7 +34,7 @@ function Settings() {
                             textAlign: "center",
                             padding: ".6em",
                             margin: ".5em",
-                            backgroundColor: "darksalmon"
+                            backgroundColor: "darksalmon",
                         }}
                         className="shadow_down corner_rounding"
                     >

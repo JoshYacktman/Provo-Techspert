@@ -38,6 +38,11 @@ input:focus {
     overflow: hidden;
 }
 
+.rounded{
+    border-radius: 3em;
+    overflow: hidden;
+}
+
 .top_rounded {
     border-radius: .5em .5em 0 0;
     overflow: hidden;

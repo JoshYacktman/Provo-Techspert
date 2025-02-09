@@ -170,8 +170,8 @@ button:active {
 }
 
 /* Rounding */
-.rounded {
-    border-radius: 15%;
+.small_corner_rounding {
+    border-radius: .5em;
     overflow: hidden;
 }
 

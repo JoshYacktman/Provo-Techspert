@@ -1,22 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Dropup } from "../components";
+import {
+    ChatButton,
+    ChatDropdownOptions,
+    LeftSideMessageDiv,
+    LeftSideMessageHeading,
+    LeftSideBubble,
+    RightSideMessageDiv,
+    RightSideMessageHeading,
+    RightSideBubble,
+} from "./chat_components";
 import "./chat.css";
-
-function SignOutButtonClicked() {
-    window.location.href = "/";
-}
-function SettingsButtonClicked() {
-    window.location.href = "/settings/";
-}
-
-function ChatDropdownOptions() {
-    return (
-        <div>
-            <button onClick={SettingsButtonClicked}>Settings</button>
-            <button onClick={SignOutButtonClicked}>Sign Out</button>
-        </div>
-    );
-}
 
 function Chat() {
     const [openStatus, setOpenStatus] = useState(false);
@@ -87,13 +81,14 @@ function Chat() {
                     >
                         <button
                             style={{ width: "80%", marginRight: ".2em" }}
-                            className="small bordered corner_rounding"
+                            className="small message_font small_corner_rounding"
                         >
                             Create Chat
                         </button>
                         <button
-                            className="small bordered corner_rounding"
+                            className="small main_text small_corner_rounding"
                             onClick={toggleStatus}
+                            style={{ flexGrow: 1, height: "100%" }}
                         >
                             &larr;
                         </button>
@@ -104,184 +99,22 @@ function Chat() {
                         height: "100%",
                         overflowY: "auto",
                         padding: ".3em",
+                        marginTop: ".4em",
                     }}
                 >
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat One
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Nintendo_Switch12345
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Two
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Three
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Four
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Five
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Six
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Seven
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Eight
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Nine
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                            padding: "0.2em",
-                        }}
-                    >
-                        <button
-                            style={{ width: "100%" }}
-                            className="small left_rounded"
-                        >
-                            Chat Ten
-                        </button>
-                        <button className="small right_rounded">&times;</button>
-                    </div>
+                    <ChatButton text={"Chat One"} />
+                    <ChatButton text={"Nintendo_Switch12345"} />
+                    <ChatButton text={"Chat Two"} />
+                    <ChatButton text={"Chat Three"} />
+                    <ChatButton text={"Chat Four"} />
+                    <ChatButton text={"Chat Five"} />
+                    <ChatButton text={"Chat Six"} />
+                    <ChatButton text={"Chat Seven"} />
+                    <ChatButton text={"Chat Eight"} />
+                    <ChatButton text={"Chat Nine"} />
+                    <ChatButton text={"Chat Ten"} />
+                    <ChatButton text={"Chat Eleven"} />
+                    <ChatButton text={"Chat Twelve"} />
                 </div>
                 <Dropup OptionsMenu={ChatDropdownOptions} />
             </div>
@@ -331,23 +164,9 @@ function Chat() {
                         paddingBottom: ".3em",
                     }}
                 >
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(75%)" }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>
                             Hello &#123;Username&#125;, my name is Joshua
                             Yacktman or, as my website calls me, the Provo
                             Techspert. To help you repair your device, I would
@@ -357,427 +176,110 @@ function Chat() {
                             personally use{" "}
                             <a href="https://imgbb.com/">imgbb</a> and{" "}
                             <a href="https://vimeo.com/">Vimeo</a>).
-                        </p>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message one
-                        </p>
-                    </div>
+                        </LeftSideBubble>
+                        <LeftSideBubble>Chat Message one</LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "45%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message two
-                        </p>
-                    </div>
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message two</RightSideBubble>
+                    </RightSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message three
-                        </p>
-                    </div>
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>Chat Message three</LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "45%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message four
-                        </p>
-                    </div>
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message four</RightSideBubble>
+                    </RightSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message five
-                        </p>
-                    </div>
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>Chat Message five</LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "45%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message six
-                        </p>
-                    </div>
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message six</RightSideBubble>
+                    </RightSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message seven
-                        </p>
-                    </div>
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>Chat Message seven</LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "45%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message eight
-                        </p>
-                    </div>
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message eight</RightSideBubble>
+                    </RightSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message nine
-                        </p>
-                    </div>
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>Chat Message nine</LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "45%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message ten
-                        </p>
-                    </div>
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message ten</RightSideBubble>
+                    </RightSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message eleven
-                        </p>
-                    </div>
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>Chat Message eleven</LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "45%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message twelve
-                        </p>
-                    </div>
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message twelve</RightSideBubble>
+                    </RightSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message thirteen
-                        </p>
-                    </div>
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>Chat Message thirteen</LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "45%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message fourteen
-                        </p>
-                    </div>
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message fourteen</RightSideBubble>
+                    </RightSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message fifteen
-                        </p>
-                    </div>
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>Chat Message fifteen</LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "55%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{ filter: "brightness(85%)" }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message sixteen
-                        </p>
-                    </div>
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message sixteen</RightSideBubble>
+                    </RightSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            color: "seagreen",
-                            maxWidth: "55%",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{
-                                filter: "brightness(85%)",
-                                paddingLeft: "0.3em",
-                            }}
-                        >
-                            Provo Techspert
-                        </h5>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message seventeen
-                        </p>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
-                            Chat Message eighteen
-                        </p>
-                        <p
-                            className="small message_font green_bubble"
-                            style={{ color: "lavender" }}
-                        >
+                    <LeftSideMessageDiv>
+                        <LeftSideMessageHeading username="Provo Techspert" />
+                        <LeftSideBubble>Chat Message seventeen</LeftSideBubble>
+                        <LeftSideBubble>Chat Message eighteen</LeftSideBubble>
+                        <LeftSideBubble>
                             Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit. Pellentesque luctus tellus id nisl fringilla
                             venenatis. Phasellus quam lacus, fermentum nec
                             tortor ut, tristique semper magna. Morbi faucibus
                             fringilla ligula. Sed.
-                        </p>
-                    </div>
+                        </LeftSideBubble>
+                    </LeftSideMessageDiv>
 
-                    <div
-                        style={{
-                            padding: "1em",
-                            textAlign: "right",
-                            color: "cornflowerblue",
-                            maxWidth: "55%",
-                            marginLeft: "auto",
-                        }}
-                    >
-                        <h5
-                            className="normal message_font"
-                            style={{
-                                filter: "brightness(85%)",
-                                paddingRight: "0.3em",
-                            }}
-                        >
-                            Username
-                        </h5>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message nineteen
-                        </p>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
-                            Chat Message twenty
-                        </p>
-                        <p
-                            className="small message_font blue_bubble"
-                            style={{ color: "lavender", textAlign: "left" }}
-                        >
+                    <RightSideMessageDiv>
+                        <RightSideMessageHeading username="Username" />
+                        <RightSideBubble>Chat Message nineteen</RightSideBubble>
+                        <RightSideBubble>Chat Message twenty</RightSideBubble>
+                        <RightSideBubble>
                             Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit. Pellentesque luctus tellus id nisl fringilla
                             venenatis. Phasellus quam lacus, fermentum nec
                             tortor ut, tristique semper magna. Morbi faucibus
                             fringilla ligula. Sed.
-                        </p>
-                    </div>
+                        </RightSideBubble>
+                    </RightSideMessageDiv>
 
                     <div ref={messagesEndRef}></div>
                 </div>
@@ -804,7 +306,7 @@ function Chat() {
                     ></input>
                     <button
                         onClick={scrollToBottomSmooth}
-                        className="rounded shadow_down"
+                        className="small main_text small_corner_rounding shadow_down"
                     >
                         &rarr;
                     </button>

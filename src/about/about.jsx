@@ -66,7 +66,7 @@ function About() {
                     <div className="left center">
                         <img
                             src="/images/promo_1.jpg"
-                            className="promo_photo rounded shadow_down"
+                            className="promo_photo corner_rounding shadow_down"
                         />
                     </div>
                     <div className="right index_text center">
@@ -154,7 +154,7 @@ function About() {
                     <div className="right center">
                         <img
                             src="/images/promo_2.jpg"
-                            className="promo_photo rounded shadow_down"
+                            className="promo_photo corner_rounding shadow_down"
                             loading="lazy"
                             decoding="async"
                         />
@@ -170,7 +170,7 @@ function About() {
                     <div className="left center">
                         <img
                             src="/images/profile.jpg"
-                            className="promo_photo rounded shadow_down"
+                            className="promo_photo corner_rounding shadow_down"
                             loading="lazy"
                             decoding="async"
                         />

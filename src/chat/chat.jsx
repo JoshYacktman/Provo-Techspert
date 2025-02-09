@@ -47,7 +47,9 @@ function Chat() {
         const audio = document.getElementById("audio_tag");
         audio.pause();
         audio.currentTime = 0;
-        audio.play();
+        try {
+            audio.play();
+        } catch {}
     }
 
     // Function to scroll to the bottom

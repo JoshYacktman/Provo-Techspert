@@ -12,6 +12,9 @@ import {
 } from "./chat_components";
 import "./chat.css";
 
+import notifySound from "/sounds/notify.mp3";
+
+
 function Chat() {
     const [openStatus, setOpenStatus] = useState(false);
 
@@ -40,13 +43,23 @@ function Chat() {
         }
     };
 
+    const playNotifySound = () => {
+        const audio = document.getElementById("audio_tag");
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play();
+    }
+
     // Function to scroll to the bottom
     const messagesEndRef = useRef(null);
 
     const scrollToBottomInstant = () => {
+        playNotifySound();
         messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
     };
+
     const scrollToBottomSmooth = () => {
+        playNotifySound();
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
@@ -162,7 +175,6 @@ function Chat() {
                         Chat One
                     </h1>
                 </div>
-
                 <div
                     style={{
                         height: "100%",
@@ -318,6 +330,7 @@ function Chat() {
                     >
                         &rarr;
                     </button>
+                    <audio id="audio_tag" src={notifySound} />
                 </div>
             </div>
         </div>

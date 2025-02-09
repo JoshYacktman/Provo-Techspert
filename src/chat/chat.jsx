@@ -14,7 +14,6 @@ import "./chat.css";
 
 import notifySound from "/sounds/notify.mp3";
 
-
 function Chat() {
     const [openStatus, setOpenStatus] = useState(false);
 
@@ -50,25 +49,168 @@ function Chat() {
         try {
             audio.play();
         } catch {}
-    }
+    };
 
     // Function to scroll to the bottom
     const messagesEndRef = useRef(null);
 
     const scrollToBottomInstant = () => {
-        playNotifySound();
         messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
     };
 
     const scrollToBottomSmooth = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+            messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, 0);
     };
 
     const addMessage = () => {
-        playNotifySound();
+        const input = document.getElementById("sendMessage");
+        var newMessage = input.value.trim();
+        if (!newMessage) return;
 
-        scrollToBottomSmooth;
-    }
+        setGroupedMessages((prev) => {
+            const lastGroup = prev[prev.length - 1];
+
+            if (lastGroup?.sender === "Username") {
+                return prev.map((group, index) =>
+                    index === prev.length - 1
+                        ? {
+                              ...group,
+                              messages: [...group.messages, newMessage],
+                          }
+                        : group,
+                );
+            } else {
+                return [
+                    ...prev,
+                    {
+                        sender: "Username",
+                        side: "right",
+                        messages: [newMessage],
+                    },
+                ];
+            }
+        });
+
+        input.value = "";
+        playNotifySound();
+        scrollToBottomSmooth();
+    };
+
+    const [groupedMessages, setGroupedMessages] = useState([
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: [
+                `Hello {Username}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
+                To help you repair your device, I would appreciate a message from you explaining the issue,
+                if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
+                (I personally use imgbb and Vimeo).`,
+                "Chat Message one",
+            ],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: ["Chat Message two"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message three"],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: ["Chat Message four"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message five"],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: ["Chat Message six"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message seven"],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: ["Chat Message eight"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message nine"],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: ["Chat Message ten"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message eleven"],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: ["Chat Message twelve"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message thirteen"],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: ["Chat Message fourteen"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message fifteen"],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: ["Chat Message sixteen"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: [
+                "Chat Message seventeen",
+                "Chat Message eighteen",
+                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
+                Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
+            ],
+        },
+        {
+            sender: "Username",
+            side: "right",
+            messages: [
+                "Chat Message nineteen",
+                "Chat Message twenty",
+                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
+                Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
+            ],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message Twenty One"],
+        },
+    ]);
 
     useEffect(() => {
         scrollToBottomInstant();
@@ -116,7 +258,7 @@ function Chat() {
                         <button
                             className="small main_text small_corner_rounding"
                             onClick={toggleStatus}
-                            style={{ flexGrow: 1}}
+                            style={{ flexGrow: 1 }}
                         >
                             &larr;
                         </button>
@@ -191,122 +333,31 @@ function Chat() {
                         paddingBottom: ".3em",
                     }}
                 >
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>
-                            Hello &#123;Username&#125;, my name is Joshua
-                            Yacktman or, as my website calls me, the Provo
-                            Techspert. To help you repair your device, I would
-                            appreciate a message from you explaining the issue,
-                            if you can reproduce the issue consistently, and, if
-                            possible, links to pictures and/or videos (I
-                            personally use{" "}
-                            <a href="https://imgbb.com/">imgbb</a> and{" "}
-                            <a href="https://vimeo.com/">Vimeo</a>).
-                        </LeftSideBubble>
-                        <LeftSideBubble>Chat Message one</LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message two</RightSideBubble>
-                    </RightSideMessageDiv>
-
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>Chat Message three</LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message four</RightSideBubble>
-                    </RightSideMessageDiv>
-
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>Chat Message five</LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message six</RightSideBubble>
-                    </RightSideMessageDiv>
-
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>Chat Message seven</LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message eight</RightSideBubble>
-                    </RightSideMessageDiv>
-
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>Chat Message nine</LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message ten</RightSideBubble>
-                    </RightSideMessageDiv>
-
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>Chat Message eleven</LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message twelve</RightSideBubble>
-                    </RightSideMessageDiv>
-
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>Chat Message thirteen</LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message fourteen</RightSideBubble>
-                    </RightSideMessageDiv>
-
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>Chat Message fifteen</LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message sixteen</RightSideBubble>
-                    </RightSideMessageDiv>
-
-                    <LeftSideMessageDiv>
-                        <LeftSideMessageHeading username="Provo Techspert" />
-                        <LeftSideBubble>Chat Message seventeen</LeftSideBubble>
-                        <LeftSideBubble>Chat Message eighteen</LeftSideBubble>
-                        <LeftSideBubble>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Pellentesque luctus tellus id nisl fringilla
-                            venenatis. Phasellus quam lacus, fermentum nec
-                            tortor ut, tristique semper magna. Morbi faucibus
-                            fringilla ligula. Sed.
-                        </LeftSideBubble>
-                    </LeftSideMessageDiv>
-
-                    <RightSideMessageDiv>
-                        <RightSideMessageHeading username="Username" />
-                        <RightSideBubble>Chat Message nineteen</RightSideBubble>
-                        <RightSideBubble>Chat Message twenty</RightSideBubble>
-                        <RightSideBubble>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Pellentesque luctus tellus id nisl fringilla
-                            venenatis. Phasellus quam lacus, fermentum nec
-                            tortor ut, tristique semper magna. Morbi faucibus
-                            fringilla ligula. Sed.
-                        </RightSideBubble>
-                    </RightSideMessageDiv>
+                    {groupedMessages.map((group, index) =>
+                        group.side === "right" ? (
+                            <RightSideMessageDiv key={index}>
+                                <RightSideMessageHeading
+                                    username={group.sender}
+                                />
+                                {group.messages.map((msg, i) => (
+                                    <RightSideBubble key={i}>
+                                        {msg}
+                                    </RightSideBubble>
+                                ))}
+                            </RightSideMessageDiv>
+                        ) : (
+                            <LeftSideMessageDiv key={index}>
+                                <LeftSideMessageHeading
+                                    username={group.sender}
+                                />
+                                {group.messages.map((msg, i) => (
+                                    <LeftSideBubble key={i}>
+                                        {msg}
+                                    </LeftSideBubble>
+                                ))}
+                            </LeftSideMessageDiv>
+                        ),
+                    )}
 
                     <div ref={messagesEndRef}></div>
                 </div>
@@ -330,7 +381,12 @@ function Chat() {
                             border: ".2em double",
                             padding: ".5em",
                         }}
-                    ></input>
+                        id="sendMessage"
+                        placeholder="Type a message..."
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") addMessage();
+                        }}
+                    />
                     <button
                         onClick={addMessage}
                         className="small main_text small_corner_rounding shadow_down"

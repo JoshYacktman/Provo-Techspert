@@ -69,10 +69,11 @@ function Chat() {
             >
                 <div
                     className="shadow_down bottom_rounded"
-                    style={{ paddingBottom: ".7em", zIndex: "1" }}
+                    style={{ zIndex: "1" }}
                 >
                     <div
                         style={{
+                            height: "100%",
                             width: "100%",
                             display: "flex",
                             flexDirection: "row",
@@ -80,15 +81,22 @@ function Chat() {
                         }}
                     >
                         <button
-                            style={{ width: "80%", marginRight: ".2em" }}
+                            style={{
+                                width: "80%",
+                                marginRight: ".2em",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
                             className="small message_font small_corner_rounding"
                         >
                             Create Chat
                         </button>
+
                         <button
                             className="small main_text small_corner_rounding"
                             onClick={toggleStatus}
-                            style={{ flexGrow: 1, height: "100%" }}
+                            style={{ flexGrow: 1}}
                         >
                             &larr;
                         </button>

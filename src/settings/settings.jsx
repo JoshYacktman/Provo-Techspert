@@ -40,7 +40,7 @@ function Settings() {
                         <input
                             type="password"
                             placeholder="Enter new password"
-                            className="small corner_rounding bordered_montserrat shadow_down"
+                            className="small corner_rounding bordered_montserrat shadow_down main_input"
                         />
                         <button
                             type="button"
@@ -58,7 +58,7 @@ function Settings() {
                         <input
                             type="email"
                             placeholder="Enter new email"
-                            className="small corner_rounding bordered_montserrat shadow_down"
+                            className="small corner_rounding bordered_montserrat shadow_down main_input"
                         />
                         <button
                             type="button"

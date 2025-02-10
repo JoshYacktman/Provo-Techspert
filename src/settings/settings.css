@@ -6,8 +6,8 @@ input {
     margin: 0.3em;
 }
 
-button,
-label {
+.main_button,
+.main_label {
     margin: 0.3em;
 }
 

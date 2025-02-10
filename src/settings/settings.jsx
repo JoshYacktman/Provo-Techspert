@@ -34,7 +34,7 @@ function Settings() {
                 {/* TODO: Make the divs grow to size */}
                 <form>
                     <div className="shadow_down corner_rounding section_div">
-                        <label className="medium complementary_font_shadow">
+                        <label className="medium complementary_font_shadow main_label">
                             New Password:
                         </label>
                         <input
@@ -44,7 +44,7 @@ function Settings() {
                         />
                         <button
                             type="button"
-                            className="small corner_rounding main_text shadow_down"
+                            className="small corner_rounding main_text shadow_down main_button"
                         >
                             Change Password
                         </button>
@@ -52,7 +52,7 @@ function Settings() {
                 </form>
                 <form>
                     <div className="shadow_down corner_rounding section_div">
-                        <label className="medium complementary_font_shadow">
+                        <label className="medium complementary_font_shadow main_label">
                             New Email:
                         </label>
                         <input
@@ -62,7 +62,7 @@ function Settings() {
                         />
                         <button
                             type="button"
-                            className="small corner_rounding main_text shadow_down"
+                            className="small corner_rounding main_text shadow_down main_button"
                         >
                             Change Email
                         </button>
@@ -70,12 +70,12 @@ function Settings() {
                 </form>
                 <form>
                     <div className="shadow_down corner_rounding section_div">
-                        <label className="medium complementary_font_shadow">
+                        <label className="medium complementary_font_shadow main_label">
                             Delete Account?
                         </label>
                         <button
                             type="button"
-                            className="small corner_rounding main_text shadow_down"
+                            className="small corner_rounding main_text shadow_down main_button"
                         >
                             Delete Account
                         </button>

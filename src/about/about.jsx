@@ -15,11 +15,11 @@ function AboutDropdownOptions() {
         <form>
             <div className="form_format">
                 <label className="main_text small">Username</label>
-                <input className="bordered_montserrat small" />
+                <input className="bordered_montserrat small form_input small_corner_rounding" />
                 <label className="main_text small">Password</label>
-                <input className="bordered_montserrat small" />
+                <input className="bordered_montserrat small form_input small_corner_rounding" />
                 <label className="main_text small">Email (Join Only)</label>
-                <input className="bordered_montserrat small" />
+                <input className="bordered_montserrat small form_input small_corner_rounding" />
             </div>
             <div style={{ flexDirection: "row" }}>
                 <button

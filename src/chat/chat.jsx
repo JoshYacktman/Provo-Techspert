@@ -320,7 +320,6 @@ function Chat() {
                             width: "100%",
                             backgroundColor: "linen",
                             marginRight: "0.3em",
-                            border: ".2em double",
                             padding: ".5em",
                         }}
                         id="sendMessage"

@@ -64,6 +64,10 @@ button:focus {
     outline: none;
 }
 
+input {
+    border: .2em double;
+}
+
 /* Font stuff */
 @font-face {
     font-family: "Bangers";

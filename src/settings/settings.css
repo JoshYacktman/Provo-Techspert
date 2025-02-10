@@ -1,1 +1,31 @@
+input {
+    border: none;
+    padding: 0.3em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    margin: 0.3em;
+}
 
+button,
+label {
+    margin: 0.3em;
+}
+
+.complementary_font_shadow {
+    font-family: "Fascinate Inline";
+    text-shadow:
+        0.01em 0.01em 0 white,
+        -0.01em 0.01em 0 white,
+        0.01em -0.01em 0 white,
+        -0.01em -0.01em 0 white,
+        0.1em 0.1em 0.5em #b71906;
+}
+
+.section_div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0.6em;
+    margin: 0.5em;
+    background-color: #e78e70;
+}

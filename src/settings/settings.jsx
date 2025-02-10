@@ -1,6 +1,6 @@
 import React from "react";
-import "./settings.css";
 import { Header } from "../components";
+import "./settings.css";
 
 function SignOutButtonClicked() {
     window.location.href = "/";
@@ -33,102 +33,49 @@ function Settings() {
                 {/* TODO: If height is less than 60em make it row */}
                 {/* TODO: Make the divs grow to size */}
                 <form>
-                    <div
-                        style={{
-                            height: "100%",
-                            display: "flex",
-                            flexDirection: "column",
-                            textAlign: "center",
-                            padding: ".6em",
-                            margin: ".5em",
-                            backgroundColor: "darksalmon",
-                        }}
-                        className="shadow_down corner_rounding"
-                    >
-                        <label
-                            style={{ margin: ".3em" }}
-                            className="medium complementary_font"
-                        >
+                    <div className="shadow_down corner_rounding section_div">
+                        <label className="medium complementary_font_shadow">
                             New Password:
                         </label>
                         <input
                             type="password"
                             placeholder="Enter new password"
-                            className="small corner_rounding bordered_montserrat"
-                            style={{
-                                border: "none",
-                                padding: "0.3em",
-                                margin: ".3em",
-                            }}
+                            className="small corner_rounding bordered_montserrat shadow_down"
                         />
                         <button
                             type="button"
-                            className="small corner_rounding main_text"
-                            style={{ margin: ".3em" }}
+                            className="small corner_rounding main_text shadow_down"
                         >
                             Change Password
                         </button>
                     </div>
                 </form>
                 <form>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            textAlign: "center",
-                            padding: ".6em",
-                            margin: ".5em",
-                            backgroundColor: "darksalmon",
-                        }}
-                        className="shadow_down corner_rounding"
-                    >
-                        <label
-                            style={{ margin: ".3em" }}
-                            className="medium complementary_font"
-                        >
+                    <div className="shadow_down corner_rounding section_div">
+                        <label className="medium complementary_font_shadow">
                             New Email:
                         </label>
                         <input
                             type="email"
                             placeholder="Enter new email"
-                            className="small corner_rounding bordered_montserrat"
-                            style={{
-                                border: "none",
-                                padding: "0.3em",
-                                margin: ".3em",
-                            }}
+                            className="small corner_rounding bordered_montserrat shadow_down"
                         />
                         <button
                             type="button"
-                            className="small corner_rounding main_text"
-                            style={{ margin: ".3em" }}
+                            className="small corner_rounding main_text shadow_down"
                         >
                             Change Email
                         </button>
                     </div>
                 </form>
                 <form>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            textAlign: "center",
-                            padding: ".6em",
-                            margin: ".5em",
-                            backgroundColor: "darksalmon",
-                        }}
-                        className="shadow_down corner_rounding"
-                    >
-                        <label
-                            style={{ margin: ".3em" }}
-                            className="medium complementary_font"
-                        >
+                    <div className="shadow_down corner_rounding section_div">
+                        <label className="medium complementary_font_shadow">
                             Delete Account?
                         </label>
                         <button
                             type="button"
-                            className="small corner_rounding main_text"
-                            style={{ margin: ".3em" }}
+                            className="small corner_rounding main_text shadow_down"
                         >
                             Delete Account
                         </button>

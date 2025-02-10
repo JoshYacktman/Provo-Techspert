@@ -86,12 +86,15 @@ export function Dropup({ OptionsMenu }) {
             onMouseLeave={hoverExitStatus}
             style={{ width: "100%" }}
         >
-            <div className="top_rounded shadow_up" style={{alignSelf: "center", padding: "0.2em"}}>
+            <div
+                className="top_rounded shadow_up"
+                style={{ alignSelf: "center", padding: "0.2em" }}
+            >
                 <button
                     className="main_text small corner_rounding"
                     onClick={toggleStatus}
                     onMouseEnter={hoverEnterStatus}
-                    style={{ width: "100%", padding: ".4em"}}
+                    style={{ width: "100%", padding: ".4em" }}
                 >
                     {location === "/" ? "Join/Sign In" : "Username"}
                 </button>

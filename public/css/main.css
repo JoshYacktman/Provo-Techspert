@@ -22,9 +22,7 @@
     /* Darker Gray */
     --header_footer_color_active: #676767;
     /* Darkest Gray */
-
 }
-
 
 /* Generic components */
 body {
@@ -66,7 +64,6 @@ button:focus {
     outline: none;
 }
 
-
 /* Font stuff */
 @font-face {
     font-family: "Bangers";
@@ -98,7 +95,7 @@ button:focus {
 
 .main_text {
     font-family: "Bangers";
-    padding: .5em;
+    padding: 0.5em;
 }
 
 .complementary_font {
@@ -120,10 +117,10 @@ button:focus {
 .bordered_montserrat {
     /* Faux bolding that works at low resolutions and high resolutions */
     text-shadow:
-        .01em .01em 0 white,
-        -.01em .01em 0 white,
-        .01em -.01em 0 white,
-        -.01em -.01em 0 white;
+        0.01em 0.01em 0 white,
+        -0.01em 0.01em 0 white,
+        0.01em -0.01em 0 white,
+        -0.01em -0.01em 0 white;
 }
 
 .large {
@@ -142,7 +139,6 @@ button:focus {
     font-size: 14pt;
 }
 
-
 /* Update the font sizes if the page is too small */
 @media (max-width: 60em) {
     .large {
@@ -160,22 +156,20 @@ button:focus {
     .small {
         font-size: 12.5pt;
     }
-
 }
-
 
 /* Shadows */
 .shadow_down {
-    box-shadow: 0px .5em 1em 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 0.5em 1em 0px rgba(0, 0, 0, 0.7);
 }
 
 .shadow_up {
-    box-shadow: 0px -.5em 1em 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px -0.5em 1em 0px rgba(0, 0, 0, 0.7);
 }
 
 /* Rounding */
 .small_corner_rounding {
-    border-radius: .5em;
+    border-radius: 0.5em;
     overflow: hidden;
 }
 
@@ -184,14 +178,21 @@ button:focus {
     overflow: hidden;
 }
 
-
 /* Mettalic */
 .metallic {
     /* Took inspiration and help from: https://ibelick.com/blog/creating-metallic-effect-with-css */
     /* Modified values a bit */
-    background: linear-gradient(45deg, #999 4%, #eee 10%, #bbb 30%, #ddd 40%, #eee 65%, #fff 75%, #888 95%);
+    background: linear-gradient(
+        45deg,
+        #999 4%,
+        #eee 10%,
+        #bbb 30%,
+        #ddd 40%,
+        #eee 65%,
+        #fff 75%,
+        #888 95%
+    );
 }
-
 
 /* Push sides */
 .push_left {
@@ -201,7 +202,6 @@ button:focus {
 .push_right {
     justify-content: flex-end;
 }
-
 
 /* Center */
 .center {

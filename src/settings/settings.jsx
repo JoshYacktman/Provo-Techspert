@@ -20,9 +20,16 @@ function SettingsDropdownOptions() {
 
 function Settings() {
     return (
-        <div className="work_area" style={{overflowY: "auto"}}>
+        <div className="work_area" style={{ overflowY: "auto" }}>
             <Header OptionsMenu={SettingsDropdownOptions} />
-            <div style={{ display: "flex", flexDirection: "column", padding: "1em", flexGrow: "1"}}>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "1em",
+                    flexGrow: "1",
+                }}
+            >
                 {/* TODO: If height is less than 60em make it row */}
                 {/* TODO: Make the divs grow to size */}
                 <form>
@@ -38,7 +45,10 @@ function Settings() {
                         }}
                         className="shadow_down corner_rounding"
                     >
-                        <label style={{ margin: ".3em" }} className="medium complementary_font">
+                        <label
+                            style={{ margin: ".3em" }}
+                            className="medium complementary_font"
+                        >
                             New Password:
                         </label>
                         <input
@@ -68,11 +78,14 @@ function Settings() {
                             textAlign: "center",
                             padding: ".6em",
                             margin: ".5em",
-                            backgroundColor: "darksalmon"
+                            backgroundColor: "darksalmon",
                         }}
                         className="shadow_down corner_rounding"
                     >
-                        <label style={{ margin: ".3em" }} className="medium complementary_font">
+                        <label
+                            style={{ margin: ".3em" }}
+                            className="medium complementary_font"
+                        >
                             New Email:
                         </label>
                         <input
@@ -85,7 +98,11 @@ function Settings() {
                                 margin: ".3em",
                             }}
                         />
-                        <button type="button" className="small corner_rounding main_text" style={{ margin: ".3em" }}>
+                        <button
+                            type="button"
+                            className="small corner_rounding main_text"
+                            style={{ margin: ".3em" }}
+                        >
                             Change Email
                         </button>
                     </div>
@@ -98,12 +115,21 @@ function Settings() {
                             textAlign: "center",
                             padding: ".6em",
                             margin: ".5em",
-                            backgroundColor: "darksalmon"
+                            backgroundColor: "darksalmon",
                         }}
                         className="shadow_down corner_rounding"
                     >
-                        <label style={{ margin: ".3em" }} className="medium complementary_font">Delete Account?</label>
-                        <button type="button" className="small corner_rounding main_text" style={{ margin: ".3em" }}>
+                        <label
+                            style={{ margin: ".3em" }}
+                            className="medium complementary_font"
+                        >
+                            Delete Account?
+                        </label>
+                        <button
+                            type="button"
+                            className="small corner_rounding main_text"
+                            style={{ margin: ".3em" }}
+                        >
                             Delete Account
                         </button>
                     </div>

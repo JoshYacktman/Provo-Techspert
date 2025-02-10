@@ -10,16 +10,16 @@ import "../public/css/utils.css";
 import "../public/css/page_fills.css";
 
 function App() {
-  return (
-    <BrowserRouter style={{ height: 100 + "%" }}>
-      <Routes style={{ height: 100 + "%" }}>
-        <Route path="/" element={<About />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter style={{ height: 100 + "%" }}>
+            <Routes style={{ height: 100 + "%" }}>
+                <Route path="/" element={<About />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;

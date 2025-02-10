@@ -22,8 +22,8 @@ input:focus {
     margin-left: auto;
     border-radius: 0.5em 0.5em 0.1em 0.5em;
     padding: 0.5em;
-    background-color: dodgerblue;
-    text-shadow: 0em .2em .6em blue;
+    background-color: #00c1ff;
+    text-shadow: 0em 0.2em 0.5em #07375d;
 }
 
 .green_bubble {
@@ -31,8 +31,8 @@ input:focus {
     margin-top: 0.2em;
     border-radius: 0.5em 0.5em 0.5em 0.1em;
     padding: 0.5em;
-    background-color: #00b000;
-    text-shadow: 0em .2em .6em #000500;
+    background-color: #00d400;
+    text-shadow: 0em 0.2em 0.5em #1c571c;
 }
 
 .left_rounded {
@@ -45,17 +45,17 @@ input:focus {
     overflow: hidden;
 }
 
-.rounded{
+.rounded {
     border-radius: 3em;
     overflow: hidden;
 }
 
 .top_rounded {
-    border-radius: .5em .5em 0 0;
+    border-radius: 0.5em 0.5em 0 0;
     overflow: hidden;
 }
 
 .bottom_rounded {
-    border-radius: 0 0 .5em .5em;
+    border-radius: 0 0 0.5em 0.5em;
     overflow: hidden;
 }

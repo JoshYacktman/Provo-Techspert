@@ -70,7 +70,7 @@ function Chat() {
         if (!newMessage) {
             scrollToBottomSmooth();
             return;
-        };
+        }
 
         setGroupedMessages((prev) => {
             const lastGroup = prev[prev.length - 1];
@@ -260,7 +260,7 @@ function Chat() {
                             position: "absolute",
                             left: "50%",
                             transform: "translateX(-50%)",
-                            textShadow: "0em .1em .9em #e8a61b"
+                            textShadow: "0em .1em .9em #e8a61b",
                         }}
                     >
                         Chat One
@@ -329,7 +329,14 @@ function Chat() {
                             if (e.key === "Enter") addMessage();
                         }}
                     />
-                    <div style={{padding: ".15em", display: "flex", alignItems: "center",}} className="shadow_down small_corner_rounding">
+                    <div
+                        style={{
+                            padding: ".15em",
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                        className="shadow_down small_corner_rounding"
+                    >
                         <button
                             onClick={addMessage}
                             className="small main_text small_corner_rounding"

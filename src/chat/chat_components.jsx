@@ -41,13 +41,11 @@ export function ChatButton({ text }) {
     );
 }
 
-
 export function LeftSideMessageDiv({ children }) {
     return (
         <div
             style={{
                 padding: "1em",
-                color: "seagreen",
                 maxWidth: "55%",
             }}
         >
@@ -59,7 +57,11 @@ export function LeftSideMessageHeading({ username }) {
     return (
         <h5
             className="normal message_font"
-            style={{ filter: "brightness(85%)", textShadow: "0em .2em .6em darkgreen" }}
+            style={{
+                filter: "brightness(85%)",
+                color: "#0F9B24",
+                textShadow: "0em .2em .6em #0C7F1E",
+            }}
         >
             {username}
         </h5>
@@ -76,12 +78,30 @@ export function LeftSideBubble({ children }) {
     );
 }
 
+export function RightSideMessageDiv({ children }) {
+    return (
+        <div
+            style={{
+                padding: "1em",
+                textAlign: "right",
+                maxWidth: "55%",
+                marginLeft: "auto",
+            }}
+        >
+            {children}
+        </div>
+    );
+}
 
 export function RightSideMessageHeading({ username }) {
     return (
         <h5
             className="normal message_font"
-            style={{ filter: "brightness(85%)", textShadow: "0em .2em .6em darkblue"}}
+            style={{
+                filter: "brightness(85%)",
+                color: "#1E65E5",
+                textShadow: "0em .2em .6em #0000a0",
+            }}
         >
             {username}
         </h5>
@@ -96,21 +116,5 @@ export function RightSideBubble({ children }) {
         >
             {children}
         </p>
-    );
-}
-
-export function RightSideMessageDiv({ children }) {
-    return (
-        <div
-            style={{
-                padding: "1em",
-                textAlign: "right",
-                color: "cornflowerblue",
-                maxWidth: "55%",
-                marginLeft: "auto",
-            }}
-        >
-            {children}
-        </div>
     );
 }

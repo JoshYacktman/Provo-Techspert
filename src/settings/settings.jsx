@@ -12,8 +12,8 @@ function ChatButtonClicked() {
 function SettingsDropdownOptions() {
     return (
         <div>
-            <button onClick={ChatButtonClicked}>Chat</button>
-            <button onClick={SignOutButtonClicked}>Sign Out</button>
+            <button className="main_text very_small" onClick={ChatButtonClicked}>Chat</button>
+            <button className="main_text very_small" onClick={SignOutButtonClicked}>Sign Out</button>
         </div>
     );
 }
@@ -40,7 +40,7 @@ function Settings() {
                         <input
                             type="password"
                             placeholder="Enter new password"
-                            className="small corner_rounding bordered_montserrat shadow_down main_input"
+                            className="small corner_rounding bordered_message_font shadow_down main_input"
                         />
                         <button
                             type="button"
@@ -58,7 +58,7 @@ function Settings() {
                         <input
                             type="email"
                             placeholder="Enter new email"
-                            className="small corner_rounding bordered_montserrat shadow_down main_input"
+                            className="small corner_rounding bordered_message_font shadow_down main_input"
                         />
                         <button
                             type="button"

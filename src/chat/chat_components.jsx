@@ -10,8 +10,8 @@ function SettingsButtonClicked() {
 export function ChatDropdownOptions() {
     return (
         <div>
-            <button onClick={SettingsButtonClicked}>Settings</button>
-            <button onClick={SignOutButtonClicked}>Sign Out</button>
+            <button className="main_text very_small" onClick={SettingsButtonClicked}>Settings</button>
+            <button className="main_text very_small" onClick={SignOutButtonClicked}>Sign Out</button>
         </div>
     );
 }

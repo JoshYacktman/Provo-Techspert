@@ -77,10 +77,9 @@ input {
 }
 
 @font-face {
-    font-family: "Montserrat";
-    src: url("/fonts/Montserrat.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
+    font-family: "Roboto Slabo";
+    src: url("/fonts/RobotoSlab.woff2") format("woff2");
+    font-weight: 900 bold;
 }
 
 @font-face {
@@ -92,7 +91,7 @@ input {
 
 .complementary_font,
 .message_font,
-.bordered_montserrat,
+.bordered_message_font,
 .main_text {
     font-weight: 600;
 }
@@ -107,24 +106,24 @@ input {
 }
 
 .message_font {
-    font-family: "Montserrat";
+    font-family: "Roboto Slabo";
     line-height: 1.2;
 }
 
-.bordered_montserrat {
-    font-family: "Montserrat";
+.bordered_message_font {
+    font-family: "Roboto Slabo";
     line-height: 1.2;
 }
 
 /* Font sizes */
 .complementary_font,
-.bordered_montserrat {
+.bordered_message_font {
     /* Faux bolding that works at low resolutions and high resolutions */
     text-shadow:
-        0.01em 0.01em 0 white,
-        -0.01em 0.01em 0 white,
-        0.01em -0.01em 0 white,
-        -0.01em -0.01em 0 white;
+        0.02em 0.02em 0 white,
+        -0.02em 0.02em 0 white,
+        0.02em -0.02em 0 white,
+        -0.02em -0.02em 0 white;
 }
 
 .large {
@@ -143,6 +142,10 @@ input {
     font-size: 14pt;
 }
 
+.very_small {
+    font-size: 12pt;
+}
+
 /* Update the font sizes if the page is too small */
 @media (max-width: 60em) {
     .large {
@@ -159,6 +162,10 @@ input {
 
     .small {
         font-size: 12.5pt;
+    }
+
+    .very_small {
+        font-size: 10pt;
     }
 }
 

@@ -59,7 +59,7 @@ export function LeftSideMessageHeading({ username }) {
     return (
         <h5
             className="normal message_font"
-            style={{ filter: "brightness(85%)" }}
+            style={{ filter: "brightness(85%)", textShadow: "0em .2em .6em darkgreen" }}
         >
             {username}
         </h5>
@@ -68,7 +68,7 @@ export function LeftSideMessageHeading({ username }) {
 export function LeftSideBubble({ children }) {
     return (
         <p
-            className="small message_font green_bubble"
+            className="small message_font green_bubble shadow_down"
             style={{ color: "lavender" }}
         >
             {children}
@@ -81,7 +81,7 @@ export function RightSideMessageHeading({ username }) {
     return (
         <h5
             className="normal message_font"
-            style={{ filter: "brightness(85%)" }}
+            style={{ filter: "brightness(85%)", textShadow: "0em .2em .6em darkblue"}}
         >
             {username}
         </h5>
@@ -91,7 +91,7 @@ export function RightSideMessageHeading({ username }) {
 export function RightSideBubble({ children }) {
     return (
         <p
-            className="small message_font blue_bubble"
+            className="small message_font blue_bubble shadow_down"
             style={{ color: "lavender", textAlign: "left" }}
         >
             {children}

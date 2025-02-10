@@ -67,7 +67,10 @@ function Chat() {
     const addMessage = () => {
         const input = document.getElementById("sendMessage");
         var newMessage = input.value.trim();
-        if (!newMessage) return;
+        if (!newMessage) {
+            scrollToBottomSmooth();
+            return;
+        };
 
         setGroupedMessages((prev) => {
             const lastGroup = prev[prev.length - 1];
@@ -128,87 +131,25 @@ function Chat() {
         {
             sender: "Provo Techspert",
             side: "left",
-            messages: ["Chat Message five"],
+            messages: [
+                "Chat Message five",
+                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
+                Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
+            ],
         },
         {
             sender: "Username",
             side: "right",
-            messages: ["Chat Message six"],
+            messages: [
+                "Chat Message six",
+                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
+                Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
+            ],
         },
         {
             sender: "Provo Techspert",
             side: "left",
             messages: ["Chat Message seven"],
-        },
-        {
-            sender: "Username",
-            side: "right",
-            messages: ["Chat Message eight"],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: ["Chat Message nine"],
-        },
-        {
-            sender: "Username",
-            side: "right",
-            messages: ["Chat Message ten"],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: ["Chat Message eleven"],
-        },
-        {
-            sender: "Username",
-            side: "right",
-            messages: ["Chat Message twelve"],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: ["Chat Message thirteen"],
-        },
-        {
-            sender: "Username",
-            side: "right",
-            messages: ["Chat Message fourteen"],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: ["Chat Message fifteen"],
-        },
-        {
-            sender: "Username",
-            side: "right",
-            messages: ["Chat Message sixteen"],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: [
-                "Chat Message seventeen",
-                "Chat Message eighteen",
-                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
-                Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
-            ],
-        },
-        {
-            sender: "Username",
-            side: "right",
-            messages: [
-                "Chat Message nineteen",
-                "Chat Message twenty",
-                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
-                Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
-            ],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: ["Chat Message Twenty One"],
         },
     ]);
 
@@ -239,13 +180,13 @@ function Chat() {
                             width: "100%",
                             display: "flex",
                             flexDirection: "row",
-                            padding: ".2em",
+                            padding: ".35em",
                         }}
                     >
                         <button
                             style={{
                                 width: "80%",
-                                marginRight: ".2em",
+                                marginRight: ".4em",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
@@ -319,6 +260,7 @@ function Chat() {
                             position: "absolute",
                             left: "50%",
                             transform: "translateX(-50%)",
+                            textShadow: "0em .1em .9em #e8a61b"
                         }}
                     >
                         Chat One
@@ -387,12 +329,14 @@ function Chat() {
                             if (e.key === "Enter") addMessage();
                         }}
                     />
-                    <button
-                        onClick={addMessage}
-                        className="small main_text small_corner_rounding shadow_down"
-                    >
-                        &rarr;
-                    </button>
+                    <div style={{padding: ".15em", display: "flex", alignItems: "center",}} className="shadow_down small_corner_rounding">
+                        <button
+                            onClick={addMessage}
+                            className="small main_text small_corner_rounding"
+                        >
+                            &rarr;
+                        </button>
+                    </div>
                     <audio id="audio_tag" src={notifySound} />
                 </div>
             </div>

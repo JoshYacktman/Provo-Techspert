@@ -11,8 +11,8 @@ import "../public/css/page_fills.css";
 
 function App() {
     return (
-        <BrowserRouter style={{ height: 100 + "%" }}>
-            <Routes style={{ height: 100 + "%" }}>
+        <BrowserRouter style={{ height: "100%" }}>
+            <Routes style={{ height: "100%" }}>
                 <Route path="/" element={<About />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/settings" element={<Settings />} />

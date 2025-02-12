@@ -12,6 +12,11 @@ import {
 } from "./chat_components";
 import "./chat.css";
 
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isSafari) {
+    import("./chat_safari.css")
+}
+
 import notifySound from "/sounds/notify.mp3";
 
 function Chat() {

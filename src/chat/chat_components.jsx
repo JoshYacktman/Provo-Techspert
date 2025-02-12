@@ -10,8 +10,18 @@ function SettingsButtonClicked() {
 export function ChatDropdownOptions() {
     return (
         <div>
-            <button className="main_text very_small" onClick={SettingsButtonClicked}>Settings</button>
-            <button className="main_text very_small" onClick={SignOutButtonClicked}>Sign Out</button>
+            <button
+                className="main_text very_small"
+                onClick={SettingsButtonClicked}
+            >
+                Settings
+            </button>
+            <button
+                className="main_text very_small"
+                onClick={SignOutButtonClicked}
+            >
+                Sign Out
+            </button>
         </div>
     );
 }
@@ -54,18 +64,7 @@ export function LeftSideMessageDiv({ children }) {
     );
 }
 export function LeftSideMessageHeading({ username }) {
-    return (
-        <h5
-            className="normal message_font"
-            style={{
-                filter: "brightness(85%)",
-                color: "#0F9B24",
-                textShadow: "0em .2em .6em #0C7F1E",
-            }}
-        >
-            {username}
-        </h5>
-    );
+    return <h5 className="normal message_font green_header">{username}</h5>;
 }
 export function LeftSideBubble({ children }) {
     return (
@@ -94,18 +93,7 @@ export function RightSideMessageDiv({ children }) {
 }
 
 export function RightSideMessageHeading({ username }) {
-    return (
-        <h5
-            className="normal message_font"
-            style={{
-                filter: "brightness(85%)",
-                color: "#1E65E5",
-                textShadow: "0em .2em .6em #0000a0",
-            }}
-        >
-            {username}
-        </h5>
-    );
+    return <h5 className="normal message_font blue_header">{username}</h5>;
 }
 
 export function RightSideBubble({ children }) {

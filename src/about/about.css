@@ -67,7 +67,10 @@
         0.01em 0.01em 0 white,
         -0.01em 0.01em 0 white,
         0.01em -0.01em 0 white,
-        -0.01em -0.01em 0 white;
+        -0.01em -0.01em 0 white,
+        0 0 1em white,
+        0 0 1em white,
+        0 0 1em white;
 }
 
 @media (max-width: 40em) {

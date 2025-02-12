@@ -68,10 +68,7 @@ export function LeftSideMessageHeading({ username }) {
 }
 export function LeftSideBubble({ children }) {
     return (
-        <p
-            className="small message_font green_bubble shadow_down"
-            style={{ color: "lavender" }}
-        >
+        <p className="small message_font green_bubble shadow_down">
             {children}
         </p>
     );
@@ -98,11 +95,6 @@ export function RightSideMessageHeading({ username }) {
 
 export function RightSideBubble({ children }) {
     return (
-        <p
-            className="small message_font blue_bubble shadow_down"
-            style={{ color: "lavender", textAlign: "left" }}
-        >
-            {children}
-        </p>
+        <p className="small message_font blue_bubble shadow_down">{children}</p>
     );
 }

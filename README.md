@@ -76,3 +76,9 @@ The process looks like this:
  - Responsive to resizing
  - Application text is styled
  - Styled images
+
+# React Deliverable 🚀
+ - All HTML except minimum needed for index has been moved to React
+ - All CSS has been moved to be imported by React or be inlined in React
+ - Routed with React Router
+ - Components created to simplify the page (most notable in the chat page)

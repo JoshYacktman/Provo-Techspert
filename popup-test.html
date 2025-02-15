@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chat Popup</title>
+        <style>
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: none;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .popup {
+                background: #fff;
+                padding: 1em;
+                border-radius: 1em;
+                width: 40%;
+                text-align: center;
+                box-shadow: 0 .5em 1em rgba(0, 0, 0, 0.3);
+                display: flex;
+                flex-direction: column;
+            }
+
+            .popup-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1em;
+            }
+
+            .popup-header .header_text {
+                margin: 0;
+                flex-grow: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <button onclick="openPopup()">Create Chat</button>
+
+        <div class="overlay" id="popupOverlay" onclick="closePopup()">
+            <div class="popup" onclick="event.stopPropagation()">
+                <div class="popup-header">
+                    <p class="header_text">Chat Name:</p>
+                    <button onclick="closePopup()">&times;</button>
+                </div>
+                <input type="text" placeholder="Broken..." />
+                <button style="margin-top: 0.3em">Create</button>
+            </div>
+        </div>
+
+        <script>
+            function openPopup() {
+                document.getElementById("popupOverlay").style.display = "flex";
+            }
+
+            function closePopup() {
+                document.getElementById("popupOverlay").style.display = "none";
+            }
+        </script>
+    </body>
+</html>

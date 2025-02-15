@@ -162,6 +162,11 @@ function Chat() {
         scrollToBottomInstant();
     }, []);
 
+    function createChat () {
+
+        return;
+    }
+
     return (
         <div className="work_area">
             <div
@@ -197,6 +202,7 @@ function Chat() {
                                 justifyContent: "center",
                             }}
                             className="small message_font small_corner_rounding"
+                            onClick={createChat}
                         >
                             Create Chat
                         </button>

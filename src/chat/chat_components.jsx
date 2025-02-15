@@ -98,3 +98,9 @@ export function RightSideBubble({ children }) {
         <p className="small message_font blue_bubble shadow_down">{children}</p>
     );
 }
+
+export function ChatPopUp () {
+    return (
+        <></>
+    );
+}

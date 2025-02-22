@@ -64,6 +64,19 @@ button:focus {
     outline: none;
 }
 
+button:disabled {
+    background-color: white !important;
+    filter: brightness(90%);
+}
+button:disabled:hover {
+    background-color: white !important;
+    filter: brightness(80%) !important;
+}
+button:disabled:active {
+    background-color: white !important;
+    filter: brightness(80%) !important;
+}
+
 input {
     border: .2em double;
 }

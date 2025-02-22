@@ -1,46 +1,56 @@
-import React, { lazy } from "react";
+import React, { useState } from "react";
 import { Header } from "../components";
 import "./about.css";
 
-function JoinButtonClicked() {
+// TODO: Put functionality into separate
+function placeholder() {
     var userName = document.getElementById("userNameInput").value;
-    console.log(userName);
-    if (userName.length < 5) {
-        return;
-    }
 
-    localStorage.setItem("username", userName)
+    localStorage.setItem("username", userName);
     window.location.href = "/chat/";
+}
+
+function JoinButtonClicked() {
+    placeholder();
 }
 
 function SignInButtonClicked() {
-    window.location.href = "/chat/";
+    placeholder();
 }
 
 function AboutDropdownOptions() {
+    const [userName, setUserName] = useState("");
+
+    const isValid = userName.length >= 5;
+
     return (
         <form>
             <div className="form_format">
                 <label className="main_text small">Username</label>
-                <input id="userNameInput"
+                <input
+                    id="userNameInput"
                     className="bordered_message_font small form_input small_corner_rounding"
                     maxLength="20"
+                    minLength="5"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                 />
                 <label className="main_text small">Password</label>
                 <input
                     className="bordered_message_font small form_input small_corner_rounding"
                     maxLength="20"
+                    minLength="5"
+                    type="password"
                 />
                 <label className="main_text small">Email (Join Only)</label>
-                <input
-                    className="bordered_message_font small form_input small_corner_rounding"
-                />
+                <input className="bordered_message_font small form_input small_corner_rounding" />
             </div>
             <div style={{ flexDirection: "row" }}>
                 <button
                     type="button"
                     className="main_text very_small"
                     onClick={JoinButtonClicked}
+                    disabled={!isValid}
                 >
                     Join
                 </button>
@@ -48,6 +58,7 @@ function AboutDropdownOptions() {
                     type="button"
                     className="main_text very_small"
                     onClick={SignInButtonClicked}
+                    disabled={!isValid}
                 >
                     Sign In
                 </button>

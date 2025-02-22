@@ -45,6 +45,7 @@
         opacity 0.3s ease,
         transform 0.3s ease,
         visibility 0s 0.3s;
+    display: none;
 }
 
 .dropdown_content button {

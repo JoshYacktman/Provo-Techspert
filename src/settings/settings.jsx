@@ -3,6 +3,7 @@ import { Header } from "../components";
 import "./settings.css";
 
 function SignOutButtonClicked() {
+    localStorage.removeItem("username");
     window.location.href = "/";
 }
 function ChatButtonClicked() {
@@ -19,9 +20,14 @@ function SettingsDropdownOptions() {
 }
 
 function Settings() {
+    const userName = localStorage.getItem("username");
+    if (userName == null) {
+        window.location.href = "/";
+    }
+
     return (
         <div className="work_area" style={{ overflowY: "auto" }}>
-            <Header OptionsMenu={SettingsDropdownOptions} />
+            <Header OptionsMenu={SettingsDropdownOptions} userName={userName} />
             <div
                 style={{
                     display: "flex",

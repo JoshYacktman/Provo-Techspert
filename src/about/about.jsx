@@ -3,6 +3,13 @@ import { Header } from "../components";
 import "./about.css";
 
 function JoinButtonClicked() {
+    var userName = document.getElementById("userNameInput").value;
+    console.log(userName);
+    if (userName.length < 5) {
+        return;
+    }
+
+    localStorage.setItem("username", userName)
     window.location.href = "/chat/";
 }
 
@@ -15,12 +22,14 @@ function AboutDropdownOptions() {
         <form>
             <div className="form_format">
                 <label className="main_text small">Username</label>
-                <input
+                <input id="userNameInput"
                     className="bordered_message_font small form_input small_corner_rounding"
+                    maxLength="20"
                 />
                 <label className="main_text small">Password</label>
                 <input
                     className="bordered_message_font small form_input small_corner_rounding"
+                    maxLength="20"
                 />
                 <label className="main_text small">Email (Join Only)</label>
                 <input
@@ -48,6 +57,12 @@ function AboutDropdownOptions() {
 }
 
 function About() {
+    const userName = localStorage.getItem("username");
+    if (userName !== null) {
+        window.location.href = "/chat";
+        return;
+    }
+
     const GitHubButtonClicked = () => {
         window.open("https://github.com/JoshYacktman/Provo-Techspert");
     };

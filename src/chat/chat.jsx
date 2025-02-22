@@ -20,6 +20,12 @@ if (isSafari) {
 import notifySound from "/sounds/notify.mp3";
 
 function Chat() {
+    const userName = localStorage.getItem("username");
+    if (userName == null) {
+        window.location.href = "/";
+        return;
+    }
+
     const [openStatus, setOpenStatus] = useState(false);
 
     const toggleStatus = (isMainPage = false) => {
@@ -80,7 +86,7 @@ function Chat() {
         setGroupedMessages((prev) => {
             const lastGroup = prev[prev.length - 1];
 
-            if (lastGroup?.sender === "Username") {
+            if (lastGroup?.sender === userName) {
                 return prev.map((group, index) =>
                     index === prev.length - 1
                         ? {
@@ -93,7 +99,7 @@ function Chat() {
                 return [
                     ...prev,
                     {
-                        sender: "Username",
+                        sender: {userName},
                         side: "right",
                         messages: [newMessage],
                     },
@@ -119,7 +125,7 @@ function Chat() {
             ],
         },
         {
-            sender: "Username",
+            sender: userName,
             side: "right",
             messages: ["Chat Message two"],
         },
@@ -129,7 +135,7 @@ function Chat() {
             messages: ["Chat Message three"],
         },
         {
-            sender: "Username",
+            sender: userName,
             side: "right",
             messages: ["Chat Message four"],
         },
@@ -143,7 +149,7 @@ function Chat() {
             ],
         },
         {
-            sender: "Username",
+            sender: userName,
             side: "right",
             messages: [
                 "Chat Message six",
@@ -238,7 +244,7 @@ function Chat() {
                     <ChatButton text={"Chat Eleven"} />
                     <ChatButton text={"Chat Twelve"} />
                 </div>
-                <Dropup OptionsMenu={ChatDropdownOptions} />
+                <Dropup OptionsMenu={ChatDropdownOptions} userName={userName} />
             </div>
             <div
                 style={{

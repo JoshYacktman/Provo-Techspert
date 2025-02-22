@@ -1,6 +1,7 @@
 import React from "react";
 
 function SignOutButtonClicked() {
+    localStorage.removeItem("username");
     window.location.href = "/";
 }
 function SettingsButtonClicked() {

@@ -23,6 +23,9 @@ export function Dropdown({ OptionsMenu, userName }) {
 
     const hoverExitStatus = (event) => {
         const relatedTarget = event.relatedTarget;
+        if (relatedTarget === window) {
+            return;
+        }
 
         // If (theres no new element hovered) or ((the new element is not related to the current element)
         // and (there is no other ancestor in dropdown)) then we close the dropdown
@@ -35,6 +38,7 @@ export function Dropdown({ OptionsMenu, userName }) {
             setOpenStatus(false);
         }
     };
+
     return (
         <div className="dropdown">
             <button
@@ -71,6 +75,10 @@ export function Dropup({ OptionsMenu, userName }) {
 
     const hoverExitStatus = (event) => {
         const relatedTarget = event.relatedTarget;
+        if (relatedTarget === window) {
+            return;
+        }
+
         if (
             !relatedTarget ||
             !(relatedTarget instanceof Node) ||
@@ -83,7 +91,7 @@ export function Dropup({ OptionsMenu, userName }) {
 
     return (
         <div
-            className="dropup "
+            className="dropup"
             onMouseLeave={hoverExitStatus}
             style={{ width: "100%" }}
         >
@@ -100,12 +108,10 @@ export function Dropup({ OptionsMenu, userName }) {
                     {location === "/" ? "Join/Sign In" : userName}
                 </button>
             </div>
-            <div>
-                <div
-                    className={`dropup_content ${openStatus ? "visible" : "hidden"}`}
-                >
-                    <OptionsMenu />
-                </div>
+            <div
+                className={`dropup_content ${openStatus ? "visible" : "hidden"}`}
+            >
+                <OptionsMenu />
             </div>
         </div>
     );

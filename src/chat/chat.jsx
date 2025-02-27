@@ -14,10 +14,80 @@ import "./chat.css";
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 if (isSafari) {
-    import("./chat_safari.css")
+    import("./chat_safari.css");
 }
 
 import notifySound from "/sounds/notify.mp3";
+
+var chats = [
+    "Chat One",
+    "Nintendo_Switch12345",
+    "Chat Two",
+    "Chat Three",
+    "Chat Four",
+    "Chat Five",
+    "Chat Six",
+    "Chat Seven",
+    "Chat Eight",
+    "Chat Nine",
+    "Chat Ten",
+    "Chat Eleven",
+    "Chat Twelve",
+];
+var currentChat = chats[0];
+var messages = {
+    "Chat One": [
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: [
+                `Hello {Username}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
+            To help you repair your device, I would appreciate a message from you explaining the issue,
+            if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
+            (I personally use imgbb and Vimeo).`,
+                "Chat Message one",
+            ],
+        },
+        {
+            sender: "TestUsername",
+            side: "right",
+            messages: ["Chat Message two"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message three"],
+        },
+        {
+            sender: "TestUsername",
+            side: "right",
+            messages: ["Chat Message four"],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: [
+                "Chat Message five",
+                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
+            Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
+            ],
+        },
+        {
+            sender: "TestUsername",
+            side: "right",
+            messages: [
+                "Chat Message six",
+                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
+            Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
+            ],
+        },
+        {
+            sender: "Provo Techspert",
+            side: "left",
+            messages: ["Chat Message seven"],
+        },
+    ],
+};
 
 function Chat() {
     const userName = localStorage.getItem("username");
@@ -43,21 +113,16 @@ function Chat() {
 
     const hoverExitStatus = (event) => {
         const relatedTarget = event.relatedTarget;
-        if (
-            !relatedTarget ||
-            !(relatedTarget instanceof Node) ||
-            (!event.currentTarget.contains(relatedTarget) &&
-                relatedTarget.closest(".dropup") === null)
-        ) {
+        if (!relatedTarget || !(relatedTarget instanceof Node)) {
             setOpenStatus(false);
         }
     };
 
     const playNotifySound = () => {
         const audio = document.getElementById("audio_tag");
-        audio.pause();
-        audio.currentTime = 0;
         try {
+            audio.pause();
+            audio.currentTime = 0;
             audio.play();
         } catch {}
     };
@@ -99,77 +164,26 @@ function Chat() {
                 return [
                     ...prev,
                     {
-                        sender: {userName},
+                        sender: userName,
                         side: "right",
                         messages: [newMessage],
                     },
                 ];
             }
         });
-
+        console.log(messages);
         input.value = "";
         playNotifySound();
         scrollToBottomSmooth();
     };
 
-    const [groupedMessages, setGroupedMessages] = useState([
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: [
-                `Hello {Username}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
-                To help you repair your device, I would appreciate a message from you explaining the issue,
-                if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
-                (I personally use imgbb and Vimeo).`,
-                "Chat Message one",
-            ],
-        },
-        {
-            sender: userName,
-            side: "right",
-            messages: ["Chat Message two"],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: ["Chat Message three"],
-        },
-        {
-            sender: userName,
-            side: "right",
-            messages: ["Chat Message four"],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: [
-                "Chat Message five",
-                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
-                Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
-            ],
-        },
-        {
-            sender: userName,
-            side: "right",
-            messages: [
-                "Chat Message six",
-                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque luctus tellus id nisl fringilla venenatis.
-                Phasellus quam lacus, fermentum nec tortor ut, tristique semper magna. Morbi faucibus fringilla ligula. Sed.`,
-            ],
-        },
-        {
-            sender: "Provo Techspert",
-            side: "left",
-            messages: ["Chat Message seven"],
-        },
-    ]);
+    const [groupedMessages, setGroupedMessages] = useState(messages[currentChat]);
 
     useEffect(() => {
         scrollToBottomInstant();
     }, []);
 
-    function createChat () {
-
+    function createChat() {
         return;
     }
 
@@ -230,19 +244,9 @@ function Chat() {
                         marginTop: ".4em",
                     }}
                 >
-                    <ChatButton text={"Chat One"} />
-                    <ChatButton text={"Nintendo_Switch12345"} />
-                    <ChatButton text={"Chat Two"} />
-                    <ChatButton text={"Chat Three"} />
-                    <ChatButton text={"Chat Four"} />
-                    <ChatButton text={"Chat Five"} />
-                    <ChatButton text={"Chat Six"} />
-                    <ChatButton text={"Chat Seven"} />
-                    <ChatButton text={"Chat Eight"} />
-                    <ChatButton text={"Chat Nine"} />
-                    <ChatButton text={"Chat Ten"} />
-                    <ChatButton text={"Chat Eleven"} />
-                    <ChatButton text={"Chat Twelve"} />
+                    {chats.map((chat, index) => (
+                        <ChatButton key={index}  text={chat} />
+                    ))}
                 </div>
                 <Dropup OptionsMenu={ChatDropdownOptions} userName={userName} />
             </div>
@@ -280,7 +284,7 @@ function Chat() {
                             textShadow: "0em .1em .9em #e8a61b",
                         }}
                     >
-                        Chat One
+                        {currentChat}
                     </h1>
                 </div>
                 <div
@@ -360,7 +364,7 @@ function Chat() {
                             &rarr;
                         </button>
                     </div>
-                    <audio id="audio_tag" src={notifySound} />
+                    <audio id="audio_tag" src={notifySound} rel="preload" />
                 </div>
             </div>
         </div>

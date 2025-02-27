@@ -41,27 +41,7 @@
         </style>
     </head>
     <body>
-        <button onclick="openPopup()">Create Chat</button>
-
-        <div class="overlay" id="popupOverlay" onclick="closePopup()">
-            <div class="popup" onclick="event.stopPropagation()">
-                <div class="popup-header">
-                    <p class="header_text">Chat Name:</p>
-                    <button onclick="closePopup()">&times;</button>
-                </div>
-                <input type="text" placeholder="Broken..." />
-                <button style="margin-top: 0.3em">Create</button>
-            </div>
-        </div>
-
-        <script>
-            function openPopup() {
-                document.getElementById("popupOverlay").style.display = "flex";
-            }
-
-            function closePopup() {
-                document.getElementById("popupOverlay").style.display = "none";
-            }
-        </script>
+        <div id="root"></div>
+        <script type="module" src="./popup-test.jsx"></script>
     </body>
 </html>

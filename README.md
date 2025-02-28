@@ -82,3 +82,12 @@ The process looks like this:
  - All CSS has been moved to be imported by React or be inlined in React
  - Routed with React Router
  - Components created to simplify the page (most notable in the chat page)
+
+# React Deliverable 2 🚀
+ - All functionality mocked out (about page, fake log in/log out, sending messages, creating, changing, or deleting chats, and fake settings page)
+ - No visible API usage since in the final version it will quietly send an email to the other individual the user is chatting with
+ - Many react components to simplify the structure as much as possible
+ - useState and useEffect hooks
+ - Local storage used to hold fake username from mocked sign in/log out
+ - Automatic redirection when not logged in or not logged out
+ - Mocked out endpoints using states

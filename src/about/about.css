@@ -88,5 +88,8 @@
 
 .form_input {
     padding: 0.3em;
+}
 
+.dropdown_buttons:disabled {
+    background-color: white !important;
 }

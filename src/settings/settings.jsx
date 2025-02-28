@@ -83,7 +83,7 @@ function Settings() {
                             type="button"
                             className="small corner_rounding main_text shadow_down main_button"
                             // TODO: Change this when proper login/logout is done
-                            onClick={SignOutButtonClicked()}
+                            onClick={SignOutButtonClicked}
                         >
                             Delete Account
                         </button>

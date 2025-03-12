@@ -27,7 +27,7 @@ Have you ever had a broken game console, controller, or laptop? Have you ever wo
  - Chat names are limited to 20 characters and chat messages are limited to 500 characters
  - Usernames are limited to 12 characters
 
-## Techonologies:
+## Technologies:
 
  - HTML (application structure Three pages: One for the home page, one for the chat boards, and one for account settings (allows for account deletion))
  - CSS (Styling of application that styles nicely for different device sized)

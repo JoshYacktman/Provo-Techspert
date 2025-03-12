@@ -1,0 +1,17 @@
+{
+  "name": "provo-techpsert-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "Server for Provo Techspert",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "uuid": "^11.1.0"
+  }
+}

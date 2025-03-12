@@ -30,8 +30,8 @@ function AboutDropdownOptions() {
         <input
           id="userNameInput"
           className="bordered_message_font small form_input small_corner_rounding"
-          maxLength="20"
-          minLength="5"
+          maxLength="15"
+          minLength="3"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />

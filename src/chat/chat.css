@@ -111,5 +111,5 @@ input:focus {
 }
 
 .close_popup_button:disabled {
-    background-color: var(--header_footer_color); !important;
+    background-color: var(--header_footer_color) !important;
 }

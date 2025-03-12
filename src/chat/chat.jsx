@@ -27,12 +27,15 @@ function Chat() {
     return;
   }
 
-  const [chats, setChats] = useState(["Chat One", "Nintendo_Switch12345"]);
+  const [chats, setChats] = useState([
+    "Chat One - Username_Test12",
+    "Nintendo_Switch - Username_Test12",
+  ]);
 
   const [currentChat, setCurrentChat] = useState(chats[0]);
 
   const [messages, setMessages] = useState({
-    "Chat One": [
+    "Chat One - Username_Test12": [
       {
         sender: "Provo Techspert",
         side: "left",
@@ -81,7 +84,7 @@ function Chat() {
         messages: ["Chat Message seven"],
       },
     ],
-    Nintendo_Switch12345: [
+    "Nintendo_Switch - Username_Test12": [
       {
         sender: "Provo Techspert",
         side: "left",
@@ -220,6 +223,7 @@ function Chat() {
       alert("A chat with this name already exists!");
       return;
     }
+    newChatName = newChatName + " - " + userName;
 
     setChats((prevChats) => [...prevChats, newChatName]);
     setMessages((prevMessages) => ({
@@ -343,6 +347,8 @@ function Chat() {
               left: "50%",
               transform: "translateX(-50%)",
               textShadow: "0em .1em .9em #e8a61b",
+              width: "70%",
+              textAlign: "center",
             }}
           >
             {currentChat ? currentChat : "Create a chat!"}

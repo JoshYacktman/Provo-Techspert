@@ -42,6 +42,7 @@ export function ChatButton({ text, setChat, deleteChat }) {
       </button>
       <button
         className="small message_font right_rounded"
+        style={{ height: "auto" }}
         onClick={() => deleteChat(text)}
       >
         &times;
@@ -102,7 +103,7 @@ export function ChatPopUp({ createChat }) {
   }
   const [chatName, setChatName] = useState("");
 
-  const isValid = chatName.length >= 5;
+  const isValid = chatName.length >= 5 && chatName.length <= 15;
 
   function makeChat() {
     createChat(chatName);

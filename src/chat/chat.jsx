@@ -18,10 +18,9 @@ if (isSafari) {
   import("./chat_safari.css");
 }
 
-import notifySound from "/sounds/notify.mp3";
-
 function Chat() {
   const userName = localStorage.getItem("username");
+  const notify = new Audio("/sounds/notify.mp3");
   if (userName == null) {
     window.location.href = "/";
     return;
@@ -121,12 +120,7 @@ function Chat() {
   };
 
   const playNotifySound = () => {
-    const audio = document.getElementById("audio_tag");
-    try {
-      audio.pause();
-      audio.currentTime = 0;
-      audio.play();
-    } catch {}
+    notify.play();
   };
 
   // Function to scroll to the bottom
@@ -423,7 +417,6 @@ function Chat() {
               &rarr;
             </button>
           </div>
-          <audio id="audio_tag" src={notifySound} rel="preload" />
         </div>
       </div>
     </div>

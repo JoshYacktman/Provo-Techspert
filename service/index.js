@@ -14,7 +14,6 @@ let tokenDates = {};
 
 let users = {};
 // By searching for users here instead of in a list we get O(1) lookup
-// and it serves dual purposes
 // Example Users:
 // {
 //   "Provo Techspert": "xxxxxxxxx",
@@ -70,112 +69,112 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(build_loc));
 
-// Router for service endpoints
 var apiRouter = express.Router();
 app.use("/api", apiRouter);
 
+// Helper function for username validation
+function validateUsername(username) {
+  if (!username || typeof username !== "string")
+    return { isValid: false, msg: "Username is required and must be a string" };
+  const trimmedUsername = username.trim();
+  if (trimmedUsername.length < 3 || trimmedUsername.length > 15)
+    return { isValid: false, msg: "Username does not conform to standards" };
+  return { isValid: true, username: trimmedUsername };
+}
+
+// Helper function for password validation
+function validatePassword(password) {
+  if (!password || typeof password !== "string")
+    return { isValid: false, msg: "Password is required and must be a string" };
+  const trimmedPassword = password.trim();
+  if (trimmedPassword.length < 5 || trimmedPassword.length > 20)
+    return { isValid: false, msg: "Password does not conform to standards" };
+  return { isValid: true, password: trimmedPassword };
+}
+
+// Middleware for validating username and password
+async function validateUserCredentials(req, res, next) {
+  const { username, password } = req.body;
+
+  // Validate username
+  const usernameValidation = validateUsername(username);
+  if (!usernameValidation.isValid)
+    return res.status(400).send({ msg: usernameValidation.msg });
+
+  // Validate password
+  const passwordValidation = validatePassword(password);
+  if (!passwordValidation.isValid)
+    return res.status(400).send({ msg: passwordValidation.msg });
+
+  // Attach validated username and password to the request object
+  req.validatedUsername = usernameValidation.username;
+  req.validatedPassword = passwordValidation.password;
+
+  next();
+}
+
+// Helper function to create a user
 async function createUser(username, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   users[username] = passwordHash;
 }
 
-apiRouter.get("/auth/create", async (req, res) => {
-  const username = req.body.username;
+// MAJOR: Authentication routes
+// Create account
+apiRouter.post("/auth/manage", validateUserCredentials, async (req, res) => {
+  const { validatedUsername, validatedPassword } = req;
 
-  if (!username || typeof username !== "string") {
-    res.status(400).send({ msg: "Username is required and must be a string" });
-    return;
+  // Check if user already exists
+  if (validatedUsername in users) {
+    return res.status(409).send({ msg: "Existing user" });
   }
 
-  const trimmedUsername = username.trim();
-  const username_len = trimmedUsername.length;
-
-  if (username_len < 3 || username_len > 15) {
-    res.status(409).send({ msg: "Username does not conform to standards" });
-    return;
-  }
-
-  const userExists = trimmedUsername in users;
-  if (userExists) {
-    res.status(409).send({ msg: "Existing user" });
-    return;
-  }
-
-  const password = req.body.password;
-
-  if (!password || typeof password !== "string") {
-    res.status(400).send({ msg: "Password is required and must be a string" });
-    return;
-  }
-
-  const trimmedPassword = password.trim();
-  const password_len = trimmedPassword.length;
-
-  if (password_len < 5 || password_len > 20) {
-    res.status(409).send({ msg: "Password does not conform to standards" });
-    return;
-  }
-
-  await createUser(trimmedUsername, trimmedPassword);
-  setAuthCookie(res, trimmedUsername);
+  await createUser(validatedUsername, validatedPassword);
+  setAuthCookie(res, validatedUsername);
   res.send("User created");
 });
 
-apiRouter.get("/auth/login", async (req, res) => {
-  const username = req.body.username;
+// Log in
+apiRouter.post("/auth/login", validateUserCredentials, async (req, res) => {
+  const { validatedUsername, validatedPassword } = req;
 
-  if (!username || typeof username !== "string") {
-    res.status(400).send({ msg: "Username is required and must be a string" });
-    return;
-  }
+  // Check if user exists
+  const userExists = validatedUsername in users;
+  if (!userExists)
+    return res.status(409).send({ msg: "No account of given username" });
 
-  const trimmedUsername = username.trim();
-  const username_len = trimmedUsername.length;
-
-  if (username_len < 3 || username_len > 15) {
-    res.status(409).send({ msg: "Username does not conform to standards" });
-    return;
-  }
-
-  const userExists = trimmedUsername in users;
-
-  const password = req.body.password;
-
-  if (!password || typeof password !== "string") {
-    res.status(400).send({ msg: "Password is required and must be a string" });
-    return;
-  }
-
-  const trimmedPassword = password.trim();
-  const password_len = trimmedPassword.length;
-
-  if (password_len < 5 || password_len > 20) {
-    res.status(409).send({ msg: "Password does not conform to standards" });
-    return;
-  }
-
-  if (!userExists) {
-    res.status(409).send({ msg: "No account of given username" });
-    return;
-  }
+  // Check password authorization
   const authorization = await bcrypt.compare(
-    trimmedPassword,
-    users[trimmedUsername],
+    validatedPassword,
+    users[validatedUsername],
   );
-  if (!authorization) {
-    res.status(409).send({ msg: "Not authorized" });
-    return;
-  }
-  setAuthCookie(res, trimmedUsername);
+  if (!authorization) return res.status(409).send({ msg: "Not authorized" });
+
+  setAuthCookie(res, validatedUsername);
   res.send("User logged in");
 });
+// Log out
+apiRouter.post("/auth/logout", async (req, res) => {});
+// Delete account
+apiRouter.delete("/auth/manage", async (req, res) => {});
 
-// setAuthCookie in the HTTP response
+// MAJOR: Chat endpoints
+// Create chat
+apiRouter.post("/chat/manage", async (req, res) => {});
+// List chats
+apiRouter.get("/chat/list", async (req, res) => {});
+// Delete chat
+apiRouter.delete("/chat/manage", async (req, res) => {});
+// Send message
+apiRouter.post("/chat/message", async (req, res) => {});
+// Get messages from chat
+apiRouter.get("/chat/messages", async (req, res) => {});
+
+// Set authentication cookie
 function setAuthCookie(res, username) {
   let date = new Date(Date.now());
-  date.setHours(0, 0, 0, 0); // Set the time to midnight
-
-  let formattedDate = date.toISOString().split("T")[0]; // Get the date (YYYY-MM-DD)
+  date.setHours(0, 0, 0, 0);
+  let formattedDate = date.toISOString().split("T")[0];
 
   if (!(formattedDate in tokenDates)) {
     tokenDates[formattedDate] = [];

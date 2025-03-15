@@ -99,12 +99,12 @@ async function validateUserCredentials(req, res, next) {
   // Validate username
   const usernameValidation = validateUsername(username);
   if (!usernameValidation.isValid)
-    return res.status(400).send({ msg: usernameValidation.msg });
+    return res.status(400).send(usernameValidation.msg);
 
   // Validate password
   const passwordValidation = validatePassword(password);
   if (!passwordValidation.isValid)
-    return res.status(400).send({ msg: passwordValidation.msg });
+    return res.status(400).send(passwordValidation.msg);
 
   // Attach validated username and password to the request object
   req.validatedUsername = usernameValidation.username;
@@ -129,7 +129,7 @@ authRouter.post("/manage", validateUserCredentials, async (req, res) => {
 
   // Check if user already exists
   if (validatedUsername in users) {
-    return res.status(409).send({ msg: "Existing user" });
+    return res.status(409).send("Existing user");
   }
 
   await createUser(validatedUsername, validatedPassword);
@@ -143,15 +143,14 @@ authRouter.post("/login", validateUserCredentials, async (req, res) => {
 
   // Check if user exists
   const userExists = validatedUsername in users;
-  if (!userExists)
-    return res.status(409).send({ msg: "No account of given username" });
+  if (!userExists) return res.status(409).send("No account of given username");
 
   // Check password authorization
   const authorization = await bcrypt.compare(
     validatedPassword,
     users[validatedUsername],
   );
-  if (!authorization) return res.status(409).send({ msg: "Not authorized" });
+  if (!authorization) return res.status(409).send("Not authorized");
 
   setAuthCookie(res, validatedUsername);
   res.send("User logged in");

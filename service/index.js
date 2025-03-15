@@ -2,6 +2,7 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const uuid = require("uuid");
+const cron = require("node-cron");
 const app = express();
 
 const authCookieName = "token";
@@ -139,6 +140,7 @@ authRouter.post("/manage", validateUserCredentials, async (req, res) => {
 
 // Log in
 authRouter.post("/login", validateUserCredentials, async (req, res) => {
+  // TODO: If already logged in, give the old token (assuming valid)
   const { validatedUsername, validatedPassword } = req;
 
   // Check if user exists
@@ -177,7 +179,6 @@ chatRouter.post("/message", async (req, res) => {});
 // Get messages from chat
 chatRouter.get("/messages", async (req, res) => {});
 
-// Set authentication cookie
 function setAuthCookie(res, username) {
   let date = new Date(Date.now());
   date.setHours(0, 0, 0, 0);
@@ -186,15 +187,29 @@ function setAuthCookie(res, username) {
   if (!(formattedDate in tokenDates)) {
     tokenDates[formattedDate] = [];
   }
-  authTokens[username] = uuid.v4();
-  tokenDates[formattedDate].push(authTokens[username]);
 
-  res.cookie(authCookieName, authTokens[username], {
+  const token = uuid.v4();
+  authTokens[username] = token;
+  tokenDates[formattedDate].push(token);
+
+  res.cookie(authCookieName, token, {
     secure: true,
     httpOnly: true,
     sameSite: "strict",
   });
 }
+
+// Cron job to delete tokens older than a week
+cron.schedule("0 0 * * *", () => {
+  let oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  const formattedDate = oneWeekAgo.toISOString().split("T")[0];
+
+  // Delete tokens for the date one week ago
+  if (formattedDate in tokenDates) {
+    delete tokenDates[formattedDate];
+  }
+});
 
 // Catch-all route for serving index.html (main page)
 app.use((req, res) => {

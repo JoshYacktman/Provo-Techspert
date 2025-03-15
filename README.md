@@ -103,5 +103,5 @@ The process looks like this:
  - TODO: Get placeholder images
  - TODO: Simon deployed
  - TODO: API used (gmail api)
- - TODO: Use cron job
- - TODO: Make sure there's no race conditions
+
+TODO: When implementing mongoDB, use proper locks

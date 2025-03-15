@@ -14,11 +14,9 @@ const app = express();
 // {
 //   "Provo Techspert": {
 //     "password_hash": "xxxxxxxxx",
-//     "email": "example@email.com",
 //   },
 //   "UserOne" {
 //     "password_hash": "xxxxxxxxx",
-//     "email": "example@email.com",
 //   }
 // }
 

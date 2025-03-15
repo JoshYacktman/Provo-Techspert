@@ -39,7 +39,7 @@ Have you ever had a broken game console, controller, or laptop? Have you ever wo
  - Environment Variables (For safely storing the username and password for the email system)
  - Google fonts (Planning on using "Bangers" (main text) and "Montserrat" (chat messages and main page about me))
  - WebSocket (used for chat)
- - API: AWS SES https://docs.aws.amazon.com/ses/latest/dg/send-email-api.html
+ - API: Gmail API to send an email from provotechspert@gmail.com to itself so I get notifications on my phone
 
 ## The Process
 
@@ -91,3 +91,5 @@ The process looks like this:
  - Local storage used to hold fake username from mocked sign in/log out
  - Automatic redirection when not logged in or not logged out
  - Mocked out endpoints using states
+
+# Service Deliverable

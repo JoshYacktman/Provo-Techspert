@@ -42,8 +42,6 @@ function AboutDropdownOptions() {
           minLength="5"
           type="password"
         />
-        <label className="main_text small">Email (Join Only)</label>
-        <input className="bordered_message_font small form_input small_corner_rounding" />
       </div>
       <div style={{ flexDirection: "row" }}>
         <button
@@ -140,10 +138,6 @@ function About() {
                 2. If you choose to purchase the parts and not go through with
                 the repair there are no refunds
               </p>
-              <p className="bordered_message_font small">
-                3. Use your real email, the chat service sends email
-                notifications after messages and doesn't sell any data
-              </p>
             </div>
           </div>
         </div>
@@ -164,8 +158,8 @@ function About() {
                 needed parts upfront
               </p>
               <p className="bordered_message_font small">
-                2. You are messaged in the chat service (alerts you by email)
-                when the parts arrive and you bring in the device
+                2. You are messaged in the chat service when the parts arrive
+                and you bring in the device
               </p>
               <p className="bordered_message_font small">
                 3. You sign a release of liability waiver allowing me to begin

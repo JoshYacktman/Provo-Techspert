@@ -112,9 +112,55 @@ curl --request POST \
 ```
 Expected output: `User logged in`
 
+9. API login check cookie same
+Request:
+```
+curl --request POST \
+  --url http://localhost:3000/api/auth/login \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/8.3.0' \
+  --data '{
+	"username": "Boo!!",
+	"password": "ATestPassword"
+}'
+```
+Expected output: `User logged in`, cookie in this request is the same as received in step 8
+
+10. API logout cookie working
+```
+curl -c cookies.txt http://localhost:3000/api/auth/manage -X POST -d '{"username":"yourUser", "password":"yourPass"}' -H "Content-Type: application/json"
+curl -b cookies.txt http://localhost:3000/api/auth/logout -X POST -d '{"username":"yourUser"}' -H "Content-Type: application/json"
+
+OR
+
+curl --request POST \
+  --url 'http://localhost:3000/api/auth/logout?=' \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/8.3.0' \
+  --data '{
+	"username": "Boo!!"
+}'
+```
+Expected output: `Logged out successfully`
+
+11. API logout cookie gone not working
+```
+curl -b cookies.txt http://localhost:3000/api/auth/logout -X POST -d '{"username":"yourUser"}' -H "Content-Type: application/json"
+
+OR
+
+curl --request POST \
+  --url 'http://localhost:3000/api/auth/logout?=' \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/8.3.0' \
+  --data '{
+	"username": "Boo!!"
+}'
+```
+Expected output: `Not logged in`
 
 ## Template:
-x.
+x. Name
 Request:
 ```
 ```

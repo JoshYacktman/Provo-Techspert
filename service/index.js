@@ -9,6 +9,8 @@ const authCookieName = "token";
 
 let authTokens = {};
 // key is token, value is username
+let reverseAuthTokens = {};
+// key is username, value is token
 let tokenDates = {};
 // Key is date and value is token. If a token is a week old we delete it
 // using a cron job that runs once a day (node-cron)
@@ -158,8 +160,39 @@ authRouter.post("/login", validateUserCredentials, async (req, res) => {
   res.send("User logged in");
 });
 // Log out
-authRouter.post("/logout", async (req, res) => {});
+authRouter.post("/logout", async (req, res) => {
+  const userCookieToken = req.cookies[authCookieName];
+  const username = req.body.username;
+
+  if (!(userCookieToken in authTokens)) {
+    return res.status(409).send("Not logged in");
+  }
+
+  const authUsername = authTokens[userCookieToken];
+  if (authUsername != username) {
+    return res.status(409).send("Not authorized");
+  }
+  delete authTokens[userCookieToken];
+  delete reverseAuthTokens[username];
+
+  let date = new Date(Date.now());
+  for (let i = 0; i < 7; i++) {
+    date.setDate(date.getDate() - 1);
+    let formattedDate = date.toISOString().split("T")[0];
+
+    if (
+      tokenDates[formattedDate] &&
+      tokenDates[formattedDate].has(userCookieToken)
+    ) {
+      tokenDates[formattedDate].delete(userCookieToken);
+    }
+  }
+
+  res.clearCookie(authCookieName);
+  res.send("Logged out successfully");
+});
 // Delete account
+// NOTE: Takes either username/password OR auth token
 authRouter.delete("/manage", async (req, res) => {});
 
 // MAJOR: Chat endpoints
@@ -185,12 +218,18 @@ function setAuthCookie(res, username) {
   let formattedDate = date.toISOString().split("T")[0];
 
   if (!(formattedDate in tokenDates)) {
-    tokenDates[formattedDate] = [];
+    tokenDates[formattedDate] = new Set();
   }
 
-  const token = uuid.v4();
-  authTokens[username] = token;
-  tokenDates[formattedDate].push(token);
+  let token;
+  if (!(username in reverseAuthTokens)) {
+    token = uuid.v4();
+    authTokens[token] = username;
+    reverseAuthTokens[username] = token;
+    tokenDates[formattedDate].add(token);
+  } else {
+    token = reverseAuthTokens[username];
+  }
 
   res.cookie(authCookieName, token, {
     secure: true,
@@ -202,12 +241,18 @@ function setAuthCookie(res, username) {
 // Cron job to delete tokens older than a week
 cron.schedule("0 0 * * *", () => {
   let oneWeekAgo = new Date();
-  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-  const formattedDate = oneWeekAgo.toISOString().split("T")[0];
 
-  // Delete tokens for the date one week ago
-  if (formattedDate in tokenDates) {
-    delete tokenDates[formattedDate];
+  for (let i = 0; i < 7; i++) {
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 1);
+    const formattedDate = oneWeekAgo.toISOString().split("T")[0];
+
+    if (formattedDate in tokenDates) {
+      // Remove all tokens from this date
+      for (const token of tokenDates[formattedDate]) {
+        delete authTokens[token]; // Remove from active tokens
+      }
+      delete tokenDates[formattedDate]; // Remove date entry
+    }
   }
 });
 

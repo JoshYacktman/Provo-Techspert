@@ -171,6 +171,8 @@ chatRouter.get("/list", async (req, res) => {});
 // Delete chat
 chatRouter.delete("/manage", async (req, res) => {});
 // Send message
+// TODO: Have this send email from provotechspert@gmail.com back to itself
+// NOTE: use env vars for security reasons
 chatRouter.post("/message", async (req, res) => {});
 // Get messages from chat
 chatRouter.get("/messages", async (req, res) => {});

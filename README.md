@@ -93,3 +93,15 @@ The process looks like this:
  - Mocked out endpoints using states
 
 # Service Deliverable
+ - Create service endpoints
+ - Create auth middleware
+ - Add cookie tokens, store data
+ - TODO: Make all endpoints working
+ - Add basic tests for endpoints (TODO: fill these as endpoints completed)
+ - TODO: call api from website
+ - TODO: get popups on website if api request fails and have spinning icon
+ - TODO: Get placeholder images
+ - TODO: Simon deployed
+ - TODO: API used (gmail api)
+ - TODO: Use cron job
+ - TODO: Make sure there's no race conditions

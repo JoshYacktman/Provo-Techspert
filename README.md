@@ -103,5 +103,6 @@ The process looks like this:
  - TODO: Get placeholder images
  - TODO: Simon deployed
  - TODO: API used (gmail api)
+ - Created API test suite
 
 TODO: When implementing mongoDB, use proper locks

@@ -154,46 +154,71 @@ authRouter.post("/login", validateUserCredentials, async (req, res) => {
     validatedPassword,
     users[validatedUsername],
   );
-  if (!authorization) return res.status(409).send("Not authorized");
+  if (!authorization) return res.status(401).send("Not authorized");
 
   setAuthCookie(res, validatedUsername);
   res.send("User logged in");
 });
-// Log out
-authRouter.post("/logout", async (req, res) => {
+
+// Middleware to validate authentication token and username
+async function authenticateToken(req, res, next) {
   const userCookieToken = req.cookies[authCookieName];
   const username = req.body.username;
 
-  if (!(userCookieToken in authTokens)) {
+  if (!userCookieToken || !(userCookieToken in authTokens)) {
     return res.status(409).send("Not logged in");
   }
 
   const authUsername = authTokens[userCookieToken];
-  if (authUsername != username) {
-    return res.status(409).send("Not authorized");
+  if (authUsername !== username) {
+    return res.status(401).send("Not authorized");
   }
-  delete authTokens[userCookieToken];
-  delete reverseAuthTokens[username];
 
+  // Attach validated username and token to request for downstream use
+  req.authUsername = authUsername;
+  req.authToken = userCookieToken;
+  next();
+}
+
+// Common function to remove token from tokenDates
+function removeTokenFromDates(token) {
   let date = new Date(Date.now());
   for (let i = 0; i < 7; i++) {
     date.setDate(date.getDate() - 1);
     let formattedDate = date.toISOString().split("T")[0];
 
-    if (
-      tokenDates[formattedDate] &&
-      tokenDates[formattedDate].has(userCookieToken)
-    ) {
-      tokenDates[formattedDate].delete(userCookieToken);
+    if (tokenDates[formattedDate] && tokenDates[formattedDate].has(token)) {
+      tokenDates[formattedDate].delete(token);
     }
   }
+}
+
+// Log out
+authRouter.post("/logout", authenticateToken, async (req, res) => {
+  const { authToken, authUsername } = req;
+
+  delete authTokens[authToken];
+  delete reverseAuthTokens[authUsername];
+  removeTokenFromDates(authToken);
 
   res.clearCookie(authCookieName);
   res.send("Logged out successfully");
 });
+
 // Delete account
-// NOTE: Takes either username/password OR auth token
-authRouter.delete("/manage", async (req, res) => {});
+authRouter.delete("/manage", authenticateToken, async (req, res) => {
+  const { authToken, authUsername } = req;
+
+  delete authTokens[authToken];
+  delete reverseAuthTokens[authUsername];
+  delete users[authUsername];
+  removeTokenFromDates(authToken);
+
+  // TODO: Delete chats
+
+  res.clearCookie(authCookieName);
+  res.send("Deleted Account successfully");
+});
 
 // MAJOR: Chat endpoints
 const chatRouter = express.Router();

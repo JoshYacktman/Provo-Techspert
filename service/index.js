@@ -1,7 +1,7 @@
 const cookieParser = require("cookie-parser");
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const express = require("express");
-// const uuid = require("uuid");
+const uuid = require("uuid");
 const app = express();
 
 const authCookieName = "token";
@@ -17,12 +17,8 @@ let users = {};
 // and it serves dual purposes
 // Example Users:
 // {
-//   "Provo Techspert": {
-//     "password_hash": "xxxxxxxxx",
-//   },
-//   "UserOne" {
-//     "password_hash": "xxxxxxxxx",
-//   }
+//   "Provo Techspert": "xxxxxxxxx",
+//   "UserOne": "xxxxxxxxx",
 // }
 
 let chats = {};
@@ -78,46 +74,116 @@ app.use(express.static(build_loc));
 var apiRouter = express.Router();
 app.use("/api", apiRouter);
 
-apiRouter.get("/test", (req, res) => {
-  res.send("Hello, Test!");
-});
-
-function createUser(username, password) {
-  users[username] = true;
-  // TODO: Unfinished!
+async function createUser(username, password) {
+  const passwordHash = await bcrypt.hash(password, 10);
+  users[username] = passwordHash;
 }
 
 apiRouter.get("/auth/create", async (req, res) => {
-  res.send("Hello, Create!");
-  if (req.body.username in users) {
+  const username = req.body.username;
+
+  if (!username || typeof username !== "string") {
+    res.status(400).send({ msg: "Username is required and must be a string" });
+    return;
+  }
+
+  const trimmedUsername = username.trim();
+  const username_len = trimmedUsername.length;
+
+  if (username_len < 3 || username_len > 15) {
+    res.status(409).send({ msg: "Username does not conform to standards" });
+    return;
+  }
+
+  const userExists = trimmedUsername in users;
+  if (userExists) {
     res.status(409).send({ msg: "Existing user" });
     return;
   }
-  const user = await createUser(req.body.username, req.body.password);
-  setAuthCookie(res, user);
-  res.send("Authorized");
+
+  const password = req.body.password;
+
+  if (!password || typeof password !== "string") {
+    res.status(400).send({ msg: "Password is required and must be a string" });
+    return;
+  }
+
+  const trimmedPassword = password.trim();
+  const password_len = trimmedPassword.length;
+
+  if (password_len < 5 || password_len > 20) {
+    res.status(409).send({ msg: "Password does not conform to standards" });
+    return;
+  }
+
+  await createUser(trimmedUsername, trimmedPassword);
+  setAuthCookie(res, trimmedUsername);
+  res.send("User created");
 });
 
 apiRouter.get("/auth/login", async (req, res) => {
-  res.send("Hello, Login!");
-  const user = await findUser(req.body.username);
+  const username = req.body.username;
+
+  if (!username || typeof username !== "string") {
+    res.status(400).send({ msg: "Username is required and must be a string" });
+    return;
+  }
+
+  const trimmedUsername = username.trim();
+  const username_len = trimmedUsername.length;
+
+  if (username_len < 3 || username_len > 15) {
+    res.status(409).send({ msg: "Username does not conform to standards" });
+    return;
+  }
+
+  const userExists = trimmedUsername in users;
+
+  const password = req.body.password;
+
+  if (!password || typeof password !== "string") {
+    res.status(400).send({ msg: "Password is required and must be a string" });
+    return;
+  }
+
+  const trimmedPassword = password.trim();
+  const password_len = trimmedPassword.length;
+
+  if (password_len < 5 || password_len > 20) {
+    res.status(409).send({ msg: "Password does not conform to standards" });
+    return;
+  }
+
+  if (!userExists) {
+    res.status(409).send({ msg: "No account of given username" });
+    return;
+  }
   const authorization = await bcrypt.compare(
-    req.body.password,
-    user.password_hash,
+    trimmedPassword,
+    users[trimmedUsername],
   );
-  if (!user || !authorization) {
+  if (!authorization) {
     res.status(409).send({ msg: "Not authorized" });
     return;
   }
-  setAuthCookie(res, user);
-  res.send("Authorized");
+  setAuthCookie(res, trimmedUsername);
+  res.send("User logged in");
 });
 
 // setAuthCookie in the HTTP response
-function setAuthCookie(res, user) {
-  user.token = uuid.v4();
+function setAuthCookie(res, username) {
+  let date = new Date(Date.now());
+  date.setHours(0, 0, 0, 0); // Set the time to midnight
 
-  res.cookie(authCookieName, user.token, {
+  let formattedDate = date.toISOString().split("T")[0]; // Get the date (YYYY-MM-DD)
+
+  if (!(formattedDate in tokenDates)) {
+    tokenDates[formattedDate] = [];
+  }
+  authTokens[username] = uuid.v4();
+  tokenDates[formattedDate].push(authTokens[username]);
+
+  res.cookie(authCookieName, authTokens[username], {
     secure: true,
     httpOnly: true,
     sameSite: "strict",

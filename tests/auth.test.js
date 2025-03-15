@@ -324,4 +324,41 @@ describe("API Authentication Test Suite", () => {
     expect(response.status).toBe(409);
     expect(text).toBe("Not logged in");
   });
+
+  // 17. Cleanup
+  test("Cleanup", async () => {
+    let loginResponse = await fetch(`${BASE_URL}/login`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        username: "Boo!!",
+        password: "ATestPassword",
+      }),
+    });
+    let deleteCookie = loginResponse.headers.get("set-cookie");
+    await fetch(`${BASE_URL}/manage`, {
+      method: "DELETE",
+      headers: { ...headers, Cookie: deleteCookie },
+      body: JSON.stringify({
+        username: "Boo!!",
+      }),
+    });
+
+    loginResponse = await fetch(`${BASE_URL}/login`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        username: "DeleteTest",
+        password: "ATestPassword",
+      }),
+    });
+    deleteCookie = loginResponse.headers.get("set-cookie");
+    await fetch(`${BASE_URL}/manage`, {
+      method: "DELETE",
+      headers: { ...headers, Cookie: deleteCookie },
+      body: JSON.stringify({
+        username: "DeleteTest",
+      }),
+    });
+  });
 });

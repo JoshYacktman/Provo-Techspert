@@ -120,6 +120,7 @@ async function validateUserCredentials(req, res, next) {
 async function createUser(username, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   users[username] = passwordHash;
+  chats[username] = {};
 }
 
 // MAJOR: Authentication routes
@@ -212,9 +213,8 @@ authRouter.delete("/manage", authenticateToken, async (req, res) => {
   delete authTokens[authToken];
   delete reverseAuthTokens[authUsername];
   delete users[authUsername];
+  delete chats[authUsername];
   removeTokenFromDates(authToken);
-
-  // TODO: Delete chats
 
   res.clearCookie(authCookieName);
   res.send("Deleted Account successfully");
@@ -225,15 +225,50 @@ const chatRouter = express.Router();
 apiRouter.use("/chat", chatRouter);
 
 // Create chat
-chatRouter.post("/manage", async (req, res) => {});
+chatRouter.post("/manage", authenticateToken, async (req, res) => {
+  const { authUsername } = req;
+  const chatName = req.body.chatName;
+
+  // Validate chatName
+  if (!chatName || typeof chatName !== "string") {
+    return res.status(400).send("Chat name is required and must be a string");
+  }
+  const trimmedChatName = chatName.trim();
+  if (trimmedChatName.length < 5 || trimmedChatName.length > 15) {
+    return res.status(400).send("Chat name does not conform to standards");
+  }
+
+  // Initialize user's chat object if it doesn't exist
+  chats[authUsername] = chats[authUsername] || {};
+
+  // Create the chat
+  chats[authUsername][`${trimmedChatName} - ${authUsername}`] = [
+    {
+      sender: "Provo Techspert",
+      side: "left",
+      messages: [
+        `Hello ${authUsername}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
+         To help you repair your device, I would appreciate a message from you explaining the issue,
+         if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
+         (I personally use imgbb and Vimeo).`,
+      ],
+    },
+  ];
+
+  res.send("Succesfully created chat");
+});
+
 // List chats
 chatRouter.get("/list", async (req, res) => {});
+
 // Delete chat
 chatRouter.delete("/manage", async (req, res) => {});
+
 // Send message
 // TODO: Have this send email from provotechspert@gmail.com back to itself
 // NOTE: use env vars for security reasons
 chatRouter.post("/message", async (req, res) => {});
+
 // Get messages from chat
 chatRouter.get("/messages", async (req, res) => {});
 

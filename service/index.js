@@ -120,8 +120,11 @@ async function createUser(username, password) {
 }
 
 // MAJOR: Authentication routes
+const authRouter = express.Router();
+apiRouter.use("/auth", authRouter);
+
 // Create account
-apiRouter.post("/auth/manage", validateUserCredentials, async (req, res) => {
+authRouter.post("/manage", validateUserCredentials, async (req, res) => {
   const { validatedUsername, validatedPassword } = req;
 
   // Check if user already exists
@@ -135,7 +138,7 @@ apiRouter.post("/auth/manage", validateUserCredentials, async (req, res) => {
 });
 
 // Log in
-apiRouter.post("/auth/login", validateUserCredentials, async (req, res) => {
+authRouter.post("/login", validateUserCredentials, async (req, res) => {
   const { validatedUsername, validatedPassword } = req;
 
   // Check if user exists
@@ -154,21 +157,24 @@ apiRouter.post("/auth/login", validateUserCredentials, async (req, res) => {
   res.send("User logged in");
 });
 // Log out
-apiRouter.post("/auth/logout", async (req, res) => {});
+authRouter.post("/logout", async (req, res) => {});
 // Delete account
-apiRouter.delete("/auth/manage", async (req, res) => {});
+authRouter.delete("/manage", async (req, res) => {});
 
 // MAJOR: Chat endpoints
+const chatRouter = express.Router();
+apiRouter.use("/chat", chatRouter);
+
 // Create chat
-apiRouter.post("/chat/manage", async (req, res) => {});
+chatRouter.post("/manage", async (req, res) => {});
 // List chats
-apiRouter.get("/chat/list", async (req, res) => {});
+chatRouter.get("/list", async (req, res) => {});
 // Delete chat
-apiRouter.delete("/chat/manage", async (req, res) => {});
+chatRouter.delete("/manage", async (req, res) => {});
 // Send message
-apiRouter.post("/chat/message", async (req, res) => {});
+chatRouter.post("/message", async (req, res) => {});
 // Get messages from chat
-apiRouter.get("/chat/messages", async (req, res) => {});
+chatRouter.get("/messages", async (req, res) => {});
 
 // Set authentication cookie
 function setAuthCookie(res, username) {

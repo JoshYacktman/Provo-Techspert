@@ -104,14 +104,14 @@ async function validateUserCredentials(req, res, next) {
 // Authentication Middleware
 async function authenticateToken(req, res, next) {
   const userCookieToken = req.cookies[authCookieName];
-  const username = req.body.username;
 
   if (!userCookieToken) {
     return res.status(409).send("Not logged in");
   }
 
   const tokenDoc = await Token.findOne({ token: userCookieToken });
-  if (!tokenDoc || tokenDoc.username !== username) {
+
+  if (!tokenDoc) {
     return res.status(401).send("Not authorized");
   }
 
@@ -226,6 +226,9 @@ chatRouter.post("/message", authenticateToken, async (req, res) => {
   let { chatName, message } = req.body;
 
   message = String(message);
+  if (!chatName) {
+    return res.status(400).send("No chatName provided");
+  }
   if (chatName.startsWith("$") || message.startsWith("$")) {
     return res.status(400).send("Inputs cannot start with '$'");
   }

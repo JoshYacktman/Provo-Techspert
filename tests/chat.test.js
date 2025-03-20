@@ -74,4 +74,66 @@ describe("API Chat Test Suite", () => {
     expect(response.status).toBe(400);
     expect(text).toBe("Chat name must be 5-15 characters");
   });
+
+  // 4. Get chat list work
+  test("Get chat list should succeed with proper credentials", async () => {
+    const response = await fetch(`${CHAT_BASE_URL}/list`, {
+      method: "GET",
+      headers: { ...headers, Cookie: cookie },
+    });
+    expect(response.status).toBe(200);
+  });
+
+  // 5. Send message fail
+  test("Send message should fail with message starting with $", async () => {
+    const response = await fetch(`${CHAT_BASE_URL}/message`, {
+      method: "POST",
+      headers: {
+        ...headers,
+        Cookie: cookie,
+      },
+      body: JSON.stringify({
+        chatName: "Test chat - DeleteMe",
+        message: "$ Money yo",
+      }),
+    });
+    const text = await response.text();
+    expect(response.status).toBe(400);
+    expect(text).toBe("Inputs cannot start with '$'");
+  });
+
+  // 6. Send message work
+  test("Send message should work with proper info", async () => {
+    const response = await fetch(`${CHAT_BASE_URL}/message`, {
+      method: "POST",
+      headers: {
+        ...headers,
+        Cookie: cookie,
+      },
+      body: JSON.stringify({
+        chatName: "Test chat - DeleteMe",
+        message: "Money yo",
+      }),
+    });
+    const text = await response.text();
+    expect(response.status).toBe(200);
+    expect(text).toBe("Message added");
+  });
+
+  // 7. Delete chat work
+  test("Delete chat should work with proper creds", async () => {
+    const response = await fetch(`${CHAT_BASE_URL}/manage`, {
+      method: "DELETE",
+      headers: {
+        ...headers,
+        Cookie: cookie,
+      },
+      body: JSON.stringify({
+        chatName: "Test chat - DeleteMe",
+      }),
+    });
+    const text = await response.text();
+    expect(response.status).toBe(200);
+    expect(text).toBe("Chat deleted");
+  });
 });

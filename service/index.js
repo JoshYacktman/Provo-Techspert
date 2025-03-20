@@ -63,6 +63,57 @@ let chats = {};
 // NOTE: Provo Techspert, being a special account, can read all chats since it is involved in all chats
 // Also, when a chat is created, " - Username" us appended to the end so that Provo Techspert can discern
 // chats of the same name but different users
+//
+// NOTE: In mongo, I will allow bo user input to begin with $
+// MongoDB data style:
+// [
+//   {
+//     "_id": "507f1f77bcf86cd799439011", // Example ObjectId
+//     "username": "Provo Techspert",
+//     "passwordHash": "xxxxxxxxx",
+//     "chats": {}
+//   },
+//   {
+//     "_id": "507f191e810c19729de860ea", // Example ObjectId
+//     "username": "UserOne",
+//     "passwordHash": "xxxxxxxxx",
+//     "chats": {
+//       "Chat One - UserOne": {
+//         "messages": [
+//           {
+//             "sender": "Provo Techspert",
+//             "side": "left",
+//             "messages": [
+//               "Hello UserOne, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert. To help you repair your device, I would appreciate a message from you explaining the issue, if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos (I personally use imgbb and Vimeo).",
+//               "Chat Message one"
+//             ]
+//           },
+//           {
+//             "sender": "UserOne",
+//             "side": "right",
+//             "messages": [
+//               "Chat Message two"
+//             ]
+//           }
+//         ],
+//         "lastMessageAt": "2025-03-19T12:00:00Z" // Example date (today)
+//       },
+//       "Chat Two - UserOne": {
+//         "messages": [
+//           {
+//             "sender": "Provo Techspert",
+//             "side": "left",
+//             "messages": [
+//               "Hello UserOne, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert. To help you repair your device, I would appreciate a message from you explaining the issue, if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos (I personally use imgbb and Vimeo).",
+//               "Chat Message one"
+//             ]
+//           }
+//         ],
+//         "lastMessageAt": "2025-02-17T10:00:00Z" // Example date (over 30 days ago)
+//       }
+//     }
+//   }
+// ]
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;

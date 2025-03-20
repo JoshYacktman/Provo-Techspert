@@ -176,6 +176,11 @@ chatRouter.post("/manage", authenticateToken, async (req, res) => {
   const { authUsername } = req;
   let { chatName } = req.body;
 
+  // Prevent "Provo Techspert" from creating chats
+  if (authUsername === "Provo Techspert") {
+    return res.status(403).send("Provo Techspert cannot create chats");
+  }
+
   chatName = String(chatName);
   if (!chatName || chatName.startsWith("$")) {
     return res
@@ -218,19 +223,17 @@ chatRouter.post("/manage", authenticateToken, async (req, res) => {
 
 chatRouter.post("/message", authenticateToken, async (req, res) => {
   const { authUsername } = req;
-  let { chatName, sender, side, message } = req.body;
+  let { chatName, message } = req.body;
 
-  [chatName, sender, message] = [chatName, sender, message].map(String);
-  if (
-    chatName.startsWith("$") ||
-    sender.startsWith("$") ||
-    message.startsWith("$")
-  ) {
+  message = String(message);
+  if (chatName.startsWith("$") || message.startsWith("$")) {
     return res.status(400).send("Inputs cannot start with '$'");
   }
-  if (!["left", "right"].includes(side)) {
-    return res.status(400).send("Side must be 'left' or 'right'");
-  }
+
+  // Determine sender and side
+  const sender =
+    authUsername === "Provo Techspert" ? "Provo Techspert" : authUsername;
+  const side = authUsername === "Provo Techspert" ? "left" : "right";
 
   const result = await User.updateOne(
     { username: authUsername, [`chats.${chatName}`]: { $exists: true } },
@@ -262,23 +265,6 @@ chatRouter.get("/list", authenticateToken, async (req, res) => {
   }
 
   res.json(Object.fromEntries(user.chats));
-});
-
-chatRouter.get("/messages", authenticateToken, async (req, res) => {
-  const { authUsername } = req;
-  const { chatName } = req.query;
-
-  if (!chatName || chatName.startsWith("$")) {
-    return res
-      .status(400)
-      .send("Chat name is required and cannot start with '$'");
-  }
-
-  const user = await User.findOne({ username: authUsername });
-  const chat = user.chats.get(chatName);
-
-  if (!chat) return res.status(404).send("Chat not found");
-  res.json(chat.messages);
 });
 
 chatRouter.delete("/manage", authenticateToken, async (req, res) => {

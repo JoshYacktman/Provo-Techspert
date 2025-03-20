@@ -34,7 +34,7 @@ describe("API Authentication Test Suite", () => {
       }),
     });
     const text = await response.text();
-    expect(text).toBe("Username does not conform to standards");
+    expect(text).toBe("Username must be 3-15 characters");
   });
 
   // 3. API create account bad username long
@@ -48,7 +48,7 @@ describe("API Authentication Test Suite", () => {
       }),
     });
     const text = await response.text();
-    expect(text).toBe("Username does not conform to standards");
+    expect(text).toBe("Username must be 3-15 characters");
   });
 
   // 4. API create account bad password short
@@ -62,7 +62,7 @@ describe("API Authentication Test Suite", () => {
       }),
     });
     const text = await response.text();
-    expect(text).toBe("Password does not conform to standards");
+    expect(text).toBe("Password must be 5-20 characters");
   });
 
   // 5. API create account bad password long
@@ -76,7 +76,7 @@ describe("API Authentication Test Suite", () => {
       }),
     });
     const text = await response.text();
-    expect(text).toBe("Password does not conform to standards");
+    expect(text).toBe("Password must be 5-20 characters");
   });
 
   // 6. API create account work
@@ -199,24 +199,6 @@ describe("API Authentication Test Suite", () => {
 
   // 13. API delete account wrong cookie fail
   test("Delete account should fail with wrong cookie", async () => {
-    // Create and login to get a valid cookie
-    await fetch(`${BASE_URL}/manage`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        username: "DeleteTest",
-        password: "ATestPassword",
-      }),
-    });
-    const loginResponse = await fetch(`${BASE_URL}/login`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        username: "DeleteTest",
-        password: "ATestPassword",
-      }),
-    });
-
     const response = await fetch(`${BASE_URL}/manage`, {
       method: "DELETE",
       headers: { ...headers, Cookie: "token=fake-invalid-token" },
@@ -225,21 +207,12 @@ describe("API Authentication Test Suite", () => {
       }),
     });
     const text = await response.text();
-    expect(response.status).toBe(409);
-    expect(text).toBe("Not logged in");
+    expect(response.status).toBe(401);
+    expect(text).toBe("Not authorized");
   });
 
   // 14. API delete account success
   test("Delete account should succeed with valid token and username", async () => {
-    // Create and login to get a valid cookie
-    await fetch(`${BASE_URL}/manage`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        username: "DeleteMe",
-        password: "ATestPassword",
-      }),
-    });
     const loginResponse = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       headers,

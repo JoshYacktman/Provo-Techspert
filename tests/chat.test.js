@@ -42,7 +42,7 @@ describe("API Chat Test Suite", () => {
     });
     const text = await response.text();
     expect(response.status).toBe(200);
-    expect(text).toBe("Succesfully created chat");
+    expect(text).toBe("Successfully created chat: Test chat - DeleteMe");
   });
 
   // 2. API create chat too short
@@ -57,7 +57,7 @@ describe("API Chat Test Suite", () => {
     });
     const text = await response.text();
     expect(response.status).toBe(400);
-    expect(text).toBe("Chat name does not conform to standards");
+    expect(text).toBe("Chat name must be 5-15 characters");
   });
 
   // 3. API create chat too long
@@ -72,13 +72,6 @@ describe("API Chat Test Suite", () => {
     });
     const text = await response.text();
     expect(response.status).toBe(400);
-    expect(text).toBe("Chat name does not conform to standards");
-    await fetch(`${AUTH_BASE_URL}/manage`, {
-      method: "DELETE",
-      headers: { ...headers, Cookie: cookie },
-      body: JSON.stringify({
-        username: "DeleteMe",
-      }),
-    });
+    expect(text).toBe("Chat name must be 5-15 characters");
   });
 });

@@ -3,119 +3,51 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const uuid = require("uuid");
 const cron = require("node-cron");
-const app = express();
+const mongoose = require("mongoose");
+const config = require("./dbConfig.json");
 
+const app = express();
 const authCookieName = "token";
 
-let authTokens = {};
-// key is token, value is username
-let reverseAuthTokens = {};
-// key is username, value is token
-let tokenDates = {};
-// Key is date and value is token. If a token is a week old we delete it
-// using a cron job that runs once a day (node-cron)
+// Load DB credentials
+const mongoURI = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}/prv-tchsprt?retryWrites=true&w=majority&appName=prv-tchsprt`;
 
-let users = {};
-// By searching for users here instead of in a list we get O(1) lookup
-// Example Users:
-// {
-//   "Provo Techspert": "xxxxxxxxx",
-//   "UserOne": "xxxxxxxxx",
-// }
+// Connect to MongoDB
+mongoose
+  .connect(mongoURI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-let chats = {};
-// Example chats:
-// {
-//   "UserOne": {
-//     "Chat One - UserOne": [
-//       {
-//         "sender": "Provo Techspert",
-//         "side": "left",
-//         "messages": [
-//           `Hello UserOne, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
-//                     To help you repair your device, I would appreciate a message from you explaining the issue,
-//                     if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
-//                     (I personally use imgbb and Vimeo).`,
-//           "Chat Message one",
-//         ]
-//       },
-//       {
-//         "sender": "UserOne",
-//         "side": "right",
-//         "messages": [
-//           "Chat Message two"
-//         ]
-//       },
-//     ],
-//     "Chat Two - UserOne": {
-//       "sender": "Provo Techspert",
-//       "side": "left",
-//       "messages": [
-//         `Hello UserOne, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
-//                   To help you repair your device, I would appreciate a message from you explaining the issue,
-//                   if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
-//                   (I personally use imgbb and Vimeo).`,
-//         "Chat Message one",
-//       ]
-//     }
-//   },
-// }
-// NOTE: Provo Techspert, being a special account, can read all chats since it is involved in all chats
-// Also, when a chat is created, " - Username" us appended to the end so that Provo Techspert can discern
-// chats of the same name but different users
-//
-// NOTE: In mongo, I will allow bo user input to begin with $
-// MongoDB data style:
-// [
-//   {
-//     "_id": "507f1f77bcf86cd799439011", // Example ObjectId
-//     "username": "Provo Techspert",
-//     "passwordHash": "xxxxxxxxx",
-//     "chats": {}
-//   },
-//   {
-//     "_id": "507f191e810c19729de860ea", // Example ObjectId
-//     "username": "UserOne",
-//     "passwordHash": "xxxxxxxxx",
-//     "chats": {
-//       "Chat One - UserOne": {
-//         "messages": [
-//           {
-//             "sender": "Provo Techspert",
-//             "side": "left",
-//             "messages": [
-//               "Hello UserOne, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert. To help you repair your device, I would appreciate a message from you explaining the issue, if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos (I personally use imgbb and Vimeo).",
-//               "Chat Message one"
-//             ]
-//           },
-//           {
-//             "sender": "UserOne",
-//             "side": "right",
-//             "messages": [
-//               "Chat Message two"
-//             ]
-//           }
-//         ],
-//         "lastMessageAt": "2025-03-19T12:00:00Z" // Example date (today)
-//       },
-//       "Chat Two - UserOne": {
-//         "messages": [
-//           {
-//             "sender": "Provo Techspert",
-//             "side": "left",
-//             "messages": [
-//               "Hello UserOne, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert. To help you repair your device, I would appreciate a message from you explaining the issue, if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos (I personally use imgbb and Vimeo).",
-//               "Chat Message one"
-//             ]
-//           }
-//         ],
-//         "lastMessageAt": "2025-02-17T10:00:00Z" // Example date (over 30 days ago)
-//       }
-//     }
-//   }
-// ]
+// Schema Definitions
+const messageSchema = new mongoose.Schema({
+  sender: { type: String, required: true },
+  side: { type: String, enum: ["left", "right"], required: true },
+  messages: [{ type: String, required: true }],
+});
 
-// The service port. In production the front-end code is statically hosted by the service on the same port.
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  passwordHash: { type: String, required: true },
+  chats: {
+    type: Map,
+    of: new mongoose.Schema({
+      messages: [messageSchema],
+      lastMessageAt: { type: Date, default: Date.now },
+    }),
+    default: {},
+  },
+});
+
+const tokenSchema = new mongoose.Schema({
+  token: { type: String, required: true, unique: true },
+  username: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+});
+
+const User = mongoose.model("User", userSchema);
+const Token = mongoose.model("Token", tokenSchema);
+
+// Service configuration
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 const build_loc = process.argv.length > 2 ? "public" : "../dist";
 
@@ -123,223 +55,264 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(build_loc));
 
-var apiRouter = express.Router();
+const apiRouter = express.Router();
 app.use("/api", apiRouter);
 
-// Helper function for username validation
+// Validation Helpers
 function validateUsername(username) {
-  if (!username || typeof username !== "string")
-    return { isValid: false, msg: "Username is required and must be a string" };
+  if (!username || typeof username !== "string" || username.startsWith("$")) {
+    return {
+      isValid: false,
+      msg: "Username is required, must be a string, and cannot start with '$'",
+    };
+  }
   const trimmedUsername = username.trim();
-  if (trimmedUsername.length < 3 || trimmedUsername.length > 15)
-    return { isValid: false, msg: "Username does not conform to standards" };
+  if (trimmedUsername.length < 3 || trimmedUsername.length > 15) {
+    return { isValid: false, msg: "Username must be 3-15 characters" };
+  }
   return { isValid: true, username: trimmedUsername };
 }
 
-// Helper function for password validation
 function validatePassword(password) {
-  if (!password || typeof password !== "string")
-    return { isValid: false, msg: "Password is required and must be a string" };
+  if (!password || typeof password !== "string" || password.startsWith("$")) {
+    return {
+      isValid: false,
+      msg: "Password is required, must be a string, and cannot start with '$'",
+    };
+  }
   const trimmedPassword = password.trim();
-  if (trimmedPassword.length < 5 || trimmedPassword.length > 20)
-    return { isValid: false, msg: "Password does not conform to standards" };
+  if (trimmedPassword.length < 5 || trimmedPassword.length > 20) {
+    return { isValid: false, msg: "Password must be 5-20 characters" };
+  }
   return { isValid: true, password: trimmedPassword };
 }
 
-// Middleware for validating username and password
 async function validateUserCredentials(req, res, next) {
   const { username, password } = req.body;
-
-  // Validate username
   const usernameValidation = validateUsername(username);
   if (!usernameValidation.isValid)
     return res.status(400).send(usernameValidation.msg);
-
-  // Validate password
   const passwordValidation = validatePassword(password);
   if (!passwordValidation.isValid)
     return res.status(400).send(passwordValidation.msg);
 
-  // Attach validated username and password to the request object
   req.validatedUsername = usernameValidation.username;
   req.validatedPassword = passwordValidation.password;
-
   next();
 }
 
-// Helper function to create a user
-async function createUser(username, password) {
-  const passwordHash = await bcrypt.hash(password, 10);
-  users[username] = passwordHash;
-  chats[username] = {};
-}
-
-// MAJOR: Authentication routes
-const authRouter = express.Router();
-apiRouter.use("/auth", authRouter);
-
-// Create account
-authRouter.post("/manage", validateUserCredentials, async (req, res) => {
-  const { validatedUsername, validatedPassword } = req;
-
-  // Check if user already exists
-  if (validatedUsername in users) {
-    return res.status(409).send("Existing user");
-  }
-
-  await createUser(validatedUsername, validatedPassword);
-  setAuthCookie(res, validatedUsername);
-  res.send("User created");
-});
-
-// Log in
-authRouter.post("/login", validateUserCredentials, async (req, res) => {
-  // TODO: If already logged in, give the old token (assuming valid)
-  const { validatedUsername, validatedPassword } = req;
-
-  // Check if user exists
-  const userExists = validatedUsername in users;
-  if (!userExists) return res.status(409).send("No account of given username");
-
-  // Check password authorization
-  const authorization = await bcrypt.compare(
-    validatedPassword,
-    users[validatedUsername],
-  );
-  if (!authorization) return res.status(401).send("Not authorized");
-
-  setAuthCookie(res, validatedUsername);
-  res.send("User logged in");
-});
-
-// Middleware to validate authentication token and username
+// Authentication Middleware
 async function authenticateToken(req, res, next) {
   const userCookieToken = req.cookies[authCookieName];
   const username = req.body.username;
 
-  if (!userCookieToken || !(userCookieToken in authTokens)) {
+  if (!userCookieToken) {
     return res.status(409).send("Not logged in");
   }
 
-  const authUsername = authTokens[userCookieToken];
-  if (authUsername !== username) {
+  const tokenDoc = await Token.findOne({ token: userCookieToken });
+  if (!tokenDoc || tokenDoc.username !== username) {
     return res.status(401).send("Not authorized");
   }
 
-  // Attach validated username and token to request for downstream use
-  req.authUsername = authUsername;
+  req.authUsername = tokenDoc.username;
   req.authToken = userCookieToken;
   next();
 }
 
-// Common function to remove token from tokenDates
-function removeTokenFromDates(token) {
-  let date = new Date(Date.now());
-  for (let i = 0; i < 7; i++) {
-    date.setDate(date.getDate() - 1);
-    let formattedDate = date.toISOString().split("T")[0];
+// Authentication Routes
+const authRouter = express.Router();
+apiRouter.use("/auth", authRouter);
 
-    if (tokenDates[formattedDate] && tokenDates[formattedDate].has(token)) {
-      tokenDates[formattedDate].delete(token);
-    }
+authRouter.post("/manage", validateUserCredentials, async (req, res) => {
+  const { validatedUsername, validatedPassword } = req;
+
+  const existingUser = await User.findOne({ username: validatedUsername });
+  if (existingUser) {
+    return res.status(409).send("Existing user");
   }
-}
 
-// Log out
+  const passwordHash = await bcrypt.hash(validatedPassword, 10);
+  await User.create({ username: validatedUsername, passwordHash });
+  await setAuthCookie(res, validatedUsername);
+  res.send("User created");
+});
+
+authRouter.post("/login", validateUserCredentials, async (req, res) => {
+  const { validatedUsername, validatedPassword } = req;
+
+  const user = await User.findOne({ username: validatedUsername });
+  if (!user) return res.status(409).send("No account of given username");
+
+  const authorized = await bcrypt.compare(validatedPassword, user.passwordHash);
+  if (!authorized) return res.status(401).send("Not authorized");
+
+  await setAuthCookie(res, validatedUsername);
+  res.send("User logged in");
+});
+
 authRouter.post("/logout", authenticateToken, async (req, res) => {
-  const { authToken, authUsername } = req;
+  const { authToken } = req;
 
-  delete authTokens[authToken];
-  delete reverseAuthTokens[authUsername];
-  removeTokenFromDates(authToken);
-
+  await Token.deleteOne({ token: authToken });
   res.clearCookie(authCookieName);
   res.send("Logged out successfully");
 });
 
-// Delete account
 authRouter.delete("/manage", authenticateToken, async (req, res) => {
   const { authToken, authUsername } = req;
 
-  delete authTokens[authToken];
-  delete reverseAuthTokens[authUsername];
-  delete users[authUsername];
-  delete chats[authUsername];
-  removeTokenFromDates(authToken);
-
+  await Token.deleteOne({ token: authToken });
+  await User.deleteOne({ username: authUsername });
   res.clearCookie(authCookieName);
   res.send("Deleted Account successfully");
 });
 
-// MAJOR: Chat endpoints
+// Chat Routes
 const chatRouter = express.Router();
 apiRouter.use("/chat", chatRouter);
 
-// Create chat
 chatRouter.post("/manage", authenticateToken, async (req, res) => {
   const { authUsername } = req;
-  const chatName = req.body.chatName;
+  let { chatName } = req.body;
 
-  // Validate chatName
-  if (!chatName || typeof chatName !== "string") {
-    return res.status(400).send("Chat name is required and must be a string");
+  chatName = String(chatName);
+  if (!chatName || chatName.startsWith("$")) {
+    return res
+      .status(400)
+      .send("Chat name is required and cannot start with '$'");
   }
   const trimmedChatName = chatName.trim();
   if (trimmedChatName.length < 5 || trimmedChatName.length > 15) {
-    return res.status(400).send("Chat name does not conform to standards");
+    return res.status(400).send("Chat name must be 5-15 characters");
   }
 
-  // Initialize user's chat object if it doesn't exist
-  chats[authUsername] = chats[authUsername] || {};
+  const fullChatName = `${trimmedChatName} - ${authUsername}`; // Server appends username
+  const user = await User.findOne({ username: authUsername });
+  if (user.chats.has(fullChatName)) {
+    return res.status(409).send("Chat already exists");
+  }
 
-  // Create the chat
-  chats[authUsername][`${trimmedChatName} - ${authUsername}`] = [
+  await User.updateOne(
+    { username: authUsername },
     {
-      sender: "Provo Techspert",
-      side: "left",
-      messages: [
-        `Hello ${authUsername}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
-         To help you repair your device, I would appreciate a message from you explaining the issue,
-         if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
-         (I personally use imgbb and Vimeo).`,
-      ],
+      $set: {
+        [`chats.${fullChatName}`]: {
+          messages: [
+            {
+              sender: "Provo Techspert",
+              side: "left",
+              messages: [
+                `Hello ${authUsername}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert...`,
+              ],
+            },
+          ],
+          lastMessageAt: new Date(),
+        },
+      },
     },
-  ];
+  );
 
-  res.send("Succesfully created chat");
+  res.send(`Successfully created chat: ${fullChatName}`);
 });
 
-// List chats
-chatRouter.get("/list", async (req, res) => {});
+chatRouter.post("/message", authenticateToken, async (req, res) => {
+  const { authUsername } = req;
+  let { chatName, sender, side, message } = req.body;
 
-// Delete chat
-chatRouter.delete("/manage", async (req, res) => {});
-
-// Send message
-// TODO: Have this send email from provotechspert@gmail.com back to itself
-// NOTE: use env vars for security reasons
-chatRouter.post("/message", async (req, res) => {});
-
-// Get messages from chat
-chatRouter.get("/messages", async (req, res) => {});
-
-function setAuthCookie(res, username) {
-  let date = new Date(Date.now());
-  date.setHours(0, 0, 0, 0);
-  let formattedDate = date.toISOString().split("T")[0];
-
-  if (!(formattedDate in tokenDates)) {
-    tokenDates[formattedDate] = new Set();
+  [chatName, sender, message] = [chatName, sender, message].map(String);
+  if (
+    chatName.startsWith("$") ||
+    sender.startsWith("$") ||
+    message.startsWith("$")
+  ) {
+    return res.status(400).send("Inputs cannot start with '$'");
+  }
+  if (!["left", "right"].includes(side)) {
+    return res.status(400).send("Side must be 'left' or 'right'");
   }
 
+  const result = await User.updateOne(
+    { username: authUsername, [`chats.${chatName}`]: { $exists: true } },
+    {
+      $push: {
+        [`chats.${chatName}.messages`]: { sender, side, messages: [message] },
+      },
+      $set: { [`chats.${chatName}.lastMessageAt`]: new Date() },
+    },
+  );
+
+  if (result.modifiedCount === 0) {
+    return res.status(404).send("Chat not found");
+  }
+  res.send("Message added");
+});
+
+chatRouter.get("/list", authenticateToken, async (req, res) => {
+  const { authUsername } = req;
+  const user = await User.findOne({ username: authUsername });
+
+  if (authUsername === "Provo Techspert") {
+    const allUsers = await User.find({}, "username chats");
+    const allChats = {};
+    allUsers.forEach((u) => {
+      if (u.chats.size > 0) allChats[u.username] = Object.fromEntries(u.chats);
+    });
+    return res.json(allChats);
+  }
+
+  res.json(Object.fromEntries(user.chats));
+});
+
+chatRouter.get("/messages", authenticateToken, async (req, res) => {
+  const { authUsername } = req;
+  const { chatName } = req.query;
+
+  if (!chatName || chatName.startsWith("$")) {
+    return res
+      .status(400)
+      .send("Chat name is required and cannot start with '$'");
+  }
+
+  const user = await User.findOne({ username: authUsername });
+  const chat = user.chats.get(chatName);
+
+  if (!chat) return res.status(404).send("Chat not found");
+  res.json(chat.messages);
+});
+
+chatRouter.delete("/manage", authenticateToken, async (req, res) => {
+  const { authUsername } = req;
+  let { chatName } = req.body;
+
+  chatName = String(chatName);
+  if (!chatName || chatName.startsWith("$")) {
+    return res
+      .status(400)
+      .send("Chat name is required and cannot start with '$'");
+  }
+
+  const result = await User.updateOne(
+    { username: authUsername },
+    { $unset: { [`chats.${chatName}`]: "" } },
+  );
+
+  if (result.modifiedCount === 0) {
+    return res.status(404).send("Chat not found");
+  }
+  res.send("Chat deleted");
+});
+
+// Auth Helper
+async function setAuthCookie(res, username) {
+  const existingToken = await Token.findOne({ username });
   let token;
-  if (!(username in reverseAuthTokens)) {
-    token = uuid.v4();
-    authTokens[token] = username;
-    reverseAuthTokens[username] = token;
-    tokenDates[formattedDate].add(token);
+
+  if (existingToken) {
+    token = existingToken.token;
   } else {
-    token = reverseAuthTokens[username];
+    token = uuid.v4();
+    await Token.create({ token, username });
   }
 
   res.cookie(authCookieName, token, {
@@ -349,25 +322,28 @@ function setAuthCookie(res, username) {
   });
 }
 
-// Cron job to delete tokens older than a week
-cron.schedule("0 0 * * *", () => {
-  let oneWeekAgo = new Date();
+// Cron Jobs
+cron.schedule("0 0 * * *", async () => {
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  await Token.deleteMany({ createdAt: { $lt: sevenDaysAgo } });
 
-  for (let i = 0; i < 7; i++) {
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 1);
-    const formattedDate = oneWeekAgo.toISOString().split("T")[0];
-
-    if (formattedDate in tokenDates) {
-      // Remove all tokens from this date
-      for (const token of tokenDates[formattedDate]) {
-        delete authTokens[token]; // Remove from active tokens
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+  const users = await User.find({});
+  for (const user of users) {
+    const chats = user.chats;
+    let modified = false;
+    for (const [chatName, chatData] of chats.entries()) {
+      if (chatData.lastMessageAt < thirtyDaysAgo) {
+        chats.delete(chatName);
+        modified = true;
       }
-      delete tokenDates[formattedDate]; // Remove date entry
     }
+    if (modified) await user.save();
   }
+  console.log("Cron job completed: cleaned old tokens and chats");
 });
 
-// Catch-all route for serving index.html (main page)
+// Catch-all route
 app.use((req, res) => {
   res.sendFile("index.html", { root: build_loc });
 });

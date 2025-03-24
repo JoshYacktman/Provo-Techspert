@@ -169,28 +169,7 @@ describe("API Authentication Test Suite", () => {
     expect(text).toBe("Not authorized");
   });
 
-  // 13. API delete account success
-  test("Delete account should succeed with valid token and username", async () => {
-    const loginResponse = await fetch(`${BASE_URL}/login`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        username: "DeleteMe",
-        password: "ATestPassword",
-      }),
-    });
-    const deleteCookie = loginResponse.headers.get("set-cookie");
-
-    const response = await fetch(`${BASE_URL}/manage`, {
-      method: "DELETE",
-      headers: { ...headers, Cookie: deleteCookie },
-    });
-    const text = await response.text();
-    expect(response.status).toBe(200);
-    expect(text).toBe("Deleted Account successfully");
-  });
-
-  // 14. API delete account no cookie fail
+  // 13. API delete account no cookie fail
   test("Delete account should fail without cookie", async () => {
     // Create and login to get a valid cookie
     await fetch(`${BASE_URL}/manage`, {
@@ -219,7 +198,7 @@ describe("API Authentication Test Suite", () => {
     expect(text).toBe("Not logged in");
   });
 
-  // 15. Cleanup
+  // 14. Cleanup
   test("Cleanup", async () => {
     let loginResponse = await fetch(`${BASE_URL}/login`, {
       method: "POST",
@@ -244,12 +223,15 @@ describe("API Authentication Test Suite", () => {
       }),
     });
     deleteCookie = loginResponse.headers.get("set-cookie");
-    await fetch(`${BASE_URL}/manage`, {
+    let response = await fetch(`${BASE_URL}/manage`, {
       method: "DELETE",
       headers: { ...headers, Cookie: deleteCookie },
       body: JSON.stringify({
         username: "DeleteTest",
       }),
     });
+    const text = await response.text();
+    expect(response.status).toBe(200);
+    expect(text).toBe("Deleted Account successfully");
   });
 });

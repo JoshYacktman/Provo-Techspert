@@ -96,13 +96,11 @@ The process looks like this:
  - Create service endpoints
  - Create auth middleware
  - Add cookie tokens, store data
- - TODO: Make all endpoints working
+ - Make all endpoints working
  - Add basic tests for endpoints (TODO: fill these as endpoints completed)
  - TODO: call api from website
  - TODO: get popups on website if api request fails and have spinning icon
- - TODO: Get placeholder images
+ - TODO: Get placeholder images working in about (see simon about)
  - TODO: Simon deployed
  - TODO: API used (gmail api)
  - Created API test suite
-
-TODO: When implementing mongoDB, use proper locks

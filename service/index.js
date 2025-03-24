@@ -256,18 +256,31 @@ chatRouter.post("/message", authenticateToken, async (req, res) => {
 
 chatRouter.get("/list", authenticateToken, async (req, res) => {
   const { authUsername } = req;
-  const user = await User.findOne({ username: authUsername });
+  let allChats = [];
 
   if (authUsername === "Provo Techspert") {
-    const allUsers = await User.find({}, "username chats");
-    const allChats = {};
-    allUsers.forEach((u) => {
-      if (u.chats.size > 0) allChats[u.username] = Object.fromEntries(u.chats);
+    const allUsers = await User.find({}, "chats");
+
+    allUsers.forEach((user) => {
+      user.chats.forEach((chat, chatName) => {
+        allChats.push({ name: chatName, lastMessageAt: chat.lastMessageAt });
+      });
     });
-    return res.json(allChats);
+  } else {
+    const user = await User.findOne({ username: authUsername });
+
+    if (user) {
+      user.chats.forEach((chat, chatName) => {
+        allChats.push({ name: chatName, lastMessageAt: chat.lastMessageAt });
+      });
+    }
   }
 
-  res.json(Object.fromEntries(user.chats));
+  allChats.sort(
+    (a, b) => new Date(b.lastMessageAt) - new Date(a.lastMessageAt),
+  );
+
+  return res.json(allChats.map((chat) => chat.name));
 });
 
 chatRouter.delete("/manage", authenticateToken, async (req, res) => {
@@ -337,6 +350,6 @@ app.use((req, res) => {
   res.sendFile("index.html", { root: build_loc });
 });
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

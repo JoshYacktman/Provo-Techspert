@@ -120,7 +120,21 @@ describe("API Chat Test Suite", () => {
     expect(text).toBe("Message added");
   });
 
-  // 7. Delete chat work
+  // 7. Get list chats work
+  test("Get chat list should work with proper info", async () => {
+    const response = await fetch(`${CHAT_BASE_URL}/list`, {
+      method: "GET",
+      headers: {
+        ...headers,
+        Cookie: cookie,
+      },
+    });
+    const text = await response.text();
+    expect(response.status).toBe(200);
+    expect(text).toContain("Test chat - DeleteMe");
+  });
+
+  // 8. Delete chat work
   test("Delete chat should work with proper creds", async () => {
     const response = await fetch(`${CHAT_BASE_URL}/manage`, {
       method: "DELETE",
@@ -134,6 +148,28 @@ describe("API Chat Test Suite", () => {
     });
     const text = await response.text();
     expect(response.status).toBe(200);
+    console.log(text);
     expect(text).toBe("Chat deleted");
+  });
+
+  // 9. Cleanup test account
+  test("Cleanup test account", async () => {
+    const loginResponse = await fetch(`${AUTH_BASE_URL}/login`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        username: "DeleteMe",
+        password: "ATestPassword",
+      }),
+    });
+    const deleteCookie = loginResponse.headers.get("set-cookie");
+
+    const response = await fetch(`${AUTH_BASE_URL}/manage`, {
+      method: "DELETE",
+      headers: { ...headers, Cookie: deleteCookie },
+    });
+    const text = await response.text();
+    expect(response.status).toBe(200);
+    expect(text).toBe("Deleted Account successfully");
   });
 });

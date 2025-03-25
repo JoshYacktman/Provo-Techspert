@@ -1,24 +1,16 @@
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 const express = require("express");
-const uuid = require("uuid");
-const cron = require("node-cron");
-const mongoose = require("mongoose");
-const { User, Token } = require("./models.js");
+const { User, Token } = require("./db.js");
 const { validateUserCredentials } = require("./validators.js");
-const config = require("./dbConfig.json");
+const { startCronJobs } = require("./cron");
+const {
+  authenticateToken,
+  setAuthCookie,
+  authCookieName,
+} = require("./middleware.js");
 
 const app = express();
-const authCookieName = "token";
-
-// Load DB credentials
-const mongoURI = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}/prv-tchsprt?retryWrites=true&w=majority&appName=prv-tchsprt`;
-
-// Connect to MongoDB
-mongoose
-  .connect(mongoURI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
 
 // Service configuration
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -30,25 +22,6 @@ app.use(express.static(build_loc));
 
 const apiRouter = express.Router();
 app.use("/api", apiRouter);
-
-// Authentication Middleware
-async function authenticateToken(req, res, next) {
-  const userCookieToken = req.cookies[authCookieName];
-
-  if (!userCookieToken) {
-    return res.status(409).send("Not logged in");
-  }
-
-  const tokenDoc = await Token.findOne({ token: userCookieToken });
-
-  if (!tokenDoc) {
-    return res.status(401).send("Not authorized");
-  }
-
-  req.authUsername = tokenDoc.username;
-  req.authToken = userCookieToken;
-  next();
-}
 
 // Authentication Routes
 const authRouter = express.Router();
@@ -235,47 +208,6 @@ chatRouter.delete("/manage", authenticateToken, async (req, res) => {
   res.send("Chat deleted");
 });
 
-// Auth Helper
-async function setAuthCookie(res, username) {
-  const existingToken = await Token.findOne({ username });
-  let token;
-
-  if (existingToken) {
-    token = existingToken.token;
-  } else {
-    token = uuid.v4();
-    await Token.create({ token, username });
-  }
-
-  res.cookie(authCookieName, token, {
-    secure: true,
-    httpOnly: true,
-    sameSite: "strict",
-  });
-}
-
-// Cron Jobs
-cron.schedule("0 0 * * *", async () => {
-  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-  await Token.deleteMany({ createdAt: { $lt: sevenDaysAgo } });
-
-  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
-  const users = await User.find({});
-  for (const user of users) {
-    const chats = user.chats;
-    let modified = false;
-    for (const [chatName, chatData] of chats.entries()) {
-      if (chatData.lastMessageAt < thirtyDaysAgo) {
-        chats.delete(chatName);
-        modified = true;
-      }
-    }
-    if (modified) {
-      await user.save();
-    }
-  }
-});
-
 // Catch-all route
 app.use((req, res) => {
   res.sendFile("index.html", { root: build_loc });
@@ -284,3 +216,5 @@ app.use((req, res) => {
 const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+startCronJobs();

@@ -1,4 +1,12 @@
 const mongoose = require("mongoose");
+const config = require("./dbConfig.json");
+
+const mongoURI = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}/prv-tchsprt?retryWrites=true&w=majority&appName=prv-tchsprt`;
+
+mongoose
+  .connect(mongoURI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 const messageSchema = new mongoose.Schema({
   sender: { type: String, required: true },
@@ -25,7 +33,7 @@ const tokenSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const User = mongoose.model("User", userSchema);
-const Token = mongoose.model("Token", tokenSchema);
-
-module.exports = { User, Token };
+module.exports = {
+  User: mongoose.model("User", userSchema),
+  Token: mongoose.model("Token", tokenSchema),
+};

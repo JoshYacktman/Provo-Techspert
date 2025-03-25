@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const config = require("./dbConfig.json");
+const config = require("../dbConfig.json");
 
 const mongoURI = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}/prv-tchsprt?retryWrites=true&w=majority&appName=prv-tchsprt`;
 

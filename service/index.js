@@ -4,6 +4,8 @@ const express = require("express");
 const uuid = require("uuid");
 const cron = require("node-cron");
 const mongoose = require("mongoose");
+const { User, Token } = require("./models.js");
+const { validateUserCredentials } = require("./validators.js");
 const config = require("./dbConfig.json");
 
 const app = express();
@@ -18,35 +20,6 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Schema Definitions
-const messageSchema = new mongoose.Schema({
-  sender: { type: String, required: true },
-  side: { type: String, enum: ["left", "right"], required: true },
-  messages: [{ type: String, required: true }],
-});
-
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  passwordHash: { type: String, required: true },
-  chats: {
-    type: Map,
-    of: new mongoose.Schema({
-      messages: [messageSchema],
-      lastMessageAt: { type: Date, default: Date.now },
-    }),
-    default: {},
-  },
-});
-
-const tokenSchema = new mongoose.Schema({
-  token: { type: String, required: true, unique: true },
-  username: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-});
-
-const User = mongoose.model("User", userSchema);
-const Token = mongoose.model("Token", tokenSchema);
-
 // Service configuration
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 const build_loc = process.argv.length > 2 ? "public" : "../dist";
@@ -57,49 +30,6 @@ app.use(express.static(build_loc));
 
 const apiRouter = express.Router();
 app.use("/api", apiRouter);
-
-// Validation Helpers
-function validateUsername(username) {
-  if (!username || typeof username !== "string" || username.startsWith("$")) {
-    return {
-      isValid: false,
-      msg: "Username is required, must be a string, and cannot start with '$'",
-    };
-  }
-  const trimmedUsername = username.trim();
-  if (trimmedUsername.length < 3 || trimmedUsername.length > 15) {
-    return { isValid: false, msg: "Username must be 3-15 characters" };
-  }
-  return { isValid: true, username: trimmedUsername };
-}
-
-function validatePassword(password) {
-  if (!password || typeof password !== "string" || password.startsWith("$")) {
-    return {
-      isValid: false,
-      msg: "Password is required, must be a string, and cannot start with '$'",
-    };
-  }
-  const trimmedPassword = password.trim();
-  if (trimmedPassword.length < 5 || trimmedPassword.length > 20) {
-    return { isValid: false, msg: "Password must be 5-20 characters" };
-  }
-  return { isValid: true, password: trimmedPassword };
-}
-
-async function validateUserCredentials(req, res, next) {
-  const { username, password } = req.body;
-  const usernameValidation = validateUsername(username);
-  if (!usernameValidation.isValid)
-    return res.status(400).send(usernameValidation.msg);
-  const passwordValidation = validatePassword(password);
-  if (!passwordValidation.isValid)
-    return res.status(400).send(passwordValidation.msg);
-
-  req.validatedUsername = usernameValidation.username;
-  req.validatedPassword = passwordValidation.password;
-  next();
-}
 
 // Authentication Middleware
 async function authenticateToken(req, res, next) {
@@ -340,9 +270,10 @@ cron.schedule("0 0 * * *", async () => {
         modified = true;
       }
     }
-    if (modified) await user.save();
+    if (modified) {
+      await user.save();
+    }
   }
-  console.log("Cron job completed: cleaned old tokens and chats");
 });
 
 // Catch-all route

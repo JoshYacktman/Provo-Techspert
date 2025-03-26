@@ -11,14 +11,24 @@ const bcrypt = require("bcrypt");
 const authRouter = express.Router();
 
 authRouter.post("/manage", validateUserCredentials, async (req, res) => {
+  if (req.authUsername) {
+    req.validatedUsername = req.authUsername;
+  }
   const { validatedUsername, validatedPassword } = req;
 
+  const passwordHash = await bcrypt.hash(validatedPassword, 10);
   const existingUser = await User.findOne({ username: validatedUsername });
   if (existingUser) {
-    return res.status(409).send("Existing user");
+    if (await bcrypt.compare(validatedPassword, existingUser.passwordHash)) {
+      return res.status(409).send("Existing user");
+    }
+    await User.updateOne(
+      { username: validatedUsername },
+      { $set: { passwordHash } },
+    );
+    return res.send("Password updated");
   }
 
-  const passwordHash = await bcrypt.hash(validatedPassword, 10);
   await User.create({ username: validatedUsername, passwordHash });
   await setAuthCookie(res, validatedUsername);
   res.send("User created");

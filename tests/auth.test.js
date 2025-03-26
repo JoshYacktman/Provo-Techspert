@@ -198,9 +198,10 @@ describe("API Authentication Test Suite", () => {
     expect(text).toBe("Not logged in");
   });
 
-  // 14. Cleanup
-  test("Cleanup", async () => {
-    let loginResponse = await fetch(`${BASE_URL}/login`, {
+  // 14. API Update password account fail
+  test("Update account password should fail with same passwor2d", async () => {
+    // Login to get a valid cookie
+    let response = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       headers,
       body: JSON.stringify({
@@ -208,10 +209,40 @@ describe("API Authentication Test Suite", () => {
         password: "ATestPassword",
       }),
     });
-    let deleteCookie = loginResponse.headers.get("set-cookie");
+
+    cookie = response.headers.get("set-cookie");
+
+    response = await fetch(`${BASE_URL}/manage`, {
+      method: "POST",
+      headers: { ...headers, Cookie: cookie },
+      body: JSON.stringify({
+        password: "ATestPassword",
+      }),
+    });
+    const text = await response.text();
+    expect(response.status).toBe(409);
+    expect(text).toBe("Existing user");
+  });
+
+  // 15. API Update password account succeed
+  test("Update account password should fail succeed with different password", async () => {
+    response = await fetch(`${BASE_URL}/manage`, {
+      method: "POST",
+      headers: { ...headers, Cookie: cookie },
+      body: JSON.stringify({
+        password: "ANewPassword",
+      }),
+    });
+    const text = await response.text();
+    expect(response.status).toBe(200);
+    expect(text).toBe("Password updated");
+  });
+
+  // 16. Cleanup
+  test("Cleanup", async () => {
     await fetch(`${BASE_URL}/manage`, {
       method: "DELETE",
-      headers: { ...headers, Cookie: deleteCookie },
+      headers: { ...headers, Cookie: cookie },
     });
 
     loginResponse = await fetch(`${BASE_URL}/login`, {

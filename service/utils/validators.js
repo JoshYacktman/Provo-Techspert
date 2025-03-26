@@ -1,3 +1,5 @@
+const { authCookieName, authenticateToken } = require("./middleware");
+
 function validateUsername(username) {
   if (!username || typeof username !== "string" || username.startsWith("$")) {
     return {
@@ -28,15 +30,23 @@ function validatePassword(password) {
 
 async function validateUserCredentials(req, res, next) {
   const { username, password } = req.body;
-  const usernameValidation = validateUsername(username);
-  if (!usernameValidation.isValid)
-    return res.status(400).send(usernameValidation.msg);
   const passwordValidation = validatePassword(password);
   if (!passwordValidation.isValid)
     return res.status(400).send(passwordValidation.msg);
+  req.validatedPassword = passwordValidation.password;
+
+  if (req.cookies[authCookieName]) {
+    try {
+      return await authenticateToken(req, res, next);
+    } catch (err) {
+      return;
+    }
+  }
+  const usernameValidation = validateUsername(username);
+  if (!usernameValidation.isValid)
+    return res.status(400).send(usernameValidation.msg);
 
   req.validatedUsername = usernameValidation.username;
-  req.validatedPassword = passwordValidation.password;
   next();
 }
 

@@ -148,7 +148,6 @@ describe("API Chat Test Suite", () => {
     });
     const text = await response.text();
     expect(response.status).toBe(200);
-    console.log(text);
     expect(text).toBe("Chat deleted");
   });
 

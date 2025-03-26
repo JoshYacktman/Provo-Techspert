@@ -102,5 +102,5 @@ The process looks like this:
  - TODO: get popups on website if api request fails and have spinning icon
  - TODO: Get placeholder images working in about (see simon about)
  - TODO: Simon deployed
- - TODO: API used (gmail api)
+ - External API used (gmail api through nodemailer)
  - Created API test suite

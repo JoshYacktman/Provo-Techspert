@@ -1,6 +1,8 @@
 const { User } = require("../utils/db");
 const { authenticateToken } = require("../utils/middleware");
 const express = require("express");
+const nodemailer = require("nodemailer");
+const config = require("../emailConfig.json");
 
 const chatRouter = express.Router();
 
@@ -53,6 +55,25 @@ chatRouter.post("/manage", authenticateToken, async (req, res) => {
   res.send(`Successfully created chat: ${fullChatName}`);
 });
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: config.userName,
+    pass: config.password,
+  },
+});
+
+async function sendEmail(chatName, message) {
+  const mailOptions = {
+    from: config.userName,
+    to: config.userName,
+    subject: chatName,
+    text: message,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {});
+}
+
 chatRouter.post("/message", authenticateToken, async (req, res) => {
   const { authUsername } = req;
   let { chatName, message } = req.body;
@@ -83,7 +104,10 @@ chatRouter.post("/message", authenticateToken, async (req, res) => {
   if (result.modifiedCount === 0) {
     return res.status(404).send("Chat not found");
   }
+
   res.send("Message added");
+
+  sendEmail(chatName, message);
 });
 
 chatRouter.get("/list", authenticateToken, async (req, res) => {

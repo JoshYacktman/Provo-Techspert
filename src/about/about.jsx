@@ -182,7 +182,6 @@ function About() {
               onLoad={() => setPromoTwoLoaded(true)}
               alt="Promo 2"
             />
-            {/* TODO: Make this a picture of the chat screen with a user account */}
           </div>
         </div>
 

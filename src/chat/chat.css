@@ -14,6 +14,13 @@ input:focus {
     left: 0;
     background-color: linen;
     overflow-x: hidden;
+    max-width: 30vw;
+}
+
+@media (max-width: 60em) {
+    .sidebar {
+        max-width: 80vw;
+    }
 }
 
 .blue_bubble {

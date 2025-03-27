@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { Header } from "../components";
 import "./about.css";
 
+const blankBanner =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABgQAAAKJAQMAAABOO9BRAAAAA1BMVEVEREQ1TRdOAAAAjklEQVR4Xu3AgQAAAACAoP2pF6kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrr4QABG5gDGgAAAABJRU5ErkJggg==";
+const blankImage =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1IAAANSAQMAAABV6G1EAAAAA1BMVEVEREQ1TRdOAAAAb0lEQVR4Xu3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwZmanAAHsp6wLAAAAAElFTkSuQmCC";
+
 // TODO: Put functionality into separate
 function placeholder() {
   var userName = document.getElementById("userNameInput").value;
@@ -10,11 +15,7 @@ function placeholder() {
   window.location.href = "/chat/";
 }
 
-function JoinButtonClicked() {
-  placeholder();
-}
-
-function SignInButtonClicked() {
+function JoinSignInButtonClicked() {
   placeholder();
 }
 
@@ -47,18 +48,10 @@ function AboutDropdownOptions() {
         <button
           type="button"
           className="main_text very_small dropdown_buttons"
-          onClick={JoinButtonClicked}
+          onClick={JoinSignInButtonClicked}
           disabled={!isValid}
         >
-          Join
-        </button>
-        <button
-          type="button"
-          className="main_text very_small dropdown_buttons"
-          onClick={SignInButtonClicked}
-          disabled={!isValid}
-        >
-          Sign In
+          Join/Sign In
         </button>
       </div>
     </form>
@@ -76,13 +69,22 @@ function About() {
     window.open("https://github.com/JoshYacktman/Provo-Techspert");
   };
 
+  const [bannerLoaded, setBannerLoaded] = useState(false);
+  const [promoOneLoaded, setPromoOneLoaded] = useState(false);
+  const [promoTwoLoaded, setPromoTwoLoaded] = useState(false);
+  const [profileLoaded, setProfileLoaded] = useState(false);
+
   return (
     <div>
       <Header OptionsMenu={AboutDropdownOptions} />
       <div>
         {/* Banner */}
         <div className="banner">
-          <img src="/images/banner.jpg" />
+          <img
+            src={bannerLoaded ? "/images/banner.jpg" : blankBanner}
+            onLoad={() => setBannerLoaded(true)}
+            alt="Banner"
+          />
           <h1 className="text_overlay complementary_font large">
             Repair should be honest.
           </h1>
@@ -95,8 +97,10 @@ function About() {
         >
           <div className="left center">
             <img
-              src="/images/promo_1.jpg"
+              src={promoOneLoaded ? "/images/promo_1.jpg" : blankImage}
               className="promo_photo corner_rounding shadow_down"
+              onLoad={() => setPromoOneLoaded(true)}
+              alt="Promo 1"
             />
           </div>
           <div className="right index_text center">
@@ -173,10 +177,10 @@ function About() {
           </div>
           <div className="right center">
             <img
-              src="/images/promo_2.jpg"
+              src={promoTwoLoaded ? "/images/promo_2.jpg" : blankImage}
               className="promo_photo corner_rounding shadow_down"
-              loading="lazy"
-              decoding="async"
+              onLoad={() => setPromoTwoLoaded(true)}
+              alt="Promo 2"
             />
             {/* TODO: Make this a picture of the chat screen with a user account */}
           </div>
@@ -189,10 +193,10 @@ function About() {
         >
           <div className="left center">
             <img
-              src="/images/profile.jpg"
+              src={profileLoaded ? "/images/profile.jpg" : blankImage}
               className="promo_photo corner_rounding shadow_down"
-              loading="lazy"
-              decoding="async"
+              onLoad={() => setProfileLoaded(true)}
+              alt="Profile"
             />
           </div>
           <div className="right index_text center">

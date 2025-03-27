@@ -22,6 +22,9 @@ authRouter.post("/manage", validateUserCredentials, async (req, res) => {
     if (await bcrypt.compare(validatedPassword, existingUser.passwordHash)) {
       return res.status(409).send("Existing user");
     }
+    if (!req.cookies[authCookieName]) {
+      return res.status(401).send("Not authorized");
+    }
     await User.updateOne(
       { username: validatedUsername },
       { $set: { passwordHash } },
@@ -35,6 +38,9 @@ authRouter.post("/manage", validateUserCredentials, async (req, res) => {
 });
 
 authRouter.post("/login", validateUserCredentials, async (req, res) => {
+  if (req.authUsername) {
+    req.validatedUsername = req.authUsername;
+  }
   const { validatedUsername, validatedPassword } = req;
 
   const user = await User.findOne({ username: validatedUsername });

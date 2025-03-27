@@ -3,10 +3,32 @@ const config = require("../dbConfig.json");
 
 const mongoURI = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}/prv-tchsprt?retryWrites=true&w=majority&appName=prv-tchsprt`;
 
-mongoose
-  .connect(mongoURI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+async function connectWithRetry() {
+  try {
+    await mongoose.connect(mongoURI);
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    setTimeout(connectWithRetry, 50); // Retry connection after 5 seconds
+  }
+}
+
+connectWithRetry();
+
+process.on("unhandledRejection", (error) => {
+  console.error("Unhandled promise rejection:", error.stack);
+});
+
+process.on("uncaughtException", (error) => {
+  console.error("Uncaught exception:", error.stack);
+});
+
+process.on("SIGINT", async () => {
+  console.log("Received SIGINT. Closing MongoDB connection...");
+  await mongoose.connection.close(); // Close the MongoDB connection
+  console.log("MongoDB connection closed.");
+  process.exit(0); // Exit the process gracefully
+});
 
 const messageSchema = new mongoose.Schema({
   sender: { type: String, required: true },

@@ -6,17 +6,47 @@ const blankBanner =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABgQAAAKJAQMAAABOO9BRAAAAA1BMVEVEREQ1TRdOAAAAjklEQVR4Xu3AgQAAAACAoP2pF6kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrr4QABG5gDGgAAAABJRU5ErkJggg==";
 const blankImage =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1IAAANSAQMAAABV6G1EAAAAA1BMVEVEREQ1TRdOAAAAb0lEQVR4Xu3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwZmanAAHsp6wLAAAAAElFTkSuQmCC";
+const headers = {
+  "Content-Type": "application/json",
+};
 
-// TODO: Put functionality into separate
-function placeholder() {
+async function JoinSignInButtonClicked() {
   var userName = document.getElementById("userNameInput").value;
+  var password = document.getElementById("passwordInput").value;
+  let response = await fetch(`http://localhost:3000/api/auth/manage`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      username: userName,
+      password: password,
+    }),
+  });
+  let text = await response.text();
+  console.log(text);
 
-  localStorage.setItem("username", userName);
-  window.location.href = "/chat/";
-}
-
-function JoinSignInButtonClicked() {
-  placeholder();
+  if (text === "User created") {
+    localStorage.setItem("username", userName);
+    window.location.href = "/chat/";
+  } else if (text === "Existing user") {
+    response = await fetch(`http://localhost:3000/api/auth/login`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        username: userName,
+        password: password,
+      }),
+    });
+    text = await response.text();
+    console.log(text);
+    if (text !== "User logged in") {
+      // TODO: Make a nice pop up
+      return alert(text);
+    }
+    localStorage.setItem("username", userName);
+    window.location.href = "/chat/";
+  } else {
+    alert(text);
+  }
 }
 
 function AboutDropdownOptions() {
@@ -38,6 +68,7 @@ function AboutDropdownOptions() {
         />
         <label className="main_text small">Password</label>
         <input
+          id="passwordInput"
           className="bordered_message_font small form_input small_corner_rounding"
           maxLength="20"
           minLength="5"

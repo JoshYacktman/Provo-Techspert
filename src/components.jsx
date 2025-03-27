@@ -19,7 +19,6 @@ export function Dropdown({ OptionsMenu, userName }) {
       setOpenStatus(true);
     }
   };
-  console.log(userName);
 
   const hoverExitStatus = (event) => {
     const relatedTarget = event.relatedTarget;

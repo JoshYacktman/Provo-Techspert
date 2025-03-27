@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 
-function SignOutButtonClicked() {
+const headers = {
+  "Content-Type": "application/json",
+};
+
+async function SignOutButtonClicked() {
+  let response = await fetch(`http://localhost:3000/api/auth/logout`, {
+    method: "POST",
+    headers,
+  });
+  let text = await response.text();
+  if (text !== "Logged out successfully") {
+    return alert(text);
+  }
+
   localStorage.removeItem("username");
   window.location.href = "/";
 }

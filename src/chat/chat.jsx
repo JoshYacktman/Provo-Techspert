@@ -189,7 +189,6 @@ function Chat() {
       // Ensure current chat updates correctly after state change
       setCurrentChat(updatedChats.length > 0 ? updatedChats[0] : "");
 
-      console.log(updatedChats);
       return updatedChats;
     });
 

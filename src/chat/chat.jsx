@@ -26,78 +26,58 @@ function Chat() {
     return;
   }
 
-  const [chats, setChats] = useState([
-    "Chat One - Username_Test12",
-    "Nintendo_Switch - Username_Test12",
-  ]);
-
-  const [currentChat, setCurrentChat] = useState(chats[0]);
-
-  const [messages, setMessages] = useState({
-    "Chat One - Username_Test12": [
-      {
-        sender: "Provo Techspert",
-        side: "left",
-        messages: [
-          `Hello ${userName}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
-                        To help you repair your device, I would appreciate a message from you explaining the issue,
-                        if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
-                        (I personally use imgbb and Vimeo).`,
-          "Chat Message one",
-        ],
-      },
-      {
-        sender: userName,
-        side: "right",
-        messages: ["Chat Message two"],
-      },
-      {
-        sender: "Provo Techspert",
-        side: "left",
-        messages: ["Chat Message three"],
-      },
-      {
-        sender: userName,
-        side: "right",
-        messages: ["Chat Message four"],
-      },
-      {
-        sender: "Provo Techspert",
-        side: "left",
-        messages: [
-          "Chat Message five",
-          `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-        ],
-      },
-      {
-        sender: userName,
-        side: "right",
-        messages: [
-          "Chat Message six",
-          `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-        ],
-      },
-      {
-        sender: "Provo Techspert",
-        side: "left",
-        messages: ["Chat Message seven"],
-      },
-    ],
-    "Nintendo_Switch - Username_Test12": [
-      {
-        sender: "Provo Techspert",
-        side: "left",
-        messages: [
-          `Hello ${userName}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
-                        To help you repair your device, I would appreciate a message from you explaining the issue,
-                        if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
-                        (I personally use imgbb and Vimeo).`,
-        ],
-      },
-    ],
-  });
-
+  const [chats, setChats] = useState([]);
+  const [messages, setMessages] = useState({});
+  const [currentChat, setCurrentChat] = useState("");
   const [sidebarOpenStatus, setSidebarOpenStatus] = useState(false);
+
+  const socketRef = useRef(null);
+
+  useEffect(() => {
+    // Establish WebSocket connection
+    socketRef.current = new WebSocket("wss://provotechpsert.click:4000");
+
+    // WebSocket events
+    socketRef.current.onopen = () => {
+      console.log("WebSocket Connected!");
+    };
+
+    socketRef.current.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      console.log("Received message:", message);
+
+      if (message.type === "ping") {
+        // If the server sends a ping, reply with pong
+        socketRef.current.send(JSON.stringify({ type: "pong" }));
+        console.log("Sent pong");
+      } else {
+        // Handle chat data (assuming the message contains chat data)
+        const chatData = message;
+        const updatedChats = chatData.map((chat) => chat.name);
+        const updatedMessages = chatData.reduce((acc, chat) => {
+          acc[chat.name] = chat.messages;
+          return acc;
+        }, {});
+
+        setChats(updatedChats);
+        setMessages(updatedMessages);
+      }
+    };
+
+    socketRef.current.onerror = (error) => {
+      console.error("WebSocket error:", error);
+      console.log("WebSocket URL:", socket.url); // Log the URL
+    };
+
+    socketRef.current.onclose = () => {
+      console.log("WebSocket Closed!");
+    };
+
+    // Clean up WebSocket connection when component unmounts
+    return () => {
+      socketRef.current.close();
+    };
+  }, []);
 
   const toggleStatus = (isMainPage = false) => {
     if (!isMainPage) {

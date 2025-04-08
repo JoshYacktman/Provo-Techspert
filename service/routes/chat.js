@@ -1,8 +1,104 @@
-const { User } = require("../utils/db");
+const { User, Token } = require("../utils/db");
 const { authenticateToken } = require("../utils/middleware");
 const express = require("express");
 const nodemailer = require("nodemailer");
 const config = require("../emailConfig.json");
+const WebSocket = require("ws");
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: config.userName,
+    pass: config.password,
+  },
+});
+
+async function websocketAuthenticateToken(cookie) {
+  if (!cookie) {
+    throw new Error("Not logged in");
+  }
+
+  const tokenDoc = await Token.findOne({ token: cookie });
+
+  if (!tokenDoc) {
+    throw new Error("Not authorized");
+  }
+
+  return tokenDoc.username;
+}
+
+function chatWebSocket(httpServer) {
+  const socketServer = new WebSocket.Server({ server: httpServer });
+
+  socketServer.on("connection", async (socket, req) => {
+    const params = new URLSearchParams(req.url.split("?")[1]);
+    const token = params.get("token");
+
+    try {
+      const username = await websocketAuthenticateToken(token);
+      socket.isAlive = true;
+      socket.username = username;
+      console.log(`User ${username} connected`);
+
+      socket.on("pong", () => {
+        socket.isAlive = true;
+      });
+
+      socket.on("close", () => {
+        console.log(`User ${username} disconnected`);
+      });
+
+      if (socket.username === "Provo Techspert") {
+        const allChats = [];
+        const allUsers = await User.find({}, "chats");
+
+        allUsers.forEach((user) => {
+          Object.entries(user.chats).forEach(([chatName, chat]) => {
+            allChats.push({
+              name: chatName,
+              lastMessageAt: chat.lastMessageAt,
+              messages: chat.messages,
+            });
+          });
+        });
+
+        socket.send(JSON.stringify(allChats));
+      } else {
+        const user = await User.findOne({ username: socket.username });
+
+        if (user) {
+          const chats = [];
+          Object.entries(user.chats).forEach(([chatName, chat]) => {
+            chats.push({
+              name: chatName,
+              lastMessageAt: chat.lastMessageAt,
+              messages: chat.messages,
+            });
+          });
+
+          // Send the user's chat data
+          socket.send(JSON.stringify(chats));
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+      socket.send(JSON.stringify({ error: error.message }));
+      socket.close();
+    }
+  });
+
+  // Ping/Pong
+  setInterval(() => {
+    socketServer.clients.forEach(function each(client) {
+      if (client.isAlive === false) {
+        return client.terminate();
+      }
+
+      client.isAlive = false;
+      client.ping();
+    });
+  }, 1_000);
+}
 
 const chatRouter = express.Router();
 
@@ -53,14 +149,6 @@ chatRouter.post("/manage", authenticateToken, async (req, res) => {
   );
 
   res.send(`Successfully created chat: ${fullChatName}`);
-});
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: config.userName,
-    pass: config.password,
-  },
 });
 
 async function sendEmail(chatName, message) {
@@ -161,4 +249,4 @@ chatRouter.delete("/manage", authenticateToken, async (req, res) => {
   res.send("Chat deleted");
 });
 
-module.exports = chatRouter;
+module.exports = chatWebSocket;

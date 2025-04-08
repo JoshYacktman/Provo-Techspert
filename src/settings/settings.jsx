@@ -6,24 +6,53 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-async function SignOutButtonClicked(setButtonText) {
-  setButtonText("Disconnecting...");
-  let response = await fetch(`https://provotechspert.click/api/auth/logout`, {
-    method: "POST",
-    headers,
-  });
-  let text = await response.text();
-  setButtonText("Sign Out");
+function SettingsDropdownOptions() {
+  const [signOutText, setSignOutText] = useState("Sign Out");
 
-  if (text === "Not logged in") {
-    localStorage.removeItem("username");
-    window.location.href = "/";
-  } else if (text !== "Logged out successfully") {
-    return alert(text);
+  async function handleSignOut() {
+    setSignOutText("Disconnecting...");
+
+    try {
+      const response = await fetch(
+        `https://provotechspert.click/api/auth/logout`,
+        {
+          method: "POST",
+          headers,
+        },
+      );
+
+      const text = await response.text();
+
+      if (text === "Not logged in") {
+        localStorage.removeItem("username");
+        window.location.href = "/";
+      } else if (text !== "Logged out successfully") {
+        alert(text);
+        setSignOutText("Sign Out");
+        return;
+      }
+
+      localStorage.removeItem("username");
+      window.location.href = "/";
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+      setSignOutText("Sign Out");
+    }
   }
 
-  localStorage.removeItem("username");
-  window.location.href = "/";
+  return (
+    <div>
+      <button
+        className="main_text very_small"
+        onClick={() => (window.location.href = "/chat/")}
+      >
+        Chat
+      </button>
+      <button className="main_text very_small" onClick={handleSignOut}>
+        {signOutText}
+      </button>
+    </div>
+  );
 }
 
 async function changePasswordClicked(setButtonText) {
@@ -59,27 +88,6 @@ async function deleteAccountClicked(setButtonText) {
   }
   localStorage.removeItem("username");
   window.location.href = "/";
-}
-
-function SettingsDropdownOptions() {
-  const [signOutText, setSignOutText] = useState("Sign Out");
-
-  return (
-    <div>
-      <button
-        className="main_text very_small"
-        onClick={() => (window.location.href = "/chat/")}
-      >
-        Chat
-      </button>
-      <button
-        className="main_text very_small"
-        onClick={() => SignOutButtonClicked(setSignOutText)}
-      >
-        {signOutText}
-      </button>
-    </div>
-  );
 }
 
 function Settings() {

@@ -4,42 +4,50 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-async function SignOutButtonClicked(setButtonText) {
-  setButtonText("Disconnecting...");
-  let response = await fetch(`https://provotechspert.click/api/auth/logout`, {
-    method: "POST",
-    headers,
-  });
-  let text = await response.text();
-
-  if (text === "Not logged in") {
-    localStorage.removeItem("username");
-    window.location.href = "/";
-  } else if (text !== "Logged out successfully") {
-    setButtonText("Sign Out");
-    return alert(text);
-  }
-
-  localStorage.removeItem("username");
-  window.location.href = "/";
-}
-
-function SettingsButtonClicked() {
-  window.location.href = "/settings/";
-}
-
 export function ChatDropdownOptions() {
   const [signOutText, setSignOutText] = useState("Sign Out");
+
+  async function handleSignOut() {
+    setSignOutText("Disconnecting...");
+
+    try {
+      const response = await fetch(
+        `https://provotechspert.click/api/auth/logout`,
+        {
+          method: "POST",
+          headers,
+        },
+      );
+
+      const text = await response.text();
+
+      if (text === "Not logged in") {
+        localStorage.removeItem("username");
+        window.location.href = "/";
+      } else if (text !== "Logged out successfully") {
+        alert(text);
+        setSignOutText("Sign Out");
+        return;
+      }
+
+      localStorage.removeItem("username");
+      window.location.href = "/";
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+      setSignOutText("Sign Out");
+    }
+  }
+
+  function SettingsButtonClicked() {
+    window.location.href = "/settings/";
+  }
 
   return (
     <div>
       <button className="main_text very_small" onClick={SettingsButtonClicked}>
         Settings
       </button>
-      <button
-        className="main_text very_small"
-        onClick={() => SignOutButtonClicked(setSignOutText)}
-      >
+      <button className="main_text very_small" onClick={handleSignOut}>
         {signOutText}
       </button>
     </div>

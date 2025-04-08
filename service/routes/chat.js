@@ -42,7 +42,7 @@ chatRouter.post("/manage", authenticateToken, async (req, res) => {
               sender: "Provo Techspert",
               side: "left",
               messages: [
-                `Hello ${authUsername}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert...`,
+                `Hello ${authUsername}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert. To help you repair your device, I would appreciate a message from you explaining the issue, if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos (I personally use imgbb and Vimeo).`,
               ],
             },
           ],

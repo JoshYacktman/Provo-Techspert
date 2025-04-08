@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../components";
 import "./settings.css";
 
@@ -6,39 +6,30 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-async function SignOutButtonClicked() {
-  let response = await fetch(`http://localhost:3000/api/auth/logout`, {
+async function SignOutButtonClicked(setButtonText) {
+  setButtonText("Disconnecting...");
+  let response = await fetch(`https://provotechspert.click/api/auth/logout`, {
     method: "POST",
     headers,
   });
   let text = await response.text();
-  if (text !== "Logged out successfully") {
+  setButtonText("Sign Out");
+
+  if (text === "Not logged in") {
+    localStorage.removeItem("username");
+    window.location.href = "/";
+  } else if (text !== "Logged out successfully") {
     return alert(text);
   }
 
   localStorage.removeItem("username");
   window.location.href = "/";
 }
-function ChatButtonClicked() {
-  window.location.href = "/chat/";
-}
 
-function SettingsDropdownOptions() {
-  return (
-    <div>
-      <button className="main_text very_small" onClick={ChatButtonClicked}>
-        Chat
-      </button>
-      <button className="main_text very_small" onClick={SignOutButtonClicked}>
-        Sign Out
-      </button>
-    </div>
-  );
-}
-
-async function changePasswordClicked() {
+async function changePasswordClicked(setButtonText) {
   var newPassword = document.getElementById("newPasswordInput").value;
-  let response = await fetch(`http://localhost:3000/api/auth/manage`, {
+  setButtonText("Updating...");
+  let response = await fetch(`https://provotechspert.click/api/auth/manage`, {
     method: "POST",
     headers,
     body: JSON.stringify({
@@ -46,18 +37,23 @@ async function changePasswordClicked() {
     }),
   });
   let text = await response.text();
+  setButtonText("Change Password");
+
   if (text !== "Password updated") {
     return alert("Password is same as old password");
   }
   alert("Success updating password");
 }
 
-async function deleteAccountClicked() {
-  let response = await fetch(`http://localhost:3000/api/auth/manage`, {
+async function deleteAccountClicked(setButtonText) {
+  setButtonText("Deleting...");
+  let response = await fetch(`https://provotechspert.click/api/auth/manage`, {
     method: "DELETE",
     headers,
   });
   let text = await response.text();
+  setButtonText("Delete Account");
+
   if (text !== "Deleted Account successfully") {
     return alert(text);
   }
@@ -65,8 +61,33 @@ async function deleteAccountClicked() {
   window.location.href = "/";
 }
 
+function SettingsDropdownOptions() {
+  const [signOutText, setSignOutText] = useState("Sign Out");
+
+  return (
+    <div>
+      <button
+        className="main_text very_small"
+        onClick={() => (window.location.href = "/chat/")}
+      >
+        Chat
+      </button>
+      <button
+        className="main_text very_small"
+        onClick={() => SignOutButtonClicked(setSignOutText)}
+      >
+        {signOutText}
+      </button>
+    </div>
+  );
+}
+
 function Settings() {
   const userName = localStorage.getItem("username");
+  const [passwordButtonText, setPasswordButtonText] =
+    useState("Change Password");
+  const [deleteButtonText, setDeleteButtonText] = useState("Delete Account");
+
   if (userName == null) {
     window.location.href = "/";
   }
@@ -82,7 +103,6 @@ function Settings() {
           flexGrow: "1",
         }}
       >
-        {/* TODO: Rework the looks of this page */}
         <form>
           <div className="shadow_down corner_rounding section_div">
             <label className="medium complementary_font_shadow main_label">
@@ -93,13 +113,18 @@ function Settings() {
               type="password"
               placeholder="Enter new password"
               className="small corner_rounding bordered_message_font shadow_down main_input"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setPasswordButtonText();
+                }
+              }}
             />
             <button
               type="button"
               className="small corner_rounding main_text shadow_down main_button"
-              onClick={changePasswordClicked}
+              onClick={() => changePasswordClicked(setPasswordButtonText)}
             >
-              Change Password
+              {passwordButtonText}
             </button>
           </div>
         </form>
@@ -111,9 +136,9 @@ function Settings() {
             <button
               type="button"
               className="small corner_rounding main_text shadow_down main_button"
-              onClick={deleteAccountClicked}
+              onClick={() => deleteAccountClicked(setDeleteButtonText)}
             >
-              Delete Account
+              {deleteButtonText}
             </button>
           </div>
         </form>

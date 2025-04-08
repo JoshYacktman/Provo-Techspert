@@ -151,6 +151,50 @@ export function Header({
   );
 }
 
+export function Popup({ text }) {
+  const [isVisible, setIsVisible] = useState(true);
+
+  function closePopup() {
+    setIsVisible(false);
+  }
+
+  return (
+    <div
+      className="overlay"
+      style={{
+        position: "fixed",
+        zIndex: 3,
+        display: isVisible ? "block" : "none",
+      }}
+      onClick={closePopup}
+    >
+      <div className="popup" onClick={(event) => event.stopPropagation()}>
+        <div className="popup-header">
+          <p
+            className="header_text complementary_font medium"
+            style={{ textShadow: "0em .1em .9em #e8a61b" }}
+          >
+            Notification:
+          </p>
+          <button
+            className="small message_font small_corner_rounding shadow_down"
+            onClick={closePopup}
+            style={{ margin: ".3em", textAlign: "center" }}
+          >
+            &times;
+          </button>
+        </div>
+        <p
+          className="header_text complementary_font medium"
+          style={{ textShadow: "0em .1em .9em #e8a61b" }}
+        >
+          {text}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function NotFound() {
   return (
     <main className="center main_text large" style={{ textAlign: "center" }}>

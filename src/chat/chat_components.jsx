@@ -4,31 +4,43 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-async function SignOutButtonClicked() {
-  let response = await fetch(`http://localhost:3000/api/auth/logout`, {
+async function SignOutButtonClicked(setButtonText) {
+  setButtonText("Disconnecting...");
+  let response = await fetch(`https://provotechspert.click/api/auth/logout`, {
     method: "POST",
     headers,
   });
   let text = await response.text();
-  if (text !== "Logged out successfully") {
+
+  if (text === "Not logged in") {
+    localStorage.removeItem("username");
+    window.location.href = "/";
+  } else if (text !== "Logged out successfully") {
+    setButtonText("Sign Out");
     return alert(text);
   }
 
   localStorage.removeItem("username");
   window.location.href = "/";
 }
+
 function SettingsButtonClicked() {
   window.location.href = "/settings/";
 }
 
 export function ChatDropdownOptions() {
+  const [signOutText, setSignOutText] = useState("Sign Out");
+
   return (
     <div>
       <button className="main_text very_small" onClick={SettingsButtonClicked}>
         Settings
       </button>
-      <button className="main_text very_small" onClick={SignOutButtonClicked}>
-        Sign Out
+      <button
+        className="main_text very_small"
+        onClick={() => SignOutButtonClicked(setSignOutText)}
+      >
+        {signOutText}
       </button>
     </div>
   );

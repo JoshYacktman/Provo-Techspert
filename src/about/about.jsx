@@ -10,79 +10,99 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-async function JoinSignInButtonClicked() {
-  var userName = document.getElementById("userNameInput").value;
-  var password = document.getElementById("passwordInput").value;
-  let response = await fetch(`http://localhost:3000/api/auth/manage`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify({
-      username: userName,
-      password: password,
-    }),
-  });
-  let text = await response.text();
-  console.log(text);
-
-  if (text === "User created") {
-    localStorage.setItem("username", userName);
-    window.location.href = "/chat/";
-  } else if (text === "Existing user") {
-    response = await fetch(`http://localhost:3000/api/auth/login`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        username: userName,
-        password: password,
-      }),
-    });
-    text = await response.text();
-    console.log(text);
-    if (text !== "User logged in") {
-      // TODO: Make a nice pop up
-      return alert(text);
-    }
-    localStorage.setItem("username", userName);
-    window.location.href = "/chat/";
-  } else {
-    alert(text);
-  }
-}
-
 function AboutDropdownOptions() {
   const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const isValid = userName.length >= 5;
+  const isValid = userName.length >= 3 && password.length >= 5;
+
+  async function handleJoinSignIn() {
+    setLoading(true);
+
+    try {
+      let response = await fetch(
+        "https://provotechspert.click/api/auth/manage",
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({ username: userName, password }),
+        },
+      );
+
+      let text = await response.text();
+
+      if (text === "User created") {
+        localStorage.setItem("username", userName);
+        window.location.href = "/chat/";
+      } else if (text === "Existing user") {
+        response = await fetch("https://provotechspert.click/api/auth/login", {
+          method: "POST",
+          headers,
+          body: JSON.stringify({ username: userName, password }),
+        });
+
+        text = await response.text();
+
+        if (text !== "User logged in") {
+          alert(text);
+        } else {
+          localStorage.setItem("username", userName);
+          window.location.href = "/chat/";
+        }
+      } else {
+        alert(text);
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <form>
       <div className="form_format">
         <label className="main_text small">Username</label>
         <input
-          id="userNameInput"
           className="bordered_message_font small form_input small_corner_rounding"
           maxLength="15"
           minLength="3"
           value={userName}
-          onChange={(e) => setUserName(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleJoinSignIn();
+            }
+          }}
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
         />
         <label className="main_text small">Password</label>
         <input
-          id="passwordInput"
           className="bordered_message_font small form_input small_corner_rounding"
           maxLength="20"
           minLength="5"
           type="password"
+          value={password}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleJoinSignIn();
+            }
+          }}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
         />
       </div>
       <div style={{ flexDirection: "row" }}>
         <button
           type="button"
           className="main_text very_small dropdown_buttons"
-          onClick={JoinSignInButtonClicked}
-          disabled={!isValid}
+          onClick={handleJoinSignIn}
+          disabled={!isValid || loading}
         >
-          Join/Sign In
+          {loading ? "Loading..." : "Join/Sign In"}
         </button>
       </div>
     </form>

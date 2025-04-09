@@ -98,9 +98,8 @@ The process looks like this:
  - Add cookie tokens, store data
  - Make all endpoints working
  - Add basic tests for endpoints (TODO: fill these as endpoints completed)
- - TODO: call api from website
- - TODO: get popups on website if api request fails and have spinning icon
- - TODO: Get placeholder images working in about (see simon about)
- - TODO: Simon deployed
+ - Call api from website
+ - Get placeholder images working in about (see simon about)
+ - Simon deployed
  - External API used (gmail api through nodemailer)
  - Created API test suite

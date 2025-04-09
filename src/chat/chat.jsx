@@ -377,3 +377,4 @@ function Chat() {
 }
 
 export default Chat;
+//TODO: get popups on website if api request fails and have spinning icon

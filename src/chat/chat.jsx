@@ -21,6 +21,7 @@ if (isSafari) {
 function Chat() {
   const userName = localStorage.getItem("username");
   const notify = new Audio("/sounds/notify.mp3");
+
   if (userName == null) {
     window.location.href = "/";
     return;
@@ -32,18 +33,19 @@ function Chat() {
   const [sidebarOpenStatus, setSidebarOpenStatus] = useState(false);
 
   const socketRef = useRef(null);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     let port = window.location.port;
     const protocol = window.location.protocol === "http:" ? "ws" : "wss";
-    console.log(`${protocol}://${window.location.hostname}:${port}/ws`);
     socketRef.current = new WebSocket(
       `${protocol}://${window.location.hostname}:${port}/ws`,
     );
 
-    // WebSocket events
     socketRef.current.onopen = () => {
       console.log("WebSocket Connected!");
+      // Request initial chat data
+      socketRef.current.send(JSON.stringify({ type: "refresh" }));
     };
 
     socketRef.current.onmessage = (event) => {
@@ -51,42 +53,56 @@ function Chat() {
       console.log("Received message:", message);
 
       if (message.type === "ping") {
-        // If the server sends a ping, reply with pong
         socketRef.current.send(JSON.stringify({ type: "pong" }));
         console.log("Sent pong");
+      } else if (typeof message === "string") {
+        // Handle acknowledgment or error messages
+        if (message.includes("Successfully created chat")) {
+          const newChatName = message.split(": ")[1];
+          setCurrentChat(newChatName); // Switch to newly created chat
+        } else if (
+          message === "Chat not found" ||
+          message.includes("cannot create chats")
+        ) {
+          alert(message);
+        }
+        // Request updated chat data after operation
+        socketRef.current.send(JSON.stringify({ type: "refresh" }));
+      } else if (message.error) {
+        alert(message.error);
       } else {
-        // Handle chat data (assuming the message contains chat data)
+        // Handle chat data update
         const chatData = message;
-        const updatedChats = Object.entries(chatData).map((chat) => chat.name);
-        const updatedMessages = Object.entries(chatData).reduce(
-          (acc, [key, chat]) => {
-            acc[chat.name] = chat.messages;
-            return acc;
-          },
-          {},
+        const updatedChats = Object.keys(chatData);
+        const updatedMessages = Object.fromEntries(
+          Object.entries(chatData).map(([chatName, chat]) => [
+            chatName,
+            chat.messages,
+          ]),
         );
 
         setChats(updatedChats);
         setMessages(updatedMessages);
+        if (!currentChat && updatedChats.length > 0) {
+          setCurrentChat(updatedChats[0]);
+        }
       }
     };
 
     socketRef.current.onerror = (error) => {
       console.error("WebSocket error:", error);
-      console.log("WebSocket URL:", socketRef.current.url); // Log the URL
     };
 
     socketRef.current.onclose = () => {
       console.log("WebSocket Closed!");
     };
 
-    // Clean up WebSocket connection when component unmounts
     return () => {
       if (socketRef.current) {
         socketRef.current.close();
       }
     };
-  }, []); // Empty dependency array, runs once when the component mounts
+  }, []);
 
   const toggleStatus = (isMainPage = false) => {
     if (!isMainPage) {
@@ -112,9 +128,6 @@ function Chat() {
     notify.play();
   };
 
-  // Function to scroll to the bottom
-  const messagesEndRef = useRef(null);
-
   const scrollToBottomInstant = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
   };
@@ -126,67 +139,56 @@ function Chat() {
   };
 
   const addMessage = () => {
-    if (chats.length === 0) {
-      return;
-    }
+    if (!currentChat) return;
 
     const input = document.getElementById("sendMessage");
-    var newMessage = input.value.trim();
+    const newMessage = input.value.trim();
     if (!newMessage) {
       scrollToBottomSmooth();
       return;
     }
 
-    setMessages((prev) => {
-      const chatMessages = prev[currentChat]; // Get current chat messages or default to an empty array
-      const lastGroup = chatMessages[chatMessages.length - 1];
-
-      const updatedChatMessages =
-        lastGroup?.sender === userName
-          ? chatMessages.map((group, index) =>
-              index === chatMessages.length - 1
-                ? {
-                    ...group,
-                    messages: [...group.messages, newMessage],
-                  }
-                : group,
-            )
-          : [
-              ...chatMessages,
-              {
-                sender: userName,
-                side: "right",
-                messages: [newMessage],
-              },
-            ];
-
-      return {
-        ...prev,
-        [currentChat]: updatedChatMessages, // Update only the current chat
-      };
-    });
+    socketRef.current.send(
+      JSON.stringify({
+        type: "message",
+        chatName: currentChat,
+        message: newMessage,
+      }),
+    );
 
     input.value = "";
     playNotifySound();
     scrollToBottomSmooth();
   };
 
-  function deleteChat(chatName) {
-    setChats((prevChats) => {
-      const updatedChats = prevChats.filter((chat) => chat !== chatName);
+  const deleteChat = (chatName) => {
+    socketRef.current.send(
+      JSON.stringify({
+        type: "delete",
+        chatName: chatName,
+      }),
+    );
+  };
 
-      // Ensure current chat updates correctly after state change
-      setCurrentChat(updatedChats.length > 0 ? updatedChats[0] : "");
+  const createChat = () => {
+    const input = document.getElementById("newChatInput");
+    const newChatName = input.value.trim();
 
-      return updatedChats;
-    });
+    if (!newChatName) {
+      alert("Chat name is required!");
+      return;
+    }
 
-    setMessages((prev) => {
-      const updatedMessages = { ...prev };
-      delete updatedMessages[chatName];
-      return updatedMessages;
-    });
-  }
+    socketRef.current.send(
+      JSON.stringify({
+        type: "create",
+        chatName: newChatName,
+      }),
+    );
+
+    input.value = "";
+    document.getElementById("popupOverlay").style.display = "none";
+  };
 
   useEffect(() => {
     scrollToBottomInstant();
@@ -194,41 +196,6 @@ function Chat() {
 
   function openPopup() {
     document.getElementById("popupOverlay").style.display = "flex";
-  }
-
-  function createChat() {
-    const input = document.getElementById("newChatInput");
-    var newChatName = input.value.trim();
-
-    // Add the newMessage to chats, set it as currentChat, and add the hello message to the new chat
-    if (chats.includes(newChatName)) {
-      alert("A chat with this name already exists!");
-      return;
-    }
-    newChatName = newChatName + " - " + userName;
-
-    setChats((prevChats) => [...prevChats, newChatName]);
-    setMessages((prevMessages) => ({
-      ...prevMessages,
-      [newChatName]: [
-        {
-          sender: "Provo Techspert",
-          side: "left",
-          messages: [
-            `Hello ${userName}, my name is Joshua Yacktman or, as my website calls me, the Provo Techspert.
-                        To help you repair your device, I would appreciate a message from you explaining the issue,
-                        if you can reproduce the issue consistently, and, if possible, links to pictures and/or videos
-                        (I personally use imgbb and Vimeo).`,
-          ],
-        },
-      ],
-    }));
-
-    setCurrentChat(newChatName);
-
-    input.value = "";
-    document.getElementById("popupOverlay").style.display = "none";
-    return;
   }
 
   return (
@@ -268,13 +235,12 @@ function Chat() {
             >
               Create Chat
             </button>
-
             <button
               className="small main_text small_corner_rounding"
               onClick={toggleStatus}
               style={{ flexGrow: 1 }}
             >
-              &larr;
+              ←
             </button>
           </div>
         </div>
@@ -319,7 +285,7 @@ function Chat() {
             onMouseEnter={hoverEnterStatus}
             onClick={hoverEnterStatus}
           >
-            &equiv;
+            ≡
           </button>
           <h1
             className="medium main_text"
@@ -362,7 +328,6 @@ function Chat() {
               </LeftSideMessageDiv>
             ),
           )}
-
           <div ref={messagesEndRef}></div>
         </div>
         <div
@@ -402,7 +367,7 @@ function Chat() {
               onClick={addMessage}
               className="small main_text small_corner_rounding shadow_down"
             >
-              &rarr;
+              →
             </button>
           </div>
         </div>
@@ -410,4 +375,5 @@ function Chat() {
     </div>
   );
 }
+
 export default Chat;

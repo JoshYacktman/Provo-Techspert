@@ -69,6 +69,20 @@ function chatWebSocket(httpServer) {
         let json_data = JSON.parse(data.toString("utf8"));
         if (json_data["type"] === "pong") {
           socket.isAlive = true;
+        } else if (json_data["type"] === "refresh") {
+          if (socket.username === "Provo Techspert") {
+            const allChats = {};
+            const allUsers = await User.find({}, "chats");
+            allUsers.forEach((user) => {
+              Object.entries(user.chats).forEach(([chatName, chat]) => {
+                allChats[chatName] = chat;
+              });
+            });
+            socket.send(JSON.stringify(allChats));
+          } else {
+            const user = await User.findOne({ username: socket.username });
+            socket.send(JSON.stringify(user.chats));
+          }
         } else if (json_data["type"] === "create") {
           let chatName = String(json_data["chatName"]);
           if (socket.username === "Provo Techspert") {
@@ -220,6 +234,7 @@ function chatWebSocket(httpServer) {
       socket.close();
     }
   });
+  // TODO: notify others when a chat they are in has a new message
 
   // Ping/Pong
   setInterval(() => {

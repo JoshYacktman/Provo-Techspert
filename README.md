@@ -102,4 +102,16 @@ The process looks like this:
  - Get placeholder images working in about (see simon about)
  - Simon deployed
  - External API used (gmail api through nodemailer)
- - Created API test suite
+ - Created API test suite (outdated with websockets)
+
+# DB Deliverable
+ - Simon DB
+ - Add database inference in service/utils/db.js
+ - Write and read from DB
+ - Uses MongoDB
+
+# Websockets Deliverable
+ - Chat page uses websockets to message and manage chats
+ - Chat routing replaced with websockets
+ - The messages you send are returned to you as a way of verifying that it sent properly
+ - Fully functional with no mocks or placeholders

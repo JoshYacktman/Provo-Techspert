@@ -34,8 +34,12 @@ function Chat() {
   const socketRef = useRef(null);
 
   useEffect(() => {
-    // Establish WebSocket connection
-    socketRef.current = new WebSocket("wss://provotechpsert.click:4000");
+    let port = window.location.port;
+    const protocol = window.location.protocol === "http:" ? "ws" : "wss";
+    console.log(`${protocol}://${window.location.hostname}:${port}/ws`);
+    socketRef.current = new WebSocket(
+      `${protocol}://${window.location.hostname}:${port}/ws`,
+    );
 
     // WebSocket events
     socketRef.current.onopen = () => {
@@ -53,11 +57,14 @@ function Chat() {
       } else {
         // Handle chat data (assuming the message contains chat data)
         const chatData = message;
-        const updatedChats = chatData.map((chat) => chat.name);
-        const updatedMessages = chatData.reduce((acc, chat) => {
-          acc[chat.name] = chat.messages;
-          return acc;
-        }, {});
+        const updatedChats = Object.entries(chatData).map((chat) => chat.name);
+        const updatedMessages = Object.entries(chatData).reduce(
+          (acc, [key, chat]) => {
+            acc[chat.name] = chat.messages;
+            return acc;
+          },
+          {},
+        );
 
         setChats(updatedChats);
         setMessages(updatedMessages);
@@ -66,7 +73,7 @@ function Chat() {
 
     socketRef.current.onerror = (error) => {
       console.error("WebSocket error:", error);
-      console.log("WebSocket URL:", socket.url); // Log the URL
+      console.log("WebSocket URL:", socketRef.current.url); // Log the URL
     };
 
     socketRef.current.onclose = () => {
@@ -75,9 +82,11 @@ function Chat() {
 
     // Clean up WebSocket connection when component unmounts
     return () => {
-      socketRef.current.close();
+      if (socketRef.current) {
+        socketRef.current.close();
+      }
     };
-  }, []);
+  }, []); // Empty dependency array, runs once when the component mounts
 
   const toggleStatus = (isMainPage = false) => {
     if (!isMainPage) {

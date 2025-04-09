@@ -7,7 +7,6 @@ const chatWebSocket = require("./routes/chat");
 const app = express();
 
 // Service configuration
-console.log(process.argv.length);
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const build_loc = "public";
 
